@@ -1,0 +1,229 @@
+{
+  "main": {
+    "id": "fdb8e39489b41bda",
+    "type": "split",
+    "children": [
+      {
+        "id": "ee8a52d729ad5b6c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dc0c296eb9099194",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Conhecimento/Muay Thai/Diretrizes para Aulas.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Diretrizes para Aulas"
+            }
+          },
+          {
+            "id": "9ac20c7507383758",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "curriculo.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "curriculo"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "99b083a354eb04dd",
+    "type": "split",
+    "children": [
+      {
+        "id": "96004de308e9b4d5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7940e201df3d2f95",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "3998d8dd6702f707",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "f77f81f67a90e7fa",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d8132b8bf1a5e4b7",
+    "type": "split",
+    "children": [
+      {
+        "id": "f7671e84c425896d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "99296480659f5666",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "curriculo.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos para curriculo"
+            }
+          },
+          {
+            "id": "2d3963f768813610",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída"
+            }
+          },
+          {
+            "id": "61cb2e58865d691e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "5575d6886c9cb3a4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas as propriedades"
+            }
+          },
+          {
+            "id": "c5a2366407f41b3b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false
+    }
+  },
+  "active": "9ac20c7507383758",
+  "lastOpenFiles": [
+    "Conhecimento/Muay Thai/Diário/Terça - Aula 5.md",
+    "Conhecimento/Muay Thai/Diário/Quinta - Aula 4.md",
+    "Conhecimento/Muay Thai/Diretrizes para Aulas.md",
+    "Conhecimento/Muay Thai/midia/Paleta de Cores.md",
+    "Conhecimento/Muay Thai/midia.md",
+    "Conhecimento/Muay Thai/Aquecimento e Intervalo - Turmas Iniciantes.md",
+    "Conhecimento/Muay Thai/Diário/Terça - Aula 3.md",
+    "Conhecimento/Muay Thai/Diário/Quinta - Aula 3.md",
+    "Conhecimento/Muay Thai/midia/01 - Manifesto.md",
+    "Conhecimento/Muay Thai/midia/05 - Bastidores.md",
+    "Conhecimento/Muay Thai/midia/04 - Quebrando o Maior Mito.md",
+    "Conhecimento/Muay Thai/midia/03 - Alinhamento de Expectativas.md",
+    "Conhecimento/Muay Thai/midia/02 - Guia da Iniciante.md",
+    "Conhecimento/Muay Thai/midia/10 - Rotina de Stories.md",
+    "Conhecimento/Muay Thai/midia/09 - Chamado Final.md",
+    "Conhecimento/Muay Thai/midia/08 - Objeções de Tempo.md",
+    "Conhecimento/Muay Thai/midia/07 - A Experiência Alheia.md",
+    "Conhecimento/Muay Thai/midia/06 - Benefícios Invisíveis.md",
+    "Conhecimento/Muay Thai/midia",
+    "Conhecimento/Muay Thai/Diário/Quinta - Aula 2.md",
+    "Conhecimento/Muay Thai/Diário/Quinta - Aula 1.md",
+    "Conhecimento/Muay Thai/Diário/Terça - Aula 2.md",
+    "Conhecimento/Muay Thai/Diário/Terça - Aula 1.md",
+    "Conhecimento/Schedule/Semana 1.md",
+    "Conhecimento/Muay Thai/Quinta.md",
+    "Conhecimento/Muay Thai/Modelo de Aula.md",
+    "Conhecimento/Muay Thai/Diário",
+    "Conhecimento/Muay Thai/Terça.md"
+  ]
+}

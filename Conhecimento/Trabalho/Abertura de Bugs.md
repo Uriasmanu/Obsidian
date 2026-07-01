@@ -1,0 +1,2 @@
+[[Validador]]
+[[Configurador]]

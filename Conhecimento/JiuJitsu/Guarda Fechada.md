@@ -1,0 +1,3 @@
+[[Armlock]]
+[[Omoplata]]
+[[Tesourinha]]

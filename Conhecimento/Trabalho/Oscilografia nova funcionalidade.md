@@ -1,0 +1,2 @@
+
+Mudança no layaut do [[Frontend Oscilografia - nova funcionalidade |Frontend]] dos filtros da oscilografia e na pagina de relatorios que ira separar as variaeis das manobras, trasendo as variaveis padroes em um acordion e as manobras com informaçoes detalhadas em outro acordion. Ajuste do [[Backend Oscilografia - nova funcionalidade |Backend]] para devolver as informaçoes das variavei separadas das manobras e  trazer mais detalhes para as manobras

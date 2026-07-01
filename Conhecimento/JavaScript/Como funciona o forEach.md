@@ -1,0 +1,1 @@
+O método `forEach` **não retorna nada** (`undefined`). Ele apenas executa uma função para cada elemento do array, mas **não cria um novo array** com os resultados. Por isso, ao usar `return x.forEach(...)`, a função `maps` sempre retornará `undefined`, independentemente do que aconteça dentro do `forEach`.

@@ -1,0 +1,1 @@
+Consiste em fazer uma [[Definição de SPIKE|SPIKE]] E conforme avança você vai criando tarefas referentes ao que foi usado no código e estimando o tempo para terminar essas tarefas. Conforme vai surgindo duvidas, o ideal é organiza-las para perguntar ao líder técnico.
