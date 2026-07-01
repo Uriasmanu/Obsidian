@@ -27,7 +27,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "curriculo.md",
+                "file": "Conhecimento/Manu/curriculo.md",
                 "mode": "source",
                 "source": false
               },
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "curriculo.md",
+                "file": "Conhecimento/Manu/curriculo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -195,8 +195,10 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "9ac20c7507383758",
+  "active": "7940e201df3d2f95",
   "lastOpenFiles": [
+    "Conhecimento/SDD/Perguntas de Viabilidade — O Advogado do Diabo antes do Primeiro Commit.md",
+    "Conhecimento/Manu/curriculo.md",
     "Conhecimento/Muay Thai/Diário/Terça - Aula 5.md",
     "Conhecimento/Muay Thai/Diário/Quinta - Aula 4.md",
     "Conhecimento/Muay Thai/Diretrizes para Aulas.md",
@@ -222,8 +224,6 @@
     "Conhecimento/Muay Thai/Diário/Terça - Aula 1.md",
     "Conhecimento/Schedule/Semana 1.md",
     "Conhecimento/Muay Thai/Quinta.md",
-    "Conhecimento/Muay Thai/Modelo de Aula.md",
-    "Conhecimento/Muay Thai/Diário",
-    "Conhecimento/Muay Thai/Terça.md"
+    "Conhecimento/Muay Thai/Diário"
   ]
 }
