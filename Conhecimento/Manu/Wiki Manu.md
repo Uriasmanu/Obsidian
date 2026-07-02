@@ -98,7 +98,7 @@ Estagiaria de desenvolvimento fullstack (C#, Vue, PostgreSQL), com interesse em 
 - **Grau**: Verde
 - Treinos regulares de Muay Thai
 - Complementa o Jiu-Jitsu
-- [[Muay Thai/Diretrizes para Aulas|Aulas femininas]] (em desenvolvimento)
+- [[Diretrizes para Aulas|Aulas femininas]] (em desenvolvimento)
 
 ---
 

@@ -7,7 +7,7 @@ Modelo para montar suas futuras aulas.
 ## Princípio Fundamental (Turmas Iniciantes)
 
 **Na dinâmica de dupla:**
-1. **Estudante faz primeiro** - Executa a técnica
+1. **Você faz primeiro** - Executa a técnica
 2. **Parceiro responde depois** - Faz o contra-golpe (se houver)
 
 **Regra:** Estudante sempre começa, parceiro sempre responde.
@@ -49,8 +49,17 @@ Parceiro: [contra-golpe]
 2. Parceiro responde (contra-golpe)
 3. Repetir
 
-#### Repetições:
-- 2 a 3 min de prática antes de trocar
+#### Divisão em Sequências (Rodadas):
+
+Cada aula tem **3 sequências** com dificuldade progressiva. Os tempos são sugestões — ajuste conforme o ritmo da turma.
+
+| Sequência | Duração | Descrição |
+|-----------|---------|-----------|
+| Sequência 1 | 5 min | Técnica base — você ataca, parceiro defende |
+| Sequência 2 | 5 min | Acrescenta um contra-golpe |
+| Sequência 3 | 5 min | Completa com finalização |
+
+**Total:** 15 min de prática + 15 min para explicações e trocas
 
 ### 5. Exercício Metabólico (10 min)
 - 80 abdominais
@@ -130,17 +139,17 @@ Para cada técnica nova, defina:
 
 ### Parte Prática (30 min)
 
-**Rodada 1 - Básica:**
+**Sequência 1 — Básica (5 min)**
 - Estudante: jab, frontal com a perna da frente
 - Parceiro: Tenta chutar
 - Estudante: frontal com a perna de trás no quadril
 
-**Rodada 2 - Acrescenta:**
+**Sequência 2 — Acrescenta (5 min)**
 - Estudante: jab, frontal com a perna da frente
 - Parceiro: Tenta chutar
 - Estudante: frontal com a perna de trás no quadril, meia passada chuta
 
-**Rodada 3 - Completa:**
+**Sequência 3 — Completa (5 min)**
 - Estudante: jab, frontal com a perna da frente
 - Parceiro: Tenta chutar
 - Estudante: frontal no quadril, frontal na barriga, direto, passada chuta
