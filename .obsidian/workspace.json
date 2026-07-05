@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Conhecimento/Muay Thai/Diário/Quinta - Aula 5.md",
+                "file": "spec.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Quinta - Aula 5"
+              "title": "spec"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Conhecimento/Muay Thai/Diário/Quinta - Aula 5.md",
+                "file": "spec.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Links inversos para Quinta - Aula 5"
+              "title": "Links inversos para spec"
             }
           },
           {
@@ -182,14 +182,16 @@
   },
   "active": "805898e65227a780",
   "lastOpenFiles": [
-    "Conhecimento/Muay Thai/Diário/Diretrizes para Aulas.md",
+    "android-icon-foreground.png",
+    "spec.md",
+    "Conhecimento/Muay Thai/midia/Paleta de Cores.md",
+    "Conhecimento/Muay Thai/midia.md",
     "Conhecimento/Muay Thai/Diário/Quinta - Aula 5.md",
+    "Conhecimento/Muay Thai/Diário/Diretrizes para Aulas.md",
     "Conhecimento/Muay Thai/Diário/Terça - Aula 5.md",
     "Conhecimento/Manu/curriculo.md",
     "Conhecimento/SDD/Perguntas de Viabilidade — O Advogado do Diabo antes do Primeiro Commit.md",
     "Conhecimento/Muay Thai/Diário/Quinta - Aula 4.md",
-    "Conhecimento/Muay Thai/midia/Paleta de Cores.md",
-    "Conhecimento/Muay Thai/midia.md",
     "Conhecimento/Muay Thai/Aquecimento e Intervalo - Turmas Iniciantes.md",
     "Conhecimento/Muay Thai/Diário/Terça - Aula 3.md",
     "Conhecimento/Muay Thai/Diário/Quinta - Aula 3.md",
@@ -207,8 +209,6 @@
     "Conhecimento/Muay Thai/Diário/Quinta - Aula 2.md",
     "Conhecimento/Muay Thai/Diário/Quinta - Aula 1.md",
     "Conhecimento/Muay Thai/Diário/Terça - Aula 2.md",
-    "Conhecimento/Muay Thai/Diário/Terça - Aula 1.md",
-    "Conhecimento/Schedule/Semana 1.md",
     "Conhecimento/Muay Thai/Diário"
   ]
 }
