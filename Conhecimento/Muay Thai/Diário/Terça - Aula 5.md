@@ -9,14 +9,16 @@
 **Intervalo entre as sequências:** 20 abdominais, 10 flexões
 
 ### Sequência 1
-- Treino de catada de chute: um chuta e o outro pega
+- 1 min  1 frontal na parede
+- 1 min de sombra
+- 1 min de golpes livres no saco de pancada ( Com força)
 
 ### Sequência 2
-- Pessoa 1: jab + jab + chute com a perna boa
-- Colega: jab + chute
-- Pessoa 1 faz a catada do chute
+- 1 min 2 frontal na parede
+- 1 min de sombra
+- 1 min de 2 golpes livres no saco de pancada ( Com força)
 
 ### Sequência 3
-- Pessoa 1: jab + jab + chute com a perna boa
-- Colega: jab + chute
-- Pessoa 1 faz a catada do chute + solta a perna e dá um direto na barriga
+- 1 min de 2 frontal na parede
+- 1 min de sombra
+- 1 min de 4 golpes livres no saco de pancada ( Com força)

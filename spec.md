@@ -390,8 +390,11 @@ Utilizar JWT com Refresh Token.
 2. Para cada item `[aberto]` resolvido: mova-o para **Histórico de Correções** com o formato estabelecido e atualize os RF, CA e Passos afetados.
 3. Crie o arquivo `implementado/{nome-da-feature}.md` seguindo todas as seções deste guia antes de escrever qualquer código.
 4. Após criar o `.md`, revise-o para verificar coerência. Só então implemente.
-5. Ao finalizar qualquer ciclo (feature nova ou correção), registre no **Histórico de Correções** em spec.md NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes e atualize o documento `implementado/{nome-da-feature}.md` caso seja implementado uma nova regra de negocio. Permitido melhorar a descrição e titulo do problema aberto
+5. Ao finalizar qualquer ciclo (feature nova ou correção), registre no **Histórico de Correções** em spec.md. NÃO alterar os comentários e NÃO apagar algo, apenas adicione suas observações e atualize o documento `implementado/{nome-da-feature}.md` caso seja implementado uma nova regra de negócio. Permitido melhorar a descrição e título do problema aberto.
 6. **Para qualquer tarefa com interface visual:** aplique obrigatoriamente os requisitos da seção **5.1 UI/UX Responsivo**. Isso inclui: planejar o layout para mobile, notebook e desktop antes de codificar; nunca assumir que o layout funciona em todos os tamanhos sem validação explícita; e registrar nos critérios de aceite (seção 9) ao menos um CA de responsividade por tela ou componente novo.
+7. **Para decisões de design/arquitetura:** ao tomar uma decisão importante (escolha de framework, banco, padrão arquitetural, etc.), crie um **DDR (Design Decision Record)** conforme a seção **13**. Registre no arquivo `implementado/{nome-da-feature}.md` ou em `docs/ddr/DDR-XXX-titulo.md`.
+8. **Antes de implementar:** verifique se existem DDRs anteriores que impactam a feature atual. Se existirem, leia-os para manter consistência nas decisões técnicas.
+9. **Ao documentar requisitos:** siga os princípios de Clareza, Completude, Consistência, Verificabilidade, Rastreabilidade, Atomicidade e Priorização descritos neste documento.
 
 ## Antes de atualizar a doc de requisitos.md garanta que esta seguindo os principios a baixo
 
