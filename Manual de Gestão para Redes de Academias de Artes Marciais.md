@@ -93,10 +93,6 @@ flowchart TD
     A -->|Acompanha| G[Indicadores de todas as unidades]
     B --> H[Professor Responsável]
     B --> I[Recepção]
-    C --> J[Professor Responsável]
-    C --> K[Recepção]
-    D --> L[Professor Responsável]
-    D --> M[Recepção]
 ```
 
 A **Matriz** (que pode ser só você e, no futuro, um gerente geral) cuida de:
