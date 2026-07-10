@@ -81,16 +81,6 @@ Um pleno normalmente domina pelo menos uma linguagem principal e consegue trabal
 
 - C#
     
-- Java
-    
-- Node.js
-    
-- Go
-    
-- Python
-    
-- PHP
-    
 
 Não precisa dominar todas.
 
