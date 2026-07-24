@@ -8,6 +8,14 @@ Revisão da semana - Escrita à mão
 
 ---
 
+## Links
+
+- [[Programadora/Vocabulario Ingles|Vocabulário]]
+- [[Programadora/Aprender Inglês sozinha|Inglês Autodidata]]
+- [[Manu/Indice|Voltar ao Indice]]
+
+---
+
 ## Parte 1: Hajime no Ippo (Ep 2)
 
 ### Questão 1

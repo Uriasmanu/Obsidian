@@ -4,6 +4,14 @@ Palavras e expressões estudadas por contexto (anime, docs técnicos, etc.)
 
 ---
 
+## Links
+
+- [[Programadora/Quiz - Vocabulario Semana 1|Quiz Vocabulário]]
+- [[Programadora/Aprender Inglês sozinha|Inglês Autodidata]]
+- [[Manu/Indice|Voltar ao Indice]]
+
+---
+
 ## Hajime no Ippo (Ep 2)
 
 | inglês | português |

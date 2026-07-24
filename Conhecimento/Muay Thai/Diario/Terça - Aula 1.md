@@ -29,3 +29,11 @@
 
 ### Rodada 4 - Jab e Direto (5 min)
 - 2 Jeb e um direto no saco de pancada, marcação de ritimo (tive que adicionar de ultima hora)
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

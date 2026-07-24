@@ -154,3 +154,11 @@ SELECT * FROM produtos ORDER BY preco DESC LIMIT 5
 
 ## Recomendação de Estudo
 Praticar: GROUP BY, AVG/COUNT/SUM, ORDER BY DESC, LIMIT, LIKE com %
+
+---
+
+## Links
+
+- [[SQL/Conhecimentos em SQL|SQL]]
+- [[SQL/Quiz - Conceitos Basicos SQL|Quiz Conceitos Básicos]]
+- [[Manu/Indice|Voltar ao Indice]]

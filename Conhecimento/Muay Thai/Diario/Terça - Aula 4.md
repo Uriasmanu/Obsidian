@@ -20,3 +20,11 @@
 - Pessoa 1: jab + jab + chute com a perna boa
 - Colega: jab + chute
 - Pessoa 1 faz a catada do chute + solta a perna e dá um direto na barriga
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

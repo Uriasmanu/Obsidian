@@ -4,6 +4,14 @@ Artigos técnicos que li em inglês. Resumos em inglês (50-100 palavras) para p
 
 ---
 
+## Links
+
+- [[Programadora/Vocabulario Ingles|Vocabulário]]
+- [[Programadora/Aprender Inglês sozinha|Inglês Autodidata]]
+- [[Manu/Indice|Voltar ao Indice]]
+
+---
+
 ## Writing Quality Requirements - Karl E Wiegers (Process Impact)
 
 resumo:

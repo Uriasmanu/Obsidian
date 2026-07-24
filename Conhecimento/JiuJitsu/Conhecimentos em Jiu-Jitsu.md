@@ -49,7 +49,6 @@ Minhas técnicas atuais funcionam mais contra leves. Estou desenvolvendo:
 
 - [[JiuJitsu/Botinha|Botinha]]
 - [[JiuJitsu/Triângulo de Perna|Triangulo de Perna]]
-- [[JiuJitsu/Passagem de Guarda|Passagem de guarda]]
 - [[JiuJitsu/Norte Sul|Norte Sul]]
 - [[JiuJitsu/Joelho na barriga|Joelho na barriga]]
 - Guarda Laco (transição para triângulo)
@@ -59,5 +58,5 @@ Minhas técnicas atuais funcionam mais contra leves. Estou desenvolvendo:
 
 ## Links
 
-- [[Indice|Voltar ao Indice]]
+- [[Manu/Indice|Voltar ao Indice]]
 - [[Manu/Wiki Manu|Wiki Manu]]

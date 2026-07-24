@@ -37,3 +37,11 @@
 Observação:
 Não consegui passar tudo conforme planejado, ja que todas são iniciantes e não sabem segurar aparador.
 Tive que trocar a dinâmica para caminhada até o saco de pancada, seguindo o caminho da corda. Consegui que elas fizessem o 1 e 2. Porem os chutes e os socos estavam tudo errado
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

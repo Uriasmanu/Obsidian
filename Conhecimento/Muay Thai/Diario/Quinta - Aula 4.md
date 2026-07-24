@@ -15,3 +15,11 @@
 - Jab jab, joelho
 - Amigo dá um jab e cruza
 - Cruza com a mesma mão e chuta
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

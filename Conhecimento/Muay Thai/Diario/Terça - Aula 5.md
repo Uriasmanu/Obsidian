@@ -22,3 +22,11 @@
 - 1 min de 2 frontal na parede
 - 1 min de sombra
 - 1 min de 4 golpes livres no saco de pancada ( Com força)
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

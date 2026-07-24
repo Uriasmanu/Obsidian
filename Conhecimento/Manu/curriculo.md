@@ -105,3 +105,10 @@ Busca uma oportunidade desafiadora e dinâmica para contribuir com expertise e d
 
 - **Português** — Nativo
 - **Inglês** — Básico a Intermediário (leitura técnica, estudo autodidata em andamento)
+
+---
+
+## Links
+
+- [[Manu/Wiki Manu|Wiki Manu]]
+- [[Manu/Indice|Voltar ao Indice]]

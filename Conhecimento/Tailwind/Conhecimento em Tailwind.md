@@ -11,4 +11,4 @@
 ## Links
 
 - [[Programadora/Meus conhecimentos em programação|Voltar para Programacao]]
-- [[Indice|Voltar ao Indice]]
+- [[Manu/Indice|Voltar ao Indice]]

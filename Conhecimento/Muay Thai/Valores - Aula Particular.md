@@ -9,3 +9,10 @@
 | 3 vezes por semana | R$ 330,00 |
 | 4 vezes por semana | R$ 430,00 |
 | 5 vezes por semana | R$ 530,00 |
+
+---
+
+## Links
+
+- [[Muay Thai/midia|Midia Muay Thai]]
+- [[Manu/Indice|Voltar ao Indice]]

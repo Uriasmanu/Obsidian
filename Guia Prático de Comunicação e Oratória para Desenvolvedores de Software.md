@@ -528,3 +528,9 @@ Use estas simulações sozinho (gravando-se) ou com um colega/mentor.
 - **Antes de escrever um PR ou commit:** responda o quê, por quê e como testar (seção 6).
 - **Antes de apresentar:** respire, estruture em SCQA, teste o ambiente (seções 3, 7 e 8).
 - **Toda semana:** grave-se, revise, ajuste um ponto de cada vez (seção 9).
+
+---
+
+## Links
+
+- [[Manu/Indice|Voltar ao Indice]]

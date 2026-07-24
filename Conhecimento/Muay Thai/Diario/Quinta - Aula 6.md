@@ -12,3 +12,11 @@
 
 ### 3 min - Sequência 3
 - Jab + direto, balança, jab + direto + passada + passada, jab + passada joelho
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

@@ -29,6 +29,29 @@ Monte um roteiro de conteúdo para os primeiros *30 dias* de publicação, consi
 
 Montar o posicionamento de uma conta do zero, especialmente com restrições de imagem, exige uma estratégia visual inteligente. Vamos transformar o "não aparecer" em um elemento de mistério, foco e acolhimento, colocando o protagonismo nas alunas, no ambiente e nos benefícios do Muay Thai Feminino.
 
+---
+
+## Posts Gerados
+
+- [[Muay Thai/midia/01 - Manifesto|Post 1 - O Manifesto]]
+- [[Muay Thai/midia/02 - Guia da Iniciante|Post 2 - Guia da Iniciante]]
+- [[Muay Thai/midia/03 - Alinhamento de Expectativas|Post 3 - Alinhamento de Expectativas]]
+- [[Muay Thai/midia/04 - Quebrando o Maior Mito|Post 4 - Quebrando o Maior Mito]]
+- [[Muay Thai/midia/05 - Bastidores|Post 5 - Bastidores]]
+- [[Muay Thai/midia/06 - Benefícios Invisíveis|Post 6 - Benefícios Invisíveis]]
+- [[Muay Thai/midia/07 - A Experiência Alheia|Post 7 - A Experiência Alheia]]
+- [[Muay Thai/midia/08 - Objeções de Tempo|Post 8 - Objeções de Tempo]]
+- [[Muay Thai/midia/09 - Chamado Final|Post 9 - Chamado Final]]
+- [[Muay Thai/midia/10 - Rotina de Stories|Post 10 - Rotina de Stories]]
+- [[Muay Thai/midia/Paleta de Cores|Paleta de Cores]]
+
+---
+
+## Links
+
+- [[Muay Thai/Manual de Gestão para Redes de Academias de Artes Marciais|Manual de Gestão]]
+- [[Manu/Indice|Voltar ao Indice]]
+
 Abaixo está o planejamento estratégico detalhado para os primeiros 30 dias, divididos em 3 publicações semanais no feed (focando em qualidade e alcance orgânico para conta nova) e sugestões de Stories diários.
 
 ## 🧭 Fase 1: Aquecimento e Fundação (Dias 1 a 7)

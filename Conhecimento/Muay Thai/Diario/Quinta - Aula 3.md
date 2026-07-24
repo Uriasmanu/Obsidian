@@ -42,3 +42,11 @@ Aula Modelo
 - 5 agachamentos com a criança no colo
 
 ## Consegui passar todas as atividades planejadas
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

@@ -66,3 +66,10 @@ Aqui vai uma lista sólida, misturando clássicos atemporais com livros mais rec
 
 - **Working Effectively with Legacy Code** – Michael Feathers. Ainda extremamente útil, principalmente em bases de código antigas.
 
+---
+
+## Links
+
+- [[Livros/Minhas leituras|Minhas Leituras]]
+- [[Manu/Indice|Voltar ao Indice]]
+

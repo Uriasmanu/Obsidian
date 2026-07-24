@@ -367,3 +367,14 @@ Dada uma lista de requisitos, categorize cada um.
 - [ ] Exemplos reais de requisitos escritos por mim
 - [ ] Casos de uso detalhados do app de academia
 - [ ] Regras de negocio do app de academia
+
+---
+
+## Links Relacionados
+
+- [[SDD/spec|Template de Feature]]
+- [[SDD/Perguntas de Viabilidade — O Advogado do Diabo antes do Primeiro Commit|Perguntas de Viabilidade]]
+- [[SPIKE/Definição de SPIKE|SPIKE]]
+- [[Programadora/Desenvolvimento com SDD e IA|Desenvolvimento com SDD e IA]]
+- [[Programadora/Estudos Atuais|Estudos Atuais]]
+- [[Manu/Indice|Voltar ao Indice]]

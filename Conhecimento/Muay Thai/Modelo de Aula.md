@@ -46,6 +46,6 @@
 
 ## Links
 
-- [[Diretrizes para Aulas|Diretrizes para Aulas]]
-- [[Aquecimento e Intervalo - Turmas Iniciantes|Aquecimento e Intervalo - Turmas Iniciantes]]
-- [[Indice|Voltar ao Índice]]
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes para Aulas]]
+- [[Muay Thai/Aquecimento e Intervalo - Turmas Iniciantes|Aquecimento e Intervalo - Turmas Iniciantes]]
+- [[Manu/Indice|Voltar ao Índice]]

@@ -48,7 +48,7 @@ Sugestão de ordem de estudo:
 ---
 
 ## Links
-- [[Indice|Voltar ao Indice]]
+- [[Manu/Indice|Voltar ao Indice]]
 - [[Manu/Wiki Manu|Wiki Manu]]
 - [[Programadora/Desenvolvimento com SDD e IA|SDD e IA]]
 - [[Programadora/Aprender Inglês sozinha|Inglês]]

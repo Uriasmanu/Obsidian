@@ -16,3 +16,11 @@ No contexto de desenvolvimento de software, um **SPIKE** é um tipo de experimen
 ### Exemplo de uso:
 
 Se sua equipe precisa decidir entre usar Entity Framework ou Dapper para acessar o banco de dados, pode-se fazer um SPIKE para implementar uma pequena funcionalidade com cada um e comparar desempenho, facilidade de uso e compatibilidade.
+
+---
+
+## Links
+
+- [[SDD/SDD (Specification Driven Development)|SDD]]
+- [[Programadora/Estudos Atuais|Estudos Atuais]]
+- [[Manu/Indice|Voltar ao Indice]]

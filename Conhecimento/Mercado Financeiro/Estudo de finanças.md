@@ -14,4 +14,4 @@
 
 ## Links
 
-- [[Indice|Voltar ao Indice]]
+- [[Manu/Indice|Voltar ao Indice]]

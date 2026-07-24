@@ -8,8 +8,9 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 
 ### Programacao
 [[Programadora/Meus conhecimentos em programação|Meus Conhecimentos em Programacao]]
-- [[Programadora/Desenvolvimento com SDD e IA.md|Desenvolvimento com SDD e IA]]
-- [[Programadora/Inglês Autodidata.md|Inglês Autodidata]]
+- [[Programadora/Desenvolvimento com SDD e IA|Desenvolvimento com SDD e IA]]
+- [[Programadora/Inglês Autodidata|Inglês Autodidata]]
+- [[Programadora/Aprender Inglês sozinha|Aprender Inglês Sozinha]]
 - [[Vue/Conhecimentos em Vue|Vue]] (Estagio)
 - [[PostgreSQL/Conhecimentos em PostgreSQL|PostgreSQL]] (Estagio)
 - [[C .NET/Conhecimentos em .NET|C# / .NET]]
@@ -20,7 +21,7 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 - [[Prisma/Conhecimentos em Prisma|Prisma]]
 - [[Programadora/React Native|React Native]]
 - [[Git/Conhecimentos em Git|Git]]
-- [[SDD (Specification Driven Development)|SDD]]
+- [[SDD/SDD (Specification Driven Development)|SDD]]
 - [[Ferramentas/Samsung Notes|Samsung Notes]]
 
 ### Jiu-Jitsu
@@ -28,11 +29,13 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 - [[JiuJitsu/Aulas Infantis|Aulas Infantis]]
 - [[JiuJitsu/Força Física|Força Física]]
 - [[JiuJitsu/Triângulo de Perna|Triangulo de Perna]]
-- Faixa Branca
 
 ### Muay Thai
-[[Muay Thai/Conhecimentos em Muay Thai|Muay Thai]]
-- Grau Verde
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes de Aulas]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Muay Thai/midia|Midia Muay Thai]]
+- [[Muay Thai/Valores - Aula Particular|Valores Aula Particular]]
+- [[Muay Thai/Manual de Gestão para Redes de Academias de Artes Marciais|Manual de Gestão]]
 
 ### Academia
 - Gosta de frequentar academia
@@ -47,6 +50,7 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 [[Schedule/Indice Schedule|Agenda de Estudos]]
 - [[Schedule/Semana 1|Semana 1]]
 - [[Schedule/Semana 2|Semana 2]]
+- [[Schedule/Semana 3|Semana 3]]
 
 ### Mercado Financeiro
 [[Mercado Financeiro/Estudo de finanças|Financeiro]]
@@ -61,21 +65,25 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 ### Vida Pessoal
 [[Livros/Minhas leituras|Livros]]
 [[Manu/Wiki Manu|Wiki Manu]] - Visão geral sobre mim
-[[Jogos e Entretenimento|Jogos]]
+[[Manu/Jogos e Entretenimento|Jogos]]
 
 ---
 
 ## Estudos Atuais
 
-- [[SDD (Specification Driven Development)|SDD]] - Escrita de requisitos
+- [[SDD/SDD (Specification Driven Development)|SDD]] - Escrita de requisitos
 - [[SQL/Conhecimentos em SQL|SQL]] - Praticando no Codewars
 - [[Programadora/Trabalho|Trabalho]] - Debug e solucoes tecnicas
+- [[Programadora/Estudos Atuais|Estudos Atuais]]
 
 ---
 
 ## Projetos
 
 - [[Projetos portifolio/Tasck Manarge|Tasck Manarge]] - App de lista de tarefas
+- [[Programadora/Requisitos - CT Imperio App|CT Imperio App]]
+- [[Programadora/Requisitos - CT Imperio Web App|CT Imperio Web App]]
+- [[Programadora/Requisitos - BJJ Tournament Manager|BJJ Tournament Manager]]
 
 ---
 
@@ -85,3 +93,16 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 - [[Trabalho/Solução Tecnica|Soluções Técnicas]]
 - [[Trabalho/Abertura de Bugs|Abertura de Bugs]]
 - [[SPIKE/Definição de SPIKE|SPIKE]]
+
+---
+
+## Carreira
+
+- [[Plano de Carreira Júnior → Pleno|Plano de Carreira]]
+- [[pleno|Análise Júnior → Pleno]]
+
+---
+
+## Comunicação
+
+- [[Guia Prático de Comunicação e Oratória para Desenvolvedores de Software|Guia de Comunicação]]

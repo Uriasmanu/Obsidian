@@ -20,3 +20,11 @@
 
 ## Intervalos
 - 20 abdominais entre as atividades (não pedi)
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

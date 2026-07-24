@@ -13,5 +13,13 @@
 - Parceiro: faz a catada do chute
 
 ### 3 min - Sequência 3
-- Estudante: jab + 2 chute, clincha
+- Estudante: jab + chute, clincha
 - Parceiro: catada do chute
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

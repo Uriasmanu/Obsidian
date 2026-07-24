@@ -20,3 +20,11 @@
 - Jab + chute, cruza chute com a perna direita, avança (Não passei)
 
 # 15 chutes com a pena esquerda
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

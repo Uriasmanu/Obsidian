@@ -1911,3 +1911,11 @@ Para cada estratégia abaixo: objetivo, quando utilizar, passo a passo, custo es
 ---
 
 _Fim do manual. Volte a qualquer capítulo sempre que precisar planejar sua próxima ação de marketing._
+
+---
+
+## Links
+
+- [[Muay Thai/midia|Midia Muay Thai]]
+- [[Muay Thai/Valores - Aula Particular|Valores Aula Particular]]
+- [[Manu/Indice|Voltar ao Indice]]

@@ -24,3 +24,11 @@
 **Você:** direto, cruzado, chute
 **Parceiro:** responde com jab + jab, chute
 **Você:** faz a catada do chute, segura na bandeja, dá um passo para trás, aplica uma rasteira e finaliza com cotovelada
+
+---
+
+## Links
+
+- [[Muay Thai/Diario/Diretrizes para Aulas|Diretrizes]]
+- [[Muay Thai/Modelo de Aula|Modelo de Aula]]
+- [[Manu/Indice|Voltar ao Indice]]

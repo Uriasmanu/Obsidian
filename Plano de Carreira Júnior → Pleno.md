@@ -981,3 +981,10 @@ A obsolescência das habilidades profissionais é uma realidade, e a capacidade 
 ### Conclusão: O Pleno como Ponto de Equilíbrio
 
 O profissional pleno é o ponto de equilíbrio entre a execução confiável e a visão estratégica. Ele não é mais um executor de tarefas, mas um **solucionador de problemas complexos, um comunicador eficaz e um líder em formação**. Dominar este conjunto diversificado de habilidades é o que permite a esse profissional não apenas performar em seu papel atual, mas pavimentar o caminho para os próximos passos em sua carreira .
+
+---
+
+## Links
+
+- [[pleno|Análise do meu conhecimento vs Plano]]
+- [[Manu/Indice|Voltar ao Indice]]
