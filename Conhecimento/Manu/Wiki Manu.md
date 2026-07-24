@@ -30,8 +30,7 @@ Estagiaria de desenvolvimento fullstack (C#, Vue, PostgreSQL), com interesse em 
 
 #### Estudos Atuais
 
-- [[SDD (Specification Driven Development)|SDD (Specification Driven Development)]]: Escrita de requisitos, documentacao de software
-- [[Programadora/Como Compreender Requisitos Grandes|Como Compreender Requisitos]]: Guia para analisar requisitos antes de codar
+- [[SDD/SDD (Specification Driven Development)|SDD (Specification Driven Development)]]: Escrita de requisitos, documentacao de software
 - [[SQL/Conhecimentos em SQL|SQL]]: Praticando desafios de banco de dados e querys no Codewars
 - [[SQL/Quiz - Conceitos Basicos SQL|Quiz SQL]]: Questionário de múltipla escolha
 - [[SPIKE/Definição de SPIKE|SPIKE]]: Experimentos técnicos para explorar soluções
@@ -77,7 +76,6 @@ Estagiaria de desenvolvimento fullstack (C#, Vue, PostgreSQL), com interesse em 
 
 - [[JiuJitsu/Botinha|Botinha]]
 - [[JiuJitsu/Triângulo de Perna|Triangulo de Perna]]
-- [[JiuJitsu/Passagem de Guarda|Passagem de Guarda]]
 - [[JiuJitsu/Norte Sul|Norte Sul]]
 - [[JiuJitsu/Joelho na barriga|Joelho na barriga]]
 - Guarda Laco (transicao para triangulo)
@@ -98,7 +96,7 @@ Estagiaria de desenvolvimento fullstack (C#, Vue, PostgreSQL), com interesse em 
 - **Grau**: Verde
 - Treinos regulares de Muay Thai
 - Complementa o Jiu-Jitsu
-- [[Diretrizes para Aulas|Aulas femininas]] (em desenvolvimento)
+- [[Muay Thai/Diario/Diretrizes para Aulas|Aulas femininas]] (em desenvolvimento)
 
 ---
 
@@ -375,7 +373,7 @@ Estrutura criada mas **sem conteúdo desenvolvido**:
 
 ## Navegação
 
-- [[Indice|Indice Principal]] - Hub central com todos os links
+- [[Manu/Indice|Indice Principal]] - Hub central com todos os links
 - [[JiuJitsu/Conhecimentos em Jiu-Jitsu|Jiu-Jitsu]] - Minhas técnicas
 - [[Programadora/Meus conhecimentos em programação|Programacao]] - Conhecimentos devs
 - [[Mercado Financeiro/Estudo de finanças|Financeiro]] - Mercado financeiro
