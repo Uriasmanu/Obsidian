@@ -93,6 +93,7 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 - [[Trabalho/Solução Tecnica|Soluções Técnicas]]
 - [[Trabalho/Abertura de Bugs|Abertura de Bugs]]
 - [[SPIKE/Definição de SPIKE|SPIKE]]
+- [[Como Escrever Tasks no Azure DevOps|Tasks no Azure DevOps]]
 
 ---
 
