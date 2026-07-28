@@ -23,6 +23,7 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 - [[Git/Conhecimentos em Git|Git]]
 - [[SDD/SDD (Specification Driven Development)|SDD]]
 - [[Ferramentas/Samsung Notes|Samsung Notes]]
+- [[Ferramentas/Excalidraw|Excalidraw]]
 
 ### Jiu-Jitsu
 [[JiuJitsu/Conhecimentos em Jiu-Jitsu|Meu Jiu-Jitsu]]
