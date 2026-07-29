@@ -65,12 +65,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Sem título.md",
+                "file": "Conhecimento/SQL/Guia Completo de JOINs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sem título"
+              "title": "Guia Completo de JOINs"
             }
           }
         ],
@@ -236,11 +236,22 @@
   },
   "active": "f157c66c4694b191",
   "lastOpenFiles": [
-    "Sem título-2026-07-27-2058.excalidraw.crswap",
+    "Conhecimento/SQL/Praticando JOINs - Consultas com Múltiplas Tabelas.md",
+    "Conhecimento/SQL/Guia Completo de JOINs.md",
+    "Conhecimento/SQL/Update no banco de dados.md",
+    "tasks_sigmafacelift.md",
     "Sem título.md",
+    "Como Escrever Tasks no Azure DevOps.md",
+    "Plano de Carreira Júnior → Pleno.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/08_REFERENCIA_RAPIDA_POSTGRESQL.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/Tasks_Azure_DevOps.md",
+    "Conhecimento/SQL/Conhecimentos em SQL.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/00_ROTEIRO_IMPLANTACAO.md",
+    "Conhecimento/Trabalho/Consulta Empresa e Instalação a partir do CampoModuloAtivo.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/documentacao_unificada_replicacao.md",
+    "Sem título-2026-07-27-2058.excalidraw.crswap",
     "Conhecimento/Trabalho/Bug - Tabela não encontrada - Consulta Recurso Água Papel PostgreSQL.md",
     "Azure task.md",
-    "Como Escrever Tasks no Azure DevOps.md",
     "Conhecimento/Muay Thai/Diario/Quinta - Aula 1.md",
     "Conhecimento/Muay Thai/Diario/Quinta - Aula 6.md",
     "Conhecimento/Muay Thai/Diario/Terça - Aula 7.md",
@@ -249,21 +260,11 @@
     "Conhecimento/Muay Thai/Diario/Terça - Aula 4.md",
     "Conhecimento/Muay Thai/Diario/Terça - Aula 5.md",
     "Livros.md",
-    "Plano de Carreira Júnior → Pleno.md",
     "Guia Prático de Comunicação e Oratória para Desenvolvedores de Software.md",
     "pleno.md",
     "Conhecimento/SDD/spec.md",
     "Conhecimento/Muay Thai/android-icon-foreground.png",
-    "Conhecimento/Muay Thai/Manual de Gestão para Redes de Academias de Artes Marciais.md",
-    "Manual.md",
     "Pasted image 20260707222513.png",
-    "Conhecimento/Muay Thai/midia/Paleta de Cores.md",
-    "Conhecimento/Muay Thai/midia.md",
-    "Conhecimento/Muay Thai/Diario/Diretrizes para Aulas.md",
-    "Conhecimento/Manu/curriculo.md",
-    "Conhecimento/SDD/Perguntas de Viabilidade — O Advogado do Diabo antes do Primeiro Commit.md",
-    "Conhecimento/Muay Thai/Diario/Quinta - Aula 4.md",
-    "Conhecimento/Muay Thai/Aquecimento e Intervalo - Turmas Iniciantes.md",
     "Conhecimento/Muay Thai/midia",
     "Conhecimento/Muay Thai/Diario"
   ]
