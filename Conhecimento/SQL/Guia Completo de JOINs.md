@@ -25,6 +25,398 @@ Se você quer ver o **nome do ativo + nome da empresa**, precisa juntar as três
 
 ---
 
+## O que é `FROM Instalacao i`?
+
+`FROM Instalacao i` significa: **selecionar dados da tabela `Instalacao` e dar a ela o alias (apelido) `i`**
+
+### Decomposição
+
+| Parte | Significado |
+|---|---|
+| `FROM` | "de" ou "a partir de" — indica de qual tabela virão os dados |
+| `Instalacao` | Nome da tabela no banco de dados |
+| `i` | Alias (apelido) que você escolhe para referenciar essa tabela |
+
+**Traduzindo:** `FROM Instalacao i` = "pegue os dados da tabela **Instalacao** e chame-a de **i**"
+
+### Por que usar alias?
+
+1. **Encurtar o código** — em vez de escrever `Instalacao` toda vez, você escreve `i`
+2. **Evitar ambiguidade** — quando duas tabelas têm colunas com o mesmo nome, o alias identifica de qual tabela vem cada coluna
+
+### Exemplo
+
+```sql
+-- SEM alias (funciona, mas é mais longo)
+SELECT Instalacao.Nome FROM Instalacao;
+
+-- COM alias (mais curto e prático)
+SELECT i.Nome FROM Instalacao i;
+```
+
+Ambas fazem a mesma coisa. O alias é só uma abreviação.
+
+### Como escolher o alias
+
+Não existe regra fixa. Use o que for mais legível:
+
+| Tabela | Alias comum | Outros exemplos |
+|---|---|---|
+| `Instalacao` | `i` | `inst`, `insta` |
+| `Empresa` | `e` | `emp`, `empresa` |
+| `Ativo` | `a` | `at` |
+| `ModuloAtivo` | `ma` | `mod` |
+| `CampoModuloAtivo` | `cma` | `campo` |
+
+**Dica:** Use a primeira letra do nome da tabela. Para tabelas longas, use as iniciais (ex: `ModuloAtivo` → `ma`).
+
+### Exemplo completo
+
+```sql
+SELECT 
+    i.Nome AS Instalacao,   -- i é o alias de Instalacao
+    e.Nome AS Empresa        -- e é o alias de Empresa
+FROM Instalacao i            -- Instalacao com alias i
+INNER JOIN Empresa e ON i.EmpresaId = e.Id;  -- Empresa com alias e
+```
+
+**Sem os alias, ficaria assim:**
+
+```sql
+SELECT 
+    Instalacao.Nome AS Instalacao,
+    Empresa.Nome AS Empresa
+FROM Instalacao
+INNER JOIN Empresa ON Instalacao.EmpresaId = Empresa.Id;
+```
+
+Funciona igual, mas é mais longo.
+
+### Regra importante
+
+Uma vez que você define o alias no `FROM`, **deve usá-lo em todo o resto da query**:
+
+```sql
+-- CORRETO
+SELECT i.Nome FROM Instalacao i INNER JOIN Empresa e ON i.EmpresaId = e.Id;
+
+-- ERRADO: "Instalacao.Nome" não existe mais, agora é "i.Nome"
+SELECT Instalacao.Nome FROM Instalacao i INNER JOIN Empresa e ON i.EmpresaId = e.Id;
+```
+
+---
+
+## Por que o mesmo apelido para tabela e coluna?
+
+Às vezes parece que estamos usando o mesmo apelido para tabela e coluna, mas **são coisas diferentes**:
+
+### Alias da tabela vs Alias da coluna
+
+| Tipo | Sintaxe | Para que serve |
+|---|---|---|
+| Alias da tabela | `FROM Instalacao i` | Abreviar o nome da tabela na query |
+| Alias da coluna | `i.Nome AS Instalacao` | Renomear o que aparece no resultado |
+
+### Exemplo
+
+```sql
+SELECT 
+    i.Nome AS Instalacao,   -- alias da COLUNA (o que aparece no resultado)
+    e.Nome AS Empresa        -- alias da COLUNA (o que aparece no resultado)
+FROM Instalacao i            -- alias da TABELA (abreviação na query)
+INNER JOIN Empresa e ON i.EmpresaId = e.Id;  -- alias da TABELA
+```
+
+### O que acontece sem o alias da coluna?
+
+```sql
+-- SEM alias da coluna
+SELECT i.Nome FROM Instalacao i;
+
+-- Resultado:
+-- | Nome  |
+-- |-------|
+-- | Papel |
+-- | Sider |
+
+-- COM alias da coluna
+SELECT i.Nome AS Instalacao FROM Instalacao i;
+
+-- Resultado:
+-- | Instalacao |
+-- |------------|
+-- | Papel      |
+-- | Sider      |
+```
+
+**Sem `AS`**, a coluna aparece com o nome original (`Nome`).
+**Com `AS`**, a coluna aparece com o nome que você escolheu (`Instalacao`).
+
+### Por que isso é útil?
+
+Quando duas tabelas têm colunas com o mesmo nome (ex: `Nome`), o alias da coluna ajuda a **distinguir** no resultado:
+
+```sql
+SELECT 
+    i.Nome AS Instalacao,   -- coluna "Nome" da tabela Instalacao → exibe como "Instalacao"
+    e.Nome AS Empresa        -- coluna "Nome" da tabela Empresa → exibe como "Empresa"
+FROM Instalacao i
+INNER JOIN Empresa e ON i.EmpresaId = e.Id;
+```
+
+**Resultado:**
+
+| Instalacao | Empresa |
+|---|---|
+| Papel | Treetech |
+
+Sem os alias das colunas, ambas se chamariam "Nome" no resultado, o que seria confuso.
+
+### Resumo
+
+```
+FROM Instalacao i          →  alias da TABELA (i)
+SELECT i.Nome AS Instalacao  →  alias da COLUNA (Instalacao)
+```
+
+São duas coisas completamente diferentes que usam a palavra "alias" mas com propósitos distintos.
+
+---
+
+## O que é o `ON`?
+
+`ON` é a cláusula que define **qual coluna de uma tabela se conecta com qual coluna da outra tabela**. É a "ponte" que liga as duas tabelas.
+
+### Analogia
+
+Imagine duas planilhas:
+- Planilha 1: `Cliente` com coluna `Id`
+- Planilha 2: `Pedido` com coluna `ClienteId`
+
+O `ON` é como se você dissesse: *"Junte as planilhas onde o Id do Cliente é igual ao ClienteId do Pedido"*.
+
+### Sintaxe
+
+```sql
+SELECT colunas
+FROM TabelaA a
+INNER JOIN TabelaB b ON a.ColunaComum = b.ColunaComum;
+--                                         ↑
+--                                     cláusula ON
+```
+
+### Decomposição
+
+```sql
+INNER JOIN Empresa e ON i.EmpresaId = e.Id
+--          ↑              ↑           ↑
+--      Tabela        Coluna da    Coluna da
+--     de destino     TabelaA      TabelaB
+```
+
+| Parte | Significado |
+|---|---|
+| `INNER JOIN Empresa e` | "Junte com a tabela Empresa (alias e)" |
+| `ON` | "onde" |
+| `i.EmpresaId` | "a coluna EmpresaId da tabela Instalacao (alias i)" |
+| `=` | "é igual a" |
+| `e.Id` | "a coluna Id da tabela Empresa (alias e)" |
+
+**Traduzindo a query inteira:**
+
+```sql
+FROM Instalacao i
+INNER JOIN Empresa e ON i.EmpresaId = e.Id
+```
+
+*"Pegue a tabela Instalacao e junte com a tabela Empresa, ligando onde o EmpresaId da Instalacao é igual ao Id da Empresa"*
+
+### Exemplo visual
+
+**Tabela Instalacao:**
+
+| Id | Nome | EmpresaId |
+|---|---|---|
+| 1 | Papel | 10 |
+| 2 | Sider | 10 |
+| 3 | Petrobras | 20 |
+
+**Tabela Empresa:**
+
+| Id | Nome |
+|---|---|
+| 10 | Treetech |
+| 20 | Petrobras |
+
+**O que o ON faz:**
+
+```
+Instalacao.EmpresaId    Empresa.Id
+        ↓                   ↓
+       10      ════════     10    ← Treetech (corresponde!)
+       10      ════════     10    ← Treetech (corresponde!)
+       20      ════════     20    ← Petrobras (corresponde!)
+```
+
+**Resultado do JOIN:**
+
+| Instalacao | Empresa |
+|---|---|
+| Papel | Treetech |
+| Sider | Treetech |
+| Petrobras | Petrobras |
+
+### Regra de ouro
+
+O `ON` sempre compara **duas colunas** (uma de cada tabela) usando operadores de comparação:
+
+| Operador | Significado | Exemplo |
+|---|---|---|
+| `=` | Igual a | `ON a.Id = b.Id` |
+| `<>` ou `!=` | Diferente de | `ON a.Status <> b.Status` |
+| `>` | Maior que | `ON a.Data > b.Data` |
+| `<` | Menor que | `ON a.Valor < b.Limite` |
+| `>=` | Maior ou igual | `ON a.Nivel >= b.Minimo` |
+| `<=` | Menor ou igual | `ON a.Preco <= b.Maximo` |
+
+**Na prática, 99% das vezes você usa `=`** (igualdade entre chave primária e chave estrangeira).
+
+### Erros comuns
+
+| Erro | Causa | Solução |
+|---|---|---|
+| `ON i.EmpresaId = e.Id` (certo) | Coluna correta | - |
+| `ON i.Nome = e.Nome` (errado) | Comparar colunas de texto pode dar resultados inesperados | Use sempre chaves (Id) |
+| Esquecer o `ON` | Query não sabe como ligar as tabelas | Sempre adicione a cláusula ON |
+
+---
+
+## Como o JOIN funciona por dentro
+
+### O que o banco faz quando você escreve um JOIN?
+
+Muita gente pensa que o banco "pega um valor e vai procurando". Mas não é assim. O banco compara **valores** e traz **colunas**.
+
+### Regra fundamental
+
+| O que compara | O que traz |
+|---|---|
+| **Valores** das colunas que estão no `ON` | **Todas as colunas** das duas tabelas |
+
+### Passo a passo do que acontece
+
+**Exemplo:** `FROM Cliente c INNER JOIN Pedido p ON c.Id = p.ClienteId`
+
+**Passo 1:** O banco pega **toda** a tabela Cliente
+
+| Id | Nome |
+|---|---|
+| 1 | João |
+| 2 | Maria |
+| 3 | Pedro |
+
+**Passo 2:** O banco pega **toda** a tabela Pedido
+
+| Id | ClienteId | Data |
+|---|---|---|
+| 101 | 1 | 2024-01-15 |
+| 102 | 2 | 2024-01-16 |
+| 103 | 1 | 2024-01-17 |
+
+**Passo 3:** O banco compara **cada linha** de uma com **cada linha** da outra
+
+```
+Cliente 1 (João)  ×  Pedido 101 (ClienteId=1)  →  1 = 1?  SIM!  →  Junta!
+Cliente 1 (João)  ×  Pedido 102 (ClienteId=2)  →  1 = 2?  NÃO  →  Descarta
+Cliente 1 (João)  ×  Pedido 103 (ClienteId=1)  →  1 = 1?  SIM!  →  Junta!
+Cliente 2 (Maria) ×  Pedido 101 (ClienteId=1)  →  2 = 1?  NÃO  →  Descarta
+Cliente 2 (Maria) ×  Pedido 102 (ClienteId=2)  →  2 = 2?  SIM!  →  Junta!
+Cliente 2 (Maria) ×  Pedido 103 (ClienteId=1)  →  2 = 1?  NÃO  →  Descarta
+Cliente 3 (Pedro) ×  Pedido 101 (ClienteId=1)  →  3 = 1?  NÃO  →  Descarta
+Cliente 3 (Pedro) ×  Pedido 102 (ClienteId=2)  →  3 = 2?  NÃO  →  Descarta
+Cliente 3 (Pedro) ×  Pedido 103 (ClienteId=1)  →  3 = 1?  NÃO  →  Descarta
+```
+
+**Resultado do JOIN:**
+
+| c.Nome | p.Id | p.ClienteId | p.Data |
+|---|---|---|---|
+| João | 101 | 1 | 2024-01-15 |
+| João | 103 | 1 | 2024-01-17 |
+| Maria | 102 | 2 | 2024-01-16 |
+
+### Depois, o banco repete com a próxima tabela
+
+**Próximo JOIN:** `INNER JOIN ItemPedido ip ON p.Id = ip.PedidoId`
+
+O banco pega o **resultado anterior** e compara com `ItemPedido`:
+
+```
+Resultado anterior (João + Pedido 101)
+                  ×
+ItemPedido (PedidoId = 101)
+                  ↓
+            101 = 101?  SIM!  →  Junta!
+```
+
+### Resumo do fluxo
+
+```
+1. Pega TODA a tabela Cliente
+2. Pega TODA a tabela Pedido
+3. Compara TODAS as linhas (Cliente.Id = Pedido.ClienteId)
+4. Onde for igual, junta as linhas
+5. Pega o resultado e repete com ItemPedido
+6. Pega o resultado e repete com Produto
+7. Pega o resultado e repete com Categoria
+8. No final, aplica o WHERE (filtra só o Pedido 101)
+```
+
+### O que NÃO acontece
+
+| Pensamento errado | Na verdade |
+|---|---|
+| "Pega o valor e vai procurando" | Compara **tudo com tudo** de uma vez |
+| "Armazena o resultado e faz outro select" | Faz **tudo em uma única operação** |
+| "Compara colunas" | Compara **valores** das colunas |
+
+### O que acontece
+
+| Realidade |
+|---|
+| O banco compara **valores** das colunas que estão no `ON` |
+| Se os valores são **iguais**, junta as duas linhas |
+| Junta **todas as colunas** das duas tabelas |
+| Repete isso para cada JOIN da query |
+
+### Exemplo com 5 tabelas
+
+```sql
+FROM Cliente c
+INNER JOIN Pedido p ON c.Id = p.ClienteId
+INNER JOIN ItemPedido ip ON p.Id = ip.PedidoId
+INNER JOIN Produto pr ON ip.ProdutoId = pr.Id
+INNER JOIN Categoria cat ON pr.CategoriaId = cat.Id
+```
+
+**Fluxo:**
+
+```
+Cliente × Pedido → resultado1
+resultado1 × ItemPedido → resultado2
+resultado2 × Produto → resultado3
+resultado3 × Categoria → resultado final
+```
+
+**Cada ON responde uma pergunta:** "Isso pertence a quem?"
+
+- `c.Id = p.ClienteId` → "O Pedido pertence a qual Cliente?"
+- `p.Id = ip.PedidoId` → "O ItemPedido pertence a qual Pedido?"
+- `ip.ProdutoId = pr.Id` → "O ItemPedido é de qual Produto?"
+- `pr.CategoriaId = cat.Id` → "O Produto é de qual Categoria?"
+
+---
+
 ## Tipos de JOINs
 
 Existem 4 tipos principais de JOIN:
@@ -372,6 +764,71 @@ INNER JOIN Empresa e ON i.EmpresaId = e.Id;
 ```
 
 Aqui `a`, `i` e `e` são alias para `Ativo`, `Instalacao` e `Empresa`.
+
+---
+
+## O que significa `i.Nome`?
+
+A sintaxe `i.Nome` é uma forma de **referenciar uma coluna específica de uma tabela específica**.
+
+### Decomposição
+
+| Parte | Significado |
+|---|---|
+| `i` | Alias (apelido) da tabela `Instalacao` |
+| `.` | Separador (ponto) |
+| `Nome` | Nome da coluna que você quer acessar |
+
+**Traduzindo:** `i.Nome` = "eu quero a coluna **Nome** da tabela **Instalacao**"
+
+### Exemplo visual
+
+```sql
+SELECT 
+    i.Nome AS Instalacao,   -- coluna Nome da tabela Instalacao (alias i)
+    e.Nome AS Empresa        -- coluna Nome da tabela Empresa (alias e)
+FROM Instalacao i
+INNER JOIN Empresa e ON i.EmpresaId = e.Id;
+```
+
+**Resultado:**
+
+| Instalacao | Empresa |
+|---|---|
+| Papel | Treetech |
+| Sider | Treetech |
+
+Cada coluna no resultado veio de uma tabela diferente, identificada pelo alias.
+
+### Por que é necessário?
+
+Se ambas as tabelas têm uma coluna com o mesmo nome (ex: `Nome`), o SQL não sabe qual usar:
+
+```sql
+-- ERRO: qual Nome? Ambas tabelas têm coluna "Nome"
+SELECT Nome 
+FROM Instalacao i 
+INNER JOIN Empresa e ON i.EmpresaId = e.Id;
+
+-- CORRETO: especifique qual Nome usando o alias
+SELECT i.Nome, e.Nome 
+FROM Instalacao i 
+INNER JOIN Empresa e ON i.EmpresaId = e.Id;
+```
+
+### Regra geral
+
+Sempre que você faz JOIN entre tabelas que têm colunas com o mesmo nome, use o alias para **especificar de qual tabela vem cada coluna**.
+
+### Sintaxe completa
+
+```sql
+-- Format: alias.NomeDaColuna
+i.Nome          -- Nome da tabela Instalacao
+e.Nome          -- Nome da tabela Empresa
+a.Codigo        -- Codigo da tabela Ativo
+cma.NomePersonalizadoCampo  -- NomePersonalizadoCampo da tabela CampoModuloAtivo
+```
 
 ---
 

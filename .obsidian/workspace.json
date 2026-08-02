@@ -65,12 +65,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Conhecimento/SQL/Guia Completo de JOINs.md",
+                "file": "Conhecimento/SQL/50 Exercícios de INNER JOIN com 2 Tabelas.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Guia Completo de JOINs"
+              "title": "50 Exercícios de INNER JOIN com 2 Tabelas"
             }
           }
         ],
@@ -94,7 +94,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Explorador de arquivos"
@@ -237,8 +239,11 @@
   "active": "f157c66c4694b191",
   "lastOpenFiles": [
     "Conhecimento/SQL/Praticando JOINs - Consultas com Múltiplas Tabelas.md",
-    "Conhecimento/SQL/Guia Completo de JOINs.md",
+    "Conhecimento/SQL/50 Exercícios de INNER JOIN com 2 Tabelas.md",
+    "Conhecimento/SQL/Quiz - Conceitos Basicos SQL.md",
+    "Conhecimento/SQL/Quiz - Praticando SELECT.md",
     "Conhecimento/SQL/Update no banco de dados.md",
+    "Conhecimento/SQL/Guia Completo de JOINs.md",
     "tasks_sigmafacelift.md",
     "Sem título.md",
     "Como Escrever Tasks no Azure DevOps.md",
@@ -260,9 +265,6 @@
     "Conhecimento/Muay Thai/Diario/Terça - Aula 4.md",
     "Conhecimento/Muay Thai/Diario/Terça - Aula 5.md",
     "Livros.md",
-    "Guia Prático de Comunicação e Oratória para Desenvolvedores de Software.md",
-    "pleno.md",
-    "Conhecimento/SDD/spec.md",
     "Conhecimento/Muay Thai/android-icon-foreground.png",
     "Pasted image 20260707222513.png",
     "Conhecimento/Muay Thai/midia",

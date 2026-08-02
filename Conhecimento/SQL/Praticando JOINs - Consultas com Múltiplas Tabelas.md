@@ -180,7 +180,7 @@ SELECT
     a.Codigo AS CodigoAtivo,
     ma.NomePersonalizadoModulo AS Modulo,
     cma.NomePersonalizadoCampo AS Campo
-FROM CampoModuloAtivo cma
+FROM CampoModuloAtivo cmae as 
 INNER JOIN ModuloAtivo ma ON cma.ModuloAtivoId = ma.Id
 INNER JOIN Ativo a ON ma.AtivoId = a.Id
 INNER JOIN Instalacao i ON a.InstalacaoId = i.Id
