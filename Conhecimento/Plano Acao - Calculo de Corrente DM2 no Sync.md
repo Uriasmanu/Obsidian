@@ -5,7 +5,8 @@
 **Data de Criação:** 03/08/2026  
 **Prioridade:** Alta  
 **Módulo:** DM2 / Sync  
-**PR de Referência:** `DM2-sync-import`
+**PR de Referência:** `DM2-sync-import`  
+**PR de Implementação (referência):** Pull Request 19116: [#61710]: Regras - Campos específicos
 
 ---
 
@@ -282,6 +283,7 @@ Entrada → Validação → Cálculo → Saída → Logs
 - `Driver.General.DM2_1.Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original`
 - `MDB_DM2_V1_2_1.Get_ValorProporcionalCorrente`
 - `MDB_DM2_V1_2_1.Set_AjusteFinoParaCalculoDeCorrente`
+- **PR de referência para implementação:** Pull Request 19116: [#61710]: Regras - Campos específicos
 
 ---
 

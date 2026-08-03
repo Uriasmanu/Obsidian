@@ -61,12 +61,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tasks_sigmafacelift.md",
+                "file": "Conhecimento/Plano Acao - Calculo de Corrente DM2 no Sync.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "tasks_sigmafacelift"
+              "title": "Plano Acao - Calculo de Corrente DM2 no Sync"
             }
           }
         ],
@@ -232,16 +232,16 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "f157c66c4694b191",
+  "active": "7940e201df3d2f95",
   "lastOpenFiles": [
-    "Como Escrever Tasks no Azure DevOps.md",
+    "Conhecimento/tasks_sigmafacelift.md",
+    "Conhecimento/Como Escrever Tasks no Azure DevOps.md",
     "Conhecimento/SQL/50 Exercícios de INNER JOIN com 2 Tabelas.md",
     "Conhecimento/SQL/Praticando JOINs - Consultas com Múltiplas Tabelas.md",
     "Conhecimento/SQL/Quiz - Conceitos Basicos SQL.md",
     "Conhecimento/SQL/Quiz - Praticando SELECT.md",
     "Conhecimento/SQL/Update no banco de dados.md",
     "Conhecimento/SQL/Guia Completo de JOINs.md",
-    "tasks_sigmafacelift.md",
     "Sem título.md",
     "Plano de Carreira Júnior → Pleno.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/08_REFERENCIA_RAPIDA_POSTGRESQL.md",
@@ -260,7 +260,7 @@
     "Conhecimento/Muay Thai/Diario/Terça - Aula 6.md",
     "Conhecimento/Muay Thai/Diario/Terça - Aula 4.md",
     "Conhecimento/Muay Thai/Diario/Terça - Aula 5.md",
-    "Livros.md",
+    "Conhecimento/Livros.md",
     "Conhecimento/Muay Thai/android-icon-foreground.png",
     "Pasted image 20260707222513.png",
     "Conhecimento/Muay Thai/midia",
