@@ -87,3 +87,27 @@
 
 ---
 
+## Task 5: Implementar Lógica do E3 no Sync para DM2
+**Descrição:** O Sync não possui a lógica de cálculos do E3 para o DM2. Essa lógica precisa ser implementada para que o DM2 funcione corretamente.
+
+**Tipo:** Task Técnica  
+**Prioridade:** Alta  
+**Módulo:** DM2 / Sync  
+
+### O que precisa ser feito
+- Implementar no Sync a mesma lógica de cálculos que existe no E3 para o DM2
+- Atualmente o Sync não tem essa lógica, por isso gera estrutura incorreta (campos `_filtrado`)
+- A API rejeita esses campos porque não são tratados
+
+### Referência
+- `Driver.General.DM2_1.Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original`
+- `MDB_DM2_V1_2_1.Get_ValorProporcionalCorrente`
+- `MDB_DM2_V1_2_1.Set_AjusteFinoParaCalculoDeCorrente`
+
+### Notas
+- Task criada em: 30/07/2026
+- Responsável: Manoela Urias
+- PR: `DM2-sync-import`
+
+---
+
