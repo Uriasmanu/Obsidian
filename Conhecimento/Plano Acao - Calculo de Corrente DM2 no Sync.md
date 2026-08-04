@@ -6,7 +6,7 @@
 **Prioridade:** Alta  
 **Módulo:** DM2 / Sync  
 **PR de Referência:** `DM2-sync-import`  
-**PR de Implementação (referência):** Pull Request 19116: [#61710]: Regras - Campos específicos
+**PR de Implementação (referência):** Pull Request 19057: [#61711]: Regra - Campos 16M e 16U
 
 ---
 
@@ -283,7 +283,7 @@ Entrada → Validação → Cálculo → Saída → Logs
 - `Driver.General.DM2_1.Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original`
 - `MDB_DM2_V1_2_1.Get_ValorProporcionalCorrente`
 - `MDB_DM2_V1_2_1.Set_AjusteFinoParaCalculoDeCorrente`
-- **PR de referência para implementação:** Pull Request 19116: [#61710]: Regras - Campos específicos
+- **PR de referência para implementação:** Pull Request 19057: [#61711]: Regra - Campos 16M e 16U
 
 ---
 
@@ -294,3 +294,60 @@ Entrada → Validação → Cálculo → Saída → Logs
 3. **Registrar todas as decisões técnicas em ADRs** para rastreabilidade.
 4. **Priorizar testes com dados reais** para validar precisão do cálculo.
 5. **Garantir rollback planejado** antes de qualquer deploy em produção.
+
+---
+
+## Diário de Bordo
+
+### 03/08/2026 - Início do projeto
+
+**Ação:** Li a documentação DM2 - Especificações.
+
+**Decisão:** Implementar as regras de cálculo de corrente por partes, em vez de tentar implementar tudo de uma vez.
+
+**Justificativa:** A documentação é extensa e não foi possível compreender 100% de uma só vez. Implementar incrementalmente permite:
+- Entender cada regra individualmente antes de passar para a próxima
+- Reduzir risco de erros
+- Facilitar testes e validação de cada parte
+- Possibilitar revisão parcial com o time
+
+**Próximo passo:** Identificar quais regras são independentes e podem ser implementadas primeiro (aquelas com menor dependência de outras).
+
+---
+
+### 03/08/2026 - Análise do PR de referência
+
+**Ação:** Analisei o Pull Request de referência ([#61710]: Regras - Campos específicos) e reli a documentação DM2.
+
+**Conclusão:** Precisarei utilizar o arquivo `AlgorithmFieldMap.json` para importar os campos necessários para o funcionamento do DM2.
+
+**Campos identificados:**
+- `_Convertido` - valor convertido da entrada analógica
+- `_Filtrado` - valor filtrado para cálculo
+
+**Observação:** Esses campos são essenciais para que o algoritmo de cálculo de corrente funcione corretamente. Sem eles, a API rejeita a estrutura.
+
+**Próximo passo:** Analisar a estrutura do `AlgorithmFieldMap.json` no PR de referência para entender como esses campos são mapeados e importados.
+
+---
+
+### 03/08/2026 - Plano de implementação definido
+
+**Ação:** Defini o plano de implementação baseado na análise do PR de referência e da documentação.
+
+**Plano de Implementação:**
+
+1. **Criar documento de regra de negócio**
+   - Seguir a lógica usada para os campos `16_M` e `16_U``Sigma.Sync.Run.Worker`
+   - Criar arquivo dentro de `Algorithms` e colocar a Lógica: `IF Set_AjusteFinoParaCalculoDeCorrente = 0 THEN Set_AjusteFinoParaCalculoDeCorrente = 4095` 
+   - Ver uma alternativa de adicionar de forma mais pratica o calculo `(Driver.General.DM2_1.Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original * MDB_DM2_V1_2_1.Get_ValorProporcionalCorrente) / MDB_DM2_V1_2_1.Set_AjusteFinoParaCalculoDeCorrente` que se repete para os 24 campos de corrente
+
+2. **mapeamento do DM2**
+   - DM2 passa a ter o arquivo `DM2-algorithmFieldMaps-sync-import.json` com os campos: `Get_ValorProporcionalCorrente` e `Set_AjusteFinoParaCalculoDeCorrente`
+
+3. **Atualizar arquivo de importação principal**
+   - Arquivo: `DM2-sigma-sync-import`
+   - Adicionar campos: `_Filtrado` e `_Convertido`, `_Corrente`
+   - **Nota:** A doc diz que esses campos são criados apenas nas tabelas `H` e `S`, mas vou adicionar no JSON principal (criará nas 4 tabelas)
+
+**Observação:** Essa abordagem segue o padrão já estabelecido no PR de referência para campos 16M e 16U.
