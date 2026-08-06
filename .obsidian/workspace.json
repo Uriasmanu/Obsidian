@@ -61,12 +61,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Conhecimento/SDD/spec.md",
+                "file": "Conhecimento/Implantacao_ReplicacaoDadosCopel/00_ROTEIRO_IMPLANTACAO.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "spec"
+              "title": "00_ROTEIRO_IMPLANTACAO"
             }
           }
         ],
@@ -234,22 +234,26 @@
   },
   "active": "f157c66c4694b191",
   "lastOpenFiles": [
-    "Conhecimento/tasks_sigmafacelift.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/07_GUIA_REFERENCIA_DETALHADA.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/00_ROTEIRO_IMPLANTACAO.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/documentacao_unificada_replicacao.md",
     "Conhecimento/Como Escrever Tasks no Azure DevOps.md",
+    "Conhecimento/Livros.md",
+    "Conhecimento/Plano Acao - Calculo de Corrente DM2 no Sync.md",
+    "Conhecimento/tasks_sigmafacelift.md",
     "Conhecimento/SQL/50 Exercícios de INNER JOIN com 2 Tabelas.md",
     "Conhecimento/SQL/Praticando JOINs - Consultas com Múltiplas Tabelas.md",
     "Conhecimento/SQL/Quiz - Conceitos Basicos SQL.md",
     "Conhecimento/SQL/Quiz - Praticando SELECT.md",
     "Conhecimento/SQL/Update no banco de dados.md",
     "Conhecimento/SQL/Guia Completo de JOINs.md",
+    "Conhecimento/SDD/spec.md",
     "Sem título.md",
     "Plano de Carreira Júnior → Pleno.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/08_REFERENCIA_RAPIDA_POSTGRESQL.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/Tasks_Azure_DevOps.md",
     "Conhecimento/SQL/Conhecimentos em SQL.md",
-    "Conhecimento/Implantacao_ReplicacaoDadosCopel/00_ROTEIRO_IMPLANTACAO.md",
     "Conhecimento/Trabalho/Consulta Empresa e Instalação a partir do CampoModuloAtivo.md",
-    "Conhecimento/Implantacao_ReplicacaoDadosCopel/documentacao_unificada_replicacao.md",
     "Sem título-2026-07-27-2058.excalidraw.crswap",
     "Conhecimento/Trabalho/Bug - Tabela não encontrada - Consulta Recurso Água Papel PostgreSQL.md",
     "Azure task.md",
@@ -257,10 +261,6 @@
     "Conhecimento/Muay Thai/Diario/Quinta - Aula 6.md",
     "Conhecimento/Muay Thai/Diario/Terça - Aula 7.md",
     "Conhecimento/Muay Thai/Diario/Quinta - Aula 5.md",
-    "Conhecimento/Muay Thai/Diario/Terça - Aula 6.md",
-    "Conhecimento/Muay Thai/Diario/Terça - Aula 4.md",
-    "Conhecimento/Muay Thai/Diario/Terça - Aula 5.md",
-    "Conhecimento/Livros.md",
     "Conhecimento/Muay Thai/android-icon-foreground.png",
     "Pasted image 20260707222513.png",
     "Conhecimento/Muay Thai/midia",
