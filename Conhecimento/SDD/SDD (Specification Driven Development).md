@@ -373,6 +373,7 @@ Dada uma lista de requisitos, categorize cada um.
 ## Links Relacionados
 
 - [[SDD/spec|Template de Feature]]
+- [[SDD/Guia de Planejamento de Feature em Entregas Incrementais|Guia de Planejamento de Feature em Entregas Incrementais]]
 - [[SDD/Perguntas de Viabilidade — O Advogado do Diabo antes do Primeiro Commit|Perguntas de Viabilidade]]
 - [[SPIKE/Definição de SPIKE|SPIKE]]
 - [[Programadora/Desenvolvimento com SDD e IA|Desenvolvimento com SDD e IA]]

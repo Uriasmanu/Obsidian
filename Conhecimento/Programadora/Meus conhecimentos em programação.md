@@ -20,6 +20,7 @@
 
 - [[Git/Conhecimentos em Git|Git]] - Controle de versao
 - [[SDD (Specification Driven Development)|SDD]] - Escrita de requisitos
+- [[SDD/Guia de Planejamento de Feature em Entregas Incrementais|Guia de Planejamento de Feature]] - Planejamento incremental
 
 ## Estudos e Trabalho
 

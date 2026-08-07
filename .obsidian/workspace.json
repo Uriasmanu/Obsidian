@@ -61,12 +61,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Conhecimento/Implantacao_ReplicacaoDadosCopel/00_ROTEIRO_IMPLANTACAO.md",
+                "file": "Conhecimento/Implantacao_ReplicacaoDadosCopel/02_GUIA_REFERENCIA_DETALHADA.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00_ROTEIRO_IMPLANTACAO"
+              "title": "02_GUIA_REFERENCIA_DETALHADA"
             }
           }
         ],
@@ -234,8 +234,9 @@
   },
   "active": "f157c66c4694b191",
   "lastOpenFiles": [
-    "Conhecimento/Implantacao_ReplicacaoDadosCopel/07_GUIA_REFERENCIA_DETALHADA.md",
+    "Conhecimento/SDD/Guia de Planejamento de Feature em Entregas Incrementais.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/00_ROTEIRO_IMPLANTACAO.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/02_GUIA_REFERENCIA_DETALHADA.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/documentacao_unificada_replicacao.md",
     "Conhecimento/Como Escrever Tasks no Azure DevOps.md",
     "Conhecimento/Livros.md",
@@ -260,7 +261,6 @@
     "Conhecimento/Muay Thai/Diario/Quinta - Aula 1.md",
     "Conhecimento/Muay Thai/Diario/Quinta - Aula 6.md",
     "Conhecimento/Muay Thai/Diario/Terça - Aula 7.md",
-    "Conhecimento/Muay Thai/Diario/Quinta - Aula 5.md",
     "Conhecimento/Muay Thai/android-icon-foreground.png",
     "Pasted image 20260707222513.png",
     "Conhecimento/Muay Thai/midia",

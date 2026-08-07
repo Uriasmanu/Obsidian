@@ -377,6 +377,7 @@ Utilizar JWT com Refresh Token.
 - [ ] Os critérios de aceite são verificáveis
 - [ ] Sinalizei todas as incertezas explicitamente
 - [ ] Se houver interface visual: revisei os requisitos de UI/UX responsivo da seção 5.1 e planejo implementar para todos os breakpoints relevantes
+- [ ] Consultei o [[SDD/Guia de Planejamento de Feature em Entregas Incrementais|Guia de Planejamento de Feature em Entregas Incrementais]] para organizar entregas incrementais
 
 > ⚠️ Se qualquer item do checklist estiver pendente, resolva antes de escrever código.
 
