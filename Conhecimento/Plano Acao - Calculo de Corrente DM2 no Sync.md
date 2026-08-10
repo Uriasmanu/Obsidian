@@ -25,4 +25,10 @@
 # 10/08
 
 
-O calculo não funcionou, os campos `Get_ValorProporcionalCorrente` e `Set_AjusteFinoParaCalculoDeCorrente`
+O calculo não funcionou 100% como esperado, os campos `Get_ValorProporcionalCorrente` e `Set_AjusteFinoParaCalculoDeCorrente` ficaram com valor null na tabela
+
+outra coisa que reparei é que ao acessar o E3 para ver como ele se comporta, vi que na parametrização do DM2 tem um campo `Get_ValorProporcionalCorrente` que ja vem por padrão como 24
+
+Com o E3 esses dois campos `Get_ValorProporcionalCorrente` e `Set_AjusteFinoParaCalculoDeCorrente` tem o valor respectivo de 24 e 4095
+
+quando eu altero o valor do campo Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original no SDG de 0 para 100 no banco de dados Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original fica igual a 1  e Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Corrente igual a 0,586080586080586 e Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Convertido fica igual a 0
