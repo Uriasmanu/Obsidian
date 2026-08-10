@@ -59,3 +59,24 @@ E3
 | `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original`   | 100               |
 | `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Corrente`   | 0,586080586080586 |
 | `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Convertido` | 0                 |
+
+resolução depois da explicação
+
+`Get_ValorProporcionalCorrente` varia de acordo com a instalação, ou seja no momento que vai colocar no projeto. Valor padrão pode ser 24, ou seja cada DM2 tem o seu valor proprio
+
+regra:
+Definido baseado na versão do DM2. Versão 0...1mA = 1,2 | Versão 0...5mA = 6 | Versão 0...10mA = 12 | Versão 0...20mA = 24
+
+`Set_AjusteFinoParaCalculoDeCorrente` valor padrão é 4095 porem tambem é definido no momento de instanciar o projeto, ou seja cada DM2 tem o seu valor proprio
+
+regra:
+Ajuste para definição de corrente para a formula - (CorrenteLida * Get_NumeroContatosModeloDM2) / Set_AjusteFinoParaCalculoDeCorrente
+
+
+
+Não precisam aparecer no front então não precisa ir no JSON principal:
+
+| Campo                                 |
+| ------------------------------------- |
+| `Get_ValorProporcionalCorrente`       |
+| `Set_AjusteFinoParaCalculoDeCorrente` |

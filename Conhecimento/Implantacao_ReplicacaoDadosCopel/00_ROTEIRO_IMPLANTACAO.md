@@ -24,12 +24,12 @@ Regra de rede confirmada no ambiente: a central alcança a subestação, a subes
 
 Contas e credenciais (três coisas distintas, não confundir):
 
-| Item | Tipo | Onde existe | Usado para |
-|---|---|---|---|
-| `repl_user` | Login SQL | Só na subestação | Conexões SQL dos agentes ao publisher e distributor |
-| `svc_repl` | Conta Windows | Nos dois servidores, mesma senha (espelhada) | Rodar o job do agente na central e ler o share |
-| `DISMONTFLIC\svc_repl` | Login Windows no SQL | Na central | O agente conecta no subscriber local por Windows Auth com essa conta |
-| Master Key | Chave do banco `sigmaecm` | Na central | Criptografar os segredos de replicação (merge com SQL Auth) |
+| Item                   | Tipo                      | Onde existe                                  | Usado para                                                           |
+| ---------------------- | ------------------------- | -------------------------------------------- | -------------------------------------------------------------------- |
+| `repl_user`            | Login SQL                 | Só na subestação                             | Conexões SQL dos agentes ao publisher e distributor                  |
+| `svc_repl`             | Conta Windows             | Nos dois servidores, mesma senha (espelhada) | Rodar o job do agente na central e ler o share                       |
+| `DISMONTFLIC\svc_repl` | Login Windows no SQL      | Na central                                   | O agente conecta no subscriber local por Windows Auth com essa conta |
+| Master Key             | Chave do banco `sigmaecm` | Na central                                   | Criptografar os segredos de replicação (merge com SQL Auth)          |
 
 ## 3. Fundação (a parte que mais deu trabalho)
 
