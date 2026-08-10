@@ -28,10 +28,10 @@
 
 **Comportamento no E3 (referência):**
 
-| Campo                                 | Valor E3    |
-| ------------------------------------- | ----------- |
-| `Get_ValorProporcionalCorrente`       | 24 (padrão) |
-| `Set_AjusteFinoParaCalculoDeCorrente` | 4095        |
+| Campo                                 | Valor E3 |
+| ------------------------------------- | -------- |
+| `Get_ValorProporcionalCorrente`       | 24       |
+| `Set_AjusteFinoParaCalculoDeCorrente` | 4095     |
 
 **Teste manual de alteração no SDG:**
 
