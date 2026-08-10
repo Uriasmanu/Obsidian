@@ -22,13 +22,40 @@
    - **Nota:** A doc diz que esses campos são criados apenas nas tabelas `H` e `S`, mas vou adicionar no JSON principal (criará nas 4 tabelas)
 
 
-# 10/08
+### 10/08/2026 - Resultados do cálculo e análise do comportamento
+
+**Resultado:** O cálculo não funcionou 100% como esperado. Os campos `Get_ValorProporcionalCorrente` e `Set_AjusteFinoParaCalculoDeCorrente` ficaram com valor `null` na tabela.
+
+**Comportamento no E3 (referência):**
+
+| Campo                                 | Valor E3    |
+| ------------------------------------- | ----------- |
+| `Get_ValorProporcionalCorrente`       | 24 (padrão) |
+| `Set_AjusteFinoParaCalculoDeCorrente` | 4095        |
+
+**Teste manual de alteração no SDG:**
+
+Ao alterar `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original` de `0` para `100` no banco de dados, os resultados foram:
+
+E3
+
+| Campo                                                     | Valor             |
+| --------------------------------------------------------- | ----------------- |
+| `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original`   | 100               |
+| `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Corrente`   | 0,586080586080586 |
+| `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Convertido` | 0                 |
 
 
-O calculo não funcionou 100% como esperado, os campos `Get_ValorProporcionalCorrente` e `Set_AjusteFinoParaCalculoDeCorrente` ficaram com valor null na tabela
+**Comportamento no Sync:**
 
-outra coisa que reparei é que ao acessar o E3 para ver como ele se comporta, vi que na parametrização do DM2 tem um campo `Get_ValorProporcionalCorrente` que ja vem por padrão como 24
+| Campo                                 | Valor E3 |
+| ------------------------------------- | -------- |
+| `Get_ValorProporcionalCorrente`       | Null     |
+| `Set_AjusteFinoParaCalculoDeCorrente` | Null     |
 
-Com o E3 esses dois campos `Get_ValorProporcionalCorrente` e `Set_AjusteFinoParaCalculoDeCorrente` tem o valor respectivo de 24 e 4095
 
-quando eu altero o valor do campo Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original no SDG de 0 para 100 no banco de dados Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original fica igual a 1  e Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Corrente igual a 0,586080586080586 e Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Convertido fica igual a 0
+| Campo                                                     | Valor             |
+| --------------------------------------------------------- | ----------------- |
+| `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Original`   | 100               |
+| `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Corrente`   | 0,586080586080586 |
+| `Get_IndicacaoDeValorLidoNaEntradaAnalogicaI1_Convertido` | 0                 |
