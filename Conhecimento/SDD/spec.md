@@ -1,22 +1,12 @@
 # spec.md — Template de Feature
 
-**Antes de começar, melhore a descrição da feature ou Problemas Encontrados nesse documento spec.md, depois siga o restante das orientações.**
-NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes e atualize o documento `implementado/{nome-da-feature}.md` caso seja implementado uma nova regra de negocio. Permitido melhorar a descrição e titulo do problema aberto, ao final do ciclo atualize requisitos.md
+**Antes de começar, melhore a descrição da feature ou Problemas Encontrados nesse documento spec.md, depois siga o restante das orientações.** NÃO alterar os comentario e NÃO apagar algo, apenas adicione suas observaçoes e atualize o documento `implementado/{nome-da-feature}.md` caso seja implementado uma nova regra de negocio. Permitido melhorar a descrição e titulo do problema aberto, ao final do ciclo atualize requisitos.md
 
 ---
 
 ## Problemas Encontrados
 
-<!-- Ao iniciar qualquer ciclo, a IA deve: ler todos os itens [aberto], corrigir, mover para Histórico de Correções e atualizar os RF/CA/Passos afetados. -->
-
-<!--
-### [aberto] Título curto do problema
-**Comportamento atual:** o que está acontecendo de errado.
-**Comportamento esperado:** o que deveria acontecer.
-**Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...).
--->
-
-<!-- aberto — resolvido em 02/07/2026, movido para Histórico de Correções -->
+<!-- Ao iniciar qualquer ciclo, a IA deve: ler todos os itens [aberto], corrigir, mover para Histórico de Correções e atualizar os RF/CA/Passos afetados. --> <!-- ### [aberto] Título curto do problema **Comportamento atual:** o que está acontecendo de errado. **Comportamento esperado:** o que deveria acontecer. **Escopo:** onde no código isso precisa ser resolvido (geração, exibição, ambos...). --> <!-- aberto — resolvido em 02/07/2026, movido para Histórico de Correções -->
 
 ## Histórico de Correções
 
@@ -93,13 +83,13 @@ Use linguagem de comportamento observável: "o sistema exibe", "o endpoint retor
 
 **Breakpoints de referência:**
 
-| Contexto       | Largura aproximada | Exemplos de dispositivo              |
-| -------------- | ------------------ | ------------------------------------ |
-| Mobile pequeno | até 375px          | iPhone SE, Android compacto          |
-| Mobile padrão  | 376px – 430px      | iPhone 14/15, Pixel                  |
-| Tablet         | 431px – 768px      | iPad mini, tablets Android           |
-| Notebook       | 769px – 1280px     | Laptops 13"–15"                      |
-| Desktop        | acima de 1280px    | Monitores externos, telas widescreen |
+|Contexto|Largura aproximada|Exemplos de dispositivo|
+|---|---|---|
+|Mobile pequeno|até 375px|iPhone SE, Android compacto|
+|Mobile padrão|376px – 430px|iPhone 14/15, Pixel|
+|Tablet|431px – 768px|iPad mini, tablets Android|
+|Notebook|769px – 1280px|Laptops 13"–15"|
+|Desktop|acima de 1280px|Monitores externos, telas widescreen|
 
 **Regras obrigatórias ao implementar UI:**
 
@@ -126,6 +116,23 @@ Use linguagem de comportamento observável: "o sistema exibe", "o endpoint retor
 - Garantir que a experiência em notebook (769px–1280px) não seja um "desktop encolhido" — revisar grids e proporções
 - Testar com DevTools em pelo menos: 375px (mobile), 768px (tablet), 1024px (notebook), 1440px (desktop)
 
+### 5.2 Componentização e Reusabilidade — Obrigatório ao criar funções, métodos e componentes
+
+> ⚠️ Toda função, método, componente ou serviço novo deve ser avaliado quanto ao potencial de reuso em situações semelhantes antes de ser implementado de forma acoplada ao caso de uso atual.
+
+**Regras obrigatórias ao criar funções/componentes:**
+
+- [ ] Antes de criar algo novo, verificar se já existe uma função/componente similar no código que possa ser generalizado e reaproveitado, em vez de duplicado
+- [ ] Evitar hardcode de valores específicos do caso de uso atual (nomes de campos, IDs, textos, rotas, regras fixas) dentro da lógica — extrair como parâmetro, prop ou configuração
+- [ ] Funções devem receber parâmetros/props explícitos em vez de depender de variáveis globais, contexto fixo ou estado externo implícito
+- [ ] Nomear funções e componentes de forma genérica, descrevendo o comportamento (ex: `formatarMoeda(valor, moeda)`) e não o contexto de uso específico (ex: evitar `formatarValorDoRelatorioFinanceiro()`)
+- [ ] Separar responsabilidades em camadas distintas: lógica de negócio, formatação/apresentação e acesso a dados/API não devem estar misturados na mesma função
+- [ ] Componentes de UI devem aceitar props para conteúdo, estilo e comportamento variável, evitando textos, cores ou lógica fixos "chumbados" no componente
+- [ ] Se, durante a implementação, for identificada duplicação de lógica já existente em outro ponto do código, sinalizar como item em **Problemas Encontrados** para refatoração futura, em vez de duplicar novamente
+- [ ] Quando uma função criada para o caso atual tiver potencial claro de reuso, documentar esse potencial brevemente em `implementado/{nome-da-feature}.md` (o que ela faz de genérico e em que outros contextos poderia ser aplicada)
+
+> ⚠️ Componentizar não significa criar abstrações prematuras ou genéricas demais para casos hipotéticos que não existem. Significa não acoplar a função ao caso de uso específico quando o custo de generalizar é baixo e o padrão já se repete (ou tem alta probabilidade de se repetir no projeto).
+
 ---
 
 ## 6. Analise da Aplicação
@@ -139,13 +146,13 @@ Use linguagem de comportamento observável: "o sistema exibe", "o endpoint retor
 
 ## 7. Arquivos Envolvidos
 
-| Arquivo                               | Acao      | Razao                                   |
-| ------------------------------------- | --------- | --------------------------------------- |
-| `src/components/MeuComponente.vue`    | Modificar | Adicionar nova prop e emissão de evento |
-| `src/services/MeuService.ts`          | Criar     | Encapsular chamada ao novo endpoint     |
-| `Controllers/MeuController.cs`        | Modificar | Adicionar novo endpoint POST            |
-| `Repositories/MeuRepositorio.cs`      | Modificar | Adicionar query para novo filtro        |
-| `migrations/2025_xx_xx_descricao.sql` | Criar     | Adicionar nova coluna na tabela         |
+|Arquivo|Acao|Razao|
+|---|---|---|
+|`src/components/MeuComponente.vue`|Modificar|Adicionar nova prop e emissão de evento|
+|`src/services/MeuService.ts`|Criar|Encapsular chamada ao novo endpoint|
+|`Controllers/MeuController.cs`|Modificar|Adicionar novo endpoint POST|
+|`Repositories/MeuRepositorio.cs`|Modificar|Adicionar query para novo filtro|
+|`migrations/2025_xx_xx_descricao.sql`|Criar|Adicionar nova coluna na tabela|
 
 > ⚠️ Se não tiver certeza sobre um arquivo, sinalize como "a confirmar" em vez de assumir.
 
@@ -217,6 +224,7 @@ Passo 2: [descrição clara da ação]
 - [ ] Documentação atualizada (wiki, task, comentários no código se necessário)
 - [ ] Sem warnings ou erros não tratados introduzidos
 - [ ] Migração de banco aplicada (se aplicável)
+- [ ] Funções e componentes novos foram avaliados quanto à reusabilidade, conforme seção 5.2
 - [ ] Seção **Histórico de Correções** atualizada com todas as correções feitas neste ciclo
 
 ---
@@ -290,7 +298,7 @@ Sempre que houver uma decisão importante, por exemplo:
 - Cria um histórico da evolução da arquitetura
 - Torna a manutenção do sistema mais previsível
 
-> 💡 Em resumo, um DDR é como um **"diário das decisões técnicas"** do projeto. Em vez de apenas registrar *o que* foi implementado, ele documenta **por que aquela decisão foi tomada**, o que é extremamente útil para projetos de médio e grande porte.
+> Em resumo, um DDR é como um **"diário das decisões técnicas"** do projeto. Em vez de apenas registrar _o que_ foi implementado, ele documenta **por que aquela decisão foi tomada**, o que é extremamente útil para projetos de médio e grande porte.
 
 ### Exemplos
 
@@ -377,6 +385,7 @@ Utilizar JWT com Refresh Token.
 - [ ] Os critérios de aceite são verificáveis
 - [ ] Sinalizei todas as incertezas explicitamente
 - [ ] Se houver interface visual: revisei os requisitos de UI/UX responsivo da seção 5.1 e planejo implementar para todos os breakpoints relevantes
+- [ ] Se houver funções, métodos ou componentes novos: revisei a seção 5.2 e planejei generalizá-los sempre que o custo de fazê-lo for baixo
 - [ ] Consultei o [[SDD/Guia de Planejamento de Feature em Entregas Incrementais|Guia de Planejamento de Feature em Entregas Incrementais]] para organizar entregas incrementais
 
 > ⚠️ Se qualquer item do checklist estiver pendente, resolva antes de escrever código.
@@ -393,9 +402,10 @@ Utilizar JWT com Refresh Token.
 4. Após criar o `.md`, revise-o para verificar coerência. Só então implemente.
 5. Ao finalizar qualquer ciclo (feature nova ou correção), registre no **Histórico de Correções** em spec.md. NÃO alterar os comentários e NÃO apagar algo, apenas adicione suas observações e atualize o documento `implementado/{nome-da-feature}.md` caso seja implementado uma nova regra de negócio. Permitido melhorar a descrição e título do problema aberto.
 6. **Para qualquer tarefa com interface visual:** aplique obrigatoriamente os requisitos da seção **5.1 UI/UX Responsivo**. Isso inclui: planejar o layout para mobile, notebook e desktop antes de codificar; nunca assumir que o layout funciona em todos os tamanhos sem validação explícita; e registrar nos critérios de aceite (seção 9) ao menos um CA de responsividade por tela ou componente novo.
-7. **Para decisões de design/arquitetura:** ao tomar uma decisão importante (escolha de framework, banco, padrão arquitetural, etc.), crie um **DDR (Design Decision Record)** conforme a seção **13**. Registre no arquivo `implementado/{nome-da-feature}.md` ou em `docs/ddr/DDR-XXX-titulo.md`.
-8. **Antes de implementar:** verifique se existem DDRs anteriores que impactam a feature atual. Se existirem, leia-os para manter consistência nas decisões técnicas.
-9. **Ao documentar requisitos:** siga os princípios de Clareza, Completude, Consistência, Verificabilidade, Rastreabilidade, Atomicidade e Priorização descritos neste documento.
+7. **Para toda função, método ou componente novo:** aplique obrigatoriamente os requisitos da seção **5.2 Componentização e Reusabilidade**. Antes de escrever a função, avalie se ela pode ser generalizada (parâmetros em vez de valores fixos, nome genérico, responsabilidade única) para ser reaproveitada em situações semelhantes no futuro. Não duplique lógica já existente — generalize a existente ou sinalize a duplicação em **Problemas Encontrados**.
+8. **Para decisões de design/arquitetura:** ao tomar uma decisão importante (escolha de framework, banco, padrão arquitetural, etc.), crie um **DDR (Design Decision Record)** conforme a seção **13**. Registre no arquivo `implementado/{nome-da-feature}.md` ou em `docs/ddr/DDR-XXX-titulo.md`.
+9. **Antes de implementar:** verifique se existem DDRs anteriores que impactam a feature atual. Se existirem, leia-os para manter consistência nas decisões técnicas.
+10. **Ao documentar requisitos:** siga os princípios de Clareza, Completude, Consistência, Verificabilidade, Rastreabilidade, Atomicidade e Priorização descritos neste documento.
 
 ## Antes de atualizar a doc de requisitos.md garanta que esta seguindo os principios a baixo
 
@@ -532,18 +542,18 @@ Requisitos mudam. Um bom documento prevê um processo para lidar com isso.
 
 ## Resumo Visual
 
-| Atributo        | Pergunta que deve ser respondida com "sim"     |
-| --------------- | ---------------------------------------------- |
-| Claro           | Qualquer leitor interpretaria da mesma forma?  |
-| Completo        | Todos os cenários e restrições estão cobertos? |
-| Consistente     | Nenhum requisito contradiz outro?              |
-| Verificável     | É possível escrever um teste para isso?        |
-| Rastreável      | Sei de onde veio e onde está implementado?     |
-| Atômico         | Expressa uma única ideia?                      |
-| Priorizado      | Sei o que é essencial vs. desejável?           |
-| Bem estruturado | O documento tem seções claras e navegáveis?    |
-| Validado        | Os stakeholders revisaram e aprovaram?         |
-| Versionado      | Mudanças são registradas e controladas?        |
+|Atributo|Pergunta que deve ser respondida com "sim"|
+|---|---|
+|Claro|Qualquer leitor interpretaria da mesma forma?|
+|Completo|Todos os cenários e restrições estão cobertos?|
+|Consistente|Nenhum requisito contradiz outro?|
+|Verificável|É possível escrever um teste para isso?|
+|Rastreável|Sei de onde veio e onde está implementado?|
+|Atômico|Expressa uma única ideia?|
+|Priorizado|Sei o que é essencial vs. desejável?|
+|Bem estruturado|O documento tem seções claras e navegáveis?|
+|Validado|Os stakeholders revisaram e aprovaram?|
+|Versionado|Mudanças são registradas e controladas?|
 
 ---
 
@@ -585,13 +595,13 @@ Nem tudo é urgente ou essencial para a versão inicial (_MVP_). Os autores reco
 
 Embora o formato varie (de documentos formais do IEEE 830 até _backlogs_ ágeis), estes são os blocos que não podem faltar:
 
-| Seção                         | O que deve conter                                              |
-| ----------------------------- | -------------------------------------------------------------- |
-| **Visão Geral**               | O problema que está sendo resolvido e os objetivos do sistema. |
-| **Requisitos Funcionais**     | O que o sistema deve fazer (o comportamento).                  |
-| **Requisitos Não Funcionais** | Atributos de qualidade (desempenho, segurança, portabilidade). |
-| **Regras de Negócio**         | Limitações e diretrizes que governam o processo.               |
-| **Cenários/Casos de Uso**     | O fluxo de interação entre o usuário e o sistema.              |
+|Seção|O que deve conter|
+|---|---|
+|**Visão Geral**|O problema que está sendo resolvido e os objetivos do sistema.|
+|**Requisitos Funcionais**|O que o sistema deve fazer (o comportamento).|
+|**Requisitos Não Funcionais**|Atributos de qualidade (desempenho, segurança, portabilidade).|
+|**Regras de Negócio**|Limitações e diretrizes que governam o processo.|
+|**Cenários/Casos de Uso**|O fluxo de interação entre o usuário e o sistema.|
 
 ---
 
