@@ -1,12 +1,12 @@
 /* ############################################################################
    ###                                                                      ###
-   ###   RODAR NESTE SERVIDOR:   Srv-Jd-Figueira   (subestacao JD Figueira)   ###
+   ###   RODAR NESTE SERVIDOR:   Srv-Novo-Mundo   (subestacao JD Figueira)   ###
    ###                                                                      ###
    ############################################################################ */
 
 /* ============================================================================
-   03 - Srv-Jd-Figueira  (Publisher MERGE)
-   BANCO 2: sigmaecm_copel_figueira -> sigmaecm  (BIDIRECIONAL)
+   03 - Srv-Novo-Mundo  (Publisher MERGE)
+   BANCO 2: sigmaecm_copel_novomundo -> sigmaecm  (BIDIRECIONAL)
    ----------------------------------------------------------------------------
    Merge replication: os dois lados (subestacao e central) editam as MESMAS
    tabelas, e o merge reconcilia. So tabelas ESPECIFICAS sao publicadas.
@@ -14,7 +14,7 @@
    DEPENDE DO ARQUIVO 01: o distribuidor local e o login SQL repl_user ja
    devem existir (foram criados la). Este arquivo NAO refaz o distribuidor.
 
-   Conexao: somente Central -> Srv-Jd-Figueira (mesma regra de firewall do banco 1).
+   Conexao: somente Central -> Srv-Novo-Mundo (mesma regra de firewall do banco 1).
 
    >>> LEIA OS 3 AVISOS NO FINAL DO ARQUIVO ANTES DE EXECUTAR EM PRODUCAO. <<<
    ============================================================================ */
@@ -23,7 +23,7 @@
 /* ----------------------------------------------------------------------------
    1. ACESSO DO LOGIN SQL AO BANCO DE ORIGEM
    ---------------------------------------------------------------------------- */
-USE sigmaecm_copel_figueira;
+USE sigmaecm_copel_novomundo;
 GO
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'repl_user')
     CREATE USER repl_user FOR LOGIN repl_user;
@@ -37,7 +37,7 @@ GO
 USE master;
 GO
 EXEC sp_replicationdboption
-     @dbname  = N'sigmaecm_copel_figueira',      -- banco de origem na subestacao.
+     @dbname  = N'sigmaecm_copel_novomundo',      -- banco de origem na subestacao.
      @optname = N'merge publish',                -- 'merge publish' habilita replicacao por mesclagem (diferente de 'publish' do transacional).
      @value   = N'true';
 GO
@@ -46,11 +46,11 @@ GO
 /* ----------------------------------------------------------------------------
    3. CRIAR A PUBLICACAO MERGE
    ---------------------------------------------------------------------------- */
-USE sigmaecm_copel_figueira;
+USE sigmaecm_copel_novomundo;
 GO
 EXEC sp_addmergepublication
-     @publication           = N'Pub_sigmaecm',  -- nome da publicacao merge.
-     @description           = N'Merge bidirecional de tabelas especificas: Srv-Jd-Figueira <-> Central',
+     @publication           = N'sigmaecm_copel_novomundo',  -- nome da publicacao merge.
+     @description           = N'Merge bidirecional de tabelas especificas: Srv-Novo-Mundo <-> Central',
      @sync_mode             = N'native',         -- 'native' = BCP nativo no snapshot (mais rapido). 'character' para destinos heterogeneos.
      @retention             = 14,                -- dias que os metadados de mudanca/conflito sao mantidos. Subscriber que ficar offline mais que isso precisa reinicializar.
      @allow_push            = N'false',          -- 'false' = sem assinatura push (a subestacao nunca empurra para a central).
@@ -63,16 +63,16 @@ GO
 
 -- Snapshot Agent da publicacao merge (mesma proc do transacional), em SQL Auth.
 EXEC sp_addpublication_snapshot
-     @publication             = N'Pub_sigmaecm',
+     @publication             = N'sigmaecm_copel_novomundo',
      @frequency_type          = 1,               -- 1 = sob demanda.
      @publisher_security_mode = 0,               -- 0 = SQL Authentication para o Snapshot Agent conectar no publisher.
      @publisher_login         = N'repl_user',
-     @publisher_password      = N'<SenhaReplUserForte>';
+     @publisher_password      = N'Repl#Copel2026';
 GO
 
 -- Concede acesso da publicacao ao login SQL (PAL).
 EXEC sp_grant_publication_access
-     @publication = N'Pub_sigmaecm',
+     @publication = N'sigmaecm_copel_novomundo',
      @login       = N'repl_user';
 GO
 
@@ -86,7 +86,7 @@ GO
         coluna extra e evitada.)
        Se em alguma tabela a coluna GUID nao se chamar 'Id', ajuste o nome.
    ---------------------------------------------------------------------------- */
-USE sigmaecm_copel_figueira;
+USE sigmaecm_copel_novomundo;
 GO
 ALTER TABLE dbo.MonitoramentoRedeOnline    ALTER COLUMN Id ADD ROWGUIDCOL;
 ALTER TABLE dbo.ModuloAtivo                ALTER COLUMN Id ADD ROWGUIDCOL;
@@ -123,7 +123,7 @@ WHILE @@FETCH_STATUS = 0
 BEGIN
     BEGIN TRY
         EXEC sp_addmergearticle
-             @publication     = N'Pub_sigmaecm',
+             @publication     = N'sigmaecm_copel_novomundo',
              @article         = @t,
              @source_owner    = N'dbo',
              @source_object   = @t,
@@ -141,7 +141,7 @@ PRINT N'Artigos merge adicionados: ' + CAST(@add AS varchar(10)) + N' | Ignorado
 GO
 
 -- Conferir os artigos adicionados (deve listar as 7 tabelas)
-EXEC sp_helpmergearticle @publication = N'Pub_sigmaecm';
+EXEC sp_helpmergearticle @publication = N'sigmaecm_copel_novomundo';
 GO
 
 
@@ -149,7 +149,7 @@ GO
    5. REGISTRAR A ASSINATURA PULL (no publisher)
    ---------------------------------------------------------------------------- */
 EXEC sp_addmergesubscription
-     @publication       = N'Pub_sigmaecm',
+     @publication       = N'sigmaecm_copel_novomundo',
      @subscriber        = N'DISMONTFLIC\MSSQLSERVERTT',  -- instancia da central (nomeada).
      @subscriber_db     = N'sigmaecm',             -- banco de destino na central.
      @subscription_type = N'pull',                       -- 'pull' = o Merge Agent roda na central.
@@ -160,7 +160,7 @@ GO
 /* ----------------------------------------------------------------------------
    6. GERAR O SNAPSHOT INICIAL
    ---------------------------------------------------------------------------- */
-EXEC sys.sp_startpublication_snapshot @publication = N'Pub_sigmaecm';
+EXEC sys.sp_startpublication_snapshot @publication = N'sigmaecm_copel_novomundo';
 GO
 -- Acompanhar (rode de novo ate concluir)
 USE distribution;
@@ -192,7 +192,7 @@ GO
 
    AVISO 3 - QUEM VENCE O CONFLITO:
      A assinatura e 'global' com prioridade (definida no arquivo 04). O Publisher
-     (Srv-Jd-Figueira) tem prioridade implicita 100, entao por padrao a SUBESTACAO
+     (Srv-Novo-Mundo) tem prioridade implicita 100, entao por padrao a SUBESTACAO
      vence o conflito. Se a regra do negocio for que a CENTRAL vença, use um
      resolver por artigo no sp_addmergearticle (parametro @article_resolver).
      Liste os resolvers disponiveis com: EXEC sp_enumcustomresolvers;

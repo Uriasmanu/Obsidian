@@ -61,16 +61,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Conhecimento/SDD/spec.md",
+                "file": "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/00_ROTEIRO_IMPLANTACAO.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "spec"
+              "title": "00_ROTEIRO_IMPLANTACAO"
+            }
+          },
+          {
+            "id": "10f82080f6e8032f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Adiciona novas colunas no merge.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Adiciona novas colunas no merge"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -232,17 +246,20 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "f157c66c4694b191",
+  "active": "10f82080f6e8032f",
   "lastOpenFiles": [
-    "Conhecimento/Implantacao_ReplicacaoDadosCopel/Replicação Banco.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/00_ROTEIRO_IMPLANTACAO.md",
+    "Adiciona novas colunas no merge.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/07_GUIA_REFERENCIA_DETALHADA.md",
+    "Conhecimento/SDD/SDD (Specification Driven Development).md",
+    "Conhecimento/SDD/spec.md",
+    "Conhecimento/Implantacao_ReplicacaoDadosCopel/Replicação Banco.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/06_Srv-Jd-Figueira_health_check_alerta.sql",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/05_monitoramento_validacao.sql",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/04_CENTRAL_sigma_merge_assinatura.sql",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/03_Srv-Jd-Figueira_sigma_merge_setup.sql",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/02_CENTRAL_ecm_transacional_assinatura.sql",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/01_Srv-Jd-Figueira_ecm_transacional_setup.sql",
-    "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central/00_ROTEIRO_IMPLANTACAO.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/replicacao_substacao_central",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/documentacao_unificada_replicacao.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/02_GUIA_REFERENCIA_DETALHADA.md",
@@ -258,8 +275,6 @@
     "Conhecimento/SQL/Quiz - Praticando SELECT.md",
     "Conhecimento/SQL/Update no banco de dados.md",
     "Conhecimento/SQL/Guia Completo de JOINs.md",
-    "Conhecimento/SDD/spec.md",
-    "Sem título.md",
     "Plano de Carreira Júnior → Pleno.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/08_REFERENCIA_RAPIDA_POSTGRESQL.md",
     "Conhecimento/Implantacao_ReplicacaoDadosCopel/Tasks_Azure_DevOps.md",
@@ -267,7 +282,6 @@
     "Conhecimento/Trabalho/Consulta Empresa e Instalação a partir do CampoModuloAtivo.md",
     "Sem título-2026-07-27-2058.excalidraw.crswap",
     "Conhecimento/Trabalho/Bug - Tabela não encontrada - Consulta Recurso Água Papel PostgreSQL.md",
-    "Azure task.md",
     "Conhecimento/Muay Thai/android-icon-foreground.png",
     "Pasted image 20260707222513.png",
     "Conhecimento/Muay Thai/midia",

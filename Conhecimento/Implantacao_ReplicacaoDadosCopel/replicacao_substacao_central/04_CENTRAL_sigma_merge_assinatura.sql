@@ -6,7 +6,7 @@
 
 /* ============================================================================
    04 - CENTRAL  (Subscriber MERGE, assinatura PULL)
-   BANCO 2: sigmaecm_copel_figueira -> sigmaecm  (BIDIRECIONAL)
+   BANCO 2: sigmaecm_copel_novomundo -> sigmaecm  (BIDIRECIONAL)
    ----------------------------------------------------------------------------
    Rodar somente DEPOIS que o snapshot do arquivo 03 concluiu.
    Conexoes que cruzam a rede (publisher/distributor) em SQL Auth.
@@ -57,9 +57,9 @@ GO
       @sync_type = 'none': nao aplica snapshot, preserva o schema do EF.
    ---------------------------------------------------------------------------- */
 EXEC sp_addmergepullsubscription
-     @publisher            = N'Srv-Jd-Figueira',           -- publicadora (subestacao).
-     @publisher_db         = N'sigmaecm_copel_figueira',   -- banco publicado na subestacao.
-     @publication          = N'Pub_sigmaecm',              -- publicacao merge.
+     @publisher            = N'Srv-Novo-Mundo',           -- publicadora (subestacao).
+     @publisher_db         = N'sigmaecm_copel_novomundo',   -- banco publicado na subestacao.
+     @publication          = N'sigmaecm_copel_novomundo',              -- publicacao merge.
      @subscriber_type      = N'global',                    -- 'global' = assinatura de servidor com prioridade.
      @subscription_priority = 75,                          -- < 100 (publisher), entao a subestacao vence conflito.
      @sync_type            = N'none';                      -- nao aplica snapshot; tabelas ja existem dos dois lados.
@@ -69,18 +69,18 @@ GO
    2. CRIAR O JOB DO MERGE AGENT (roda AQUI, na central)
    ---------------------------------------------------------------------------- */
 EXEC sp_addmergepullsubscription_agent
-     @publisher                 = N'Srv-Jd-Figueira',           -- publicadora (subestacao).
-     @publisher_db              = N'sigmaecm_copel_figueira', -- banco publicado.
-     @publication               = N'Pub_sigmaecm',      -- publicacao merge.
-     @distributor               = N'Srv-Jd-Figueira',           -- distribuidor (local na subestacao).
+     @publisher                 = N'Srv-Novo-Mundo',           -- publicadora (subestacao).
+     @publisher_db              = N'sigmaecm_copel_novomundo', -- banco publicado.
+     @publication               = N'sigmaecm_copel_novomundo',      -- publicacao merge.
+     @distributor               = N'Srv-Novo-Mundo',           -- distribuidor (local na subestacao).
      @job_login                 = N'DISMONTFLIC\svc_repl',    -- CONTA WINDOWS que roda o job na central. Use host\conta (o formato .\conta e recusado por erro de proxy). Precisa de login no SQL da central (ver bloco abaixo).
-     @job_password              = N'<SenhaWindowsDaSvcRepl>',
+     @job_password              = N'Repl#Copel2026',
      @publisher_security_mode   = 0,                          -- SQL Auth para conectar no PUBLISHER (o agente de MERGE aceita este parametro, diferente do transacional).
      @publisher_login           = N'repl_user',
-     @publisher_password        = N'<SenhaReplUserForte>',
+     @publisher_password        = N'Repl#Copel2026',
      @distributor_security_mode = 0,                          -- SQL Auth para conectar no DISTRIBUTOR.
      @distributor_login         = N'repl_user',
-     @distributor_password      = N'<SenhaReplUserForte>',
+     @distributor_password      = N'Repl#Copel2026',
      @frequency_type            = 64;                         -- 64 = inicia junto com o SQL Server Agent (sincronizacao continua).
 GO
 
@@ -105,7 +105,7 @@ GO
 
 /* ----------------------------------------------------------------------------
    NOTA SOBRE O SHARE DE SNAPSHOT (igual ao banco 1)
-   A conta @job_login le \\Srv-Jd-Figueira\repldata. Sem dominio comum, use conta
+   A conta @job_login le \\Srv-Novo-Mundo\repldata. Sem dominio comum, use conta
    local espelhada (mesmo nome e senha nos dois servidores) ou entrega por FTP.
    ---------------------------------------------------------------------------- */
 
@@ -116,7 +116,7 @@ USE msdb;
 GO
 SELECT j.job_id, j.name, j.enabled
 FROM   dbo.sysjobs AS j
-WHERE  j.name LIKE N'%Pub_sigmaecm%';   -- localiza o job do Merge Agent.
+WHERE  j.name LIKE N'%sigmaecm_copel_novomundo%';   -- localiza o job do Merge Agent.
 GO
 -- EXEC dbo.sp_start_job @job_name = N'<nome_do_job_do_merge_agent>';
 GO
@@ -127,7 +127,7 @@ GO
 USE sigmaecm;
 GO
 EXEC sp_helpmergepullsubscription
-     @publisher    = N'Srv-Jd-Figueira',
-     @publisher_db = N'sigmaecm_copel_figueira',
-     @publication  = N'Pub_sigmaecm';
+     @publisher    = N'Srv-Novo-Mundo',
+     @publisher_db = N'sigmaecm_copel_novomundo',
+     @publication  = N'sigmaecm_copel_novomundo';
 GO
