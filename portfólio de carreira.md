@@ -65,3 +65,23 @@ Gere a entrada no seguinte formato:
 - Estruturação de branches seguindo boas práticas de controle de versão
 
 **Aprendizado/observação:** A importância de manter logs coerentes e organizados para facilitar o debug. A necessidade de identificar gaps em algoritmos durante revisão do sistema.
+
+### 28/08/2026
+
+**Stack/Ferramentas:** SQL Server, replicação transacional, replicação merge, SQL Server Agent (Job Schedule)
+
+**O que foi feito:**
+- Resolução de problemas de replicação de banco de dados em topologia com 3 servidores (2 publicadores e 1 assinante), com dois tipos de replicação: transacional e merge
+- Diagnóstico via múltiplas consultas SQL para identificação da causa raiz
+- Criação de New Job Schedule no SQL para garantir reinício automático da replicação merge após reinicialização da máquina
+- Organização de tasks e articulação com responsável por tarefa pendente há meses para evitar atritos e destravar entrega
+
+**Problema → Solução:**
+- Replicação falhando em ambiente com 3 servidores → investigação com consultas SQL para isolar a causa
+- Replicação merge não reiniciava após reboot da máquina → criação de Job Schedule no SQL Server Agent para automatizar o reinício
+
+**Decisões técnicas:**
+- Uso de consultas diretas no SQL para diagnóstico de replicação em vez de depender apenas de logs de aplicação
+- Automação via SQL Server Agent (Job Schedule) para garantir resiliência da replicação após reinicialização
+
+**Aprendizado/observação:** Troubleshooting de replicação exige entendimento da topologia (publicador/assinante) e das diferenças entre replicação transacional e merge. Automação de jobs no SQL Server evita falha silenciosa após reboot. Gestão de pendências antigas requer comunicação proativa para destravar sem gerar atrito.
