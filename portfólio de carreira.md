@@ -85,3 +85,32 @@ Gere a entrada no seguinte formato:
 - Automação via SQL Server Agent (Job Schedule) para garantir resiliência da replicação após reinicialização
 
 **Aprendizado/observação:** Troubleshooting de replicação exige entendimento da topologia (publicador/assinante) e das diferenças entre replicação transacional e merge. Automação de jobs no SQL Server evita falha silenciosa após reboot. Gestão de pendências antigas requer comunicação proativa para destravar sem gerar atrito.
+
+### 01/09/2026 a 11/09/2026
+
+**Stack/Ferramentas:** Three.js
+
+**O que foi feito:**
+- Desenvolvimento de dashboard utilizando Three.js
+- Tomada de diversas decisões de design e animação para a interface
+
+**Decisões técnicas:**
+- Definição de decisões de design e animação aplicadas ao dashboard em Three.js
+
+### 17/09/2026 a 18/09/2026
+
+**Stack/Ferramentas:** Blender
+
+**O que foi feito:**
+- Estudo de Blender voltado à otimização de modelos 3D
+- Redução da quantidade de triângulos do modelo
+
+**Problema → Solução:**
+- Desempenho do 3D em tela comprometido pela quantidade de triângulos do modelo → redução de triângulos no Blender para melhorar o desempenho
+
+**Decisões técnicas:**
+- Otimização de geometria (redução de triângulos) como estratégia para melhorar desempenho de renderização 3D
+
+**Aprendizado/observação:** A quantidade de triângulos de um modelo impacta diretamente o desempenho da renderização 3D em tela, tornando a otimização de geometria uma etapa relevante do pipeline.
+
+**POC pessoal (opcional):** Como o Blender foi uma tecnologia nova nesse período, uma ideia de POC seria pegar um modelo 3D complexo, aplicar técnicas de retopologia/decimação no Blender e medir o ganho de FPS ao carregá-lo no Three.js antes e depois da otimização.
