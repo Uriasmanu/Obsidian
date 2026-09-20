@@ -115,3 +115,109 @@ Isso ilustra bem o padrão: **descrição curta como gatilho → conteúdo detal
 ## Resumo em uma frase
 
 > Uma skill é um "manual de instruções" reutilizável e sob demanda que ensina um agente de IA a lidar bem com um tipo específico de tarefa, sem exigir retreinamento do modelo.
+
+---
+
+## Como criar suas próprias skills (Claude Code)
+
+### Onde armazenar
+
+| Escopo                                    | Caminho                                                         | Quando usar                                                                                               |
+| ----------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Pessoal** (todos os projetos)           | `~/.claude/skills/<nome-da-skill>/SKILL.md`                     | Técnicas e processos que você usa em qualquer repositório (ex: seu jeito de debugar, de escrever commits) |
+| **Do projeto** (compartilhada com o time) | `.claude/skills/<nome-da-skill>/SKILL.md` dentro do repositório | Convenções específicas *daquele* projeto (ex: como rodar os testes, padrão de PR do time)                 |
+| **Plugin/Marketplace**                    | Dentro de um plugin instalado (ex: `superpowers`)               | Coleções de skills reutilizáveis entre pessoas/times, distribuídas e versionadas como um pacote           |
+
+> No Windows, o caminho pessoal fica em `C:\Users\<seu-usuário>\.claude\skills\`.
+
+### Estrutura de pastas
+
+Cada skill é uma **pasta própria**, com namespace plano (todas no mesmo nível, sem aninhar categorias):
+
+```
+skills/
+  minha-skill/
+    SKILL.md              # obrigatório — o conteúdo principal
+    referencia.md          # opcional — só se precisar de doc pesada (100+ linhas)
+    script.py               # opcional — só se for uma ferramenta reutilizável
+```
+
+Regra prática: mantenha tudo **dentro do `SKILL.md`** a menos que seja referência muito grande (ex: doc de API) ou um script executável — nesse caso, separe em arquivo próprio e referencie a partir do `SKILL.md`.
+
+### Anatomia do `SKILL.md`
+
+```markdown
+---
+name: nome-da-skill
+description: Use when [situação/gatilho específico que ativa a skill]
+---
+
+# Nome da Skill
+
+## Overview
+O que é isso e o princípio central, em 1-2 frases.
+
+## When to Use
+Lista de sintomas/situações concretas que indicam que essa skill se aplica.
+(E, se relevante, quando NÃO usar.)
+
+## Quick Reference
+Tabela ou bullets com os pontos principais, fáceis de escanear.
+
+## Implementation
+O passo a passo, exemplos de código, checklist — o "como fazer".
+
+## Common Mistakes
+Erros comuns e como evitá-los.
+```
+
+### Regras importantes sobre o `description`
+
+Esse é o campo que o agente lê **antes** de decidir carregar a skill inteira — é o "gatilho". Por isso:
+
+- ✅ Comece com **"Use when..."** e descreva a **situação/sintoma**, não o processo.
+- ❌ Não resuma o passo a passo da skill na descrição — isso faz o agente seguir só a descrição e pular o conteúdo detalhado.
+- ✅ Escreva em terceira pessoa (ela é injetada no prompt do sistema).
+- ✅ Use palavras-chave que apareceriam numa busca real (nomes de erro, sintomas, ferramentas).
+
+```yaml
+# ❌ Ruim — resume o processo, o agente pode parar de ler aqui
+description: Revisão de código entre tarefas — primeiro checa specs, depois qualidade
+
+# ✅ Bom — só a condição de gatilho
+description: Use when executing implementation plans with independent tasks
+```
+
+### Exemplo mínimo de skill própria
+
+```markdown
+---
+name: revisao-de-pr-time-x
+description: Use when abrindo ou revisando um Pull Request neste repositório, antes de aprovar
+---
+
+# Revisão de PR — Time X
+
+## Overview
+Checklist padrão do time antes de aprovar qualquer PR.
+
+## Quick Reference
+1. Testes cobrem o caso principal e ao menos 1 caso de borda?
+2. Nome de variáveis em português, funções em inglês (padrão do time)
+3. Nenhum `console.log` esquecido
+4. Descrição do PR explica o "porquê", não só o "o quê"
+
+## Common Mistakes
+- Aprovar sem rodar os testes localmente
+- Esquecer de checar se o CHANGELOG foi atualizado
+```
+
+Salve isso em `.claude/skills/revisao-de-pr-time-x/SKILL.md` (projeto) ou `~/.claude/skills/revisao-de-pr-time-x/SKILL.md` (pessoal), e o agente passa a considerá-la automaticamente sempre que a tarefa combinar com a descrição.
+
+### Boas práticas ao escrever
+
+- **Seja específico no gatilho, genérico no conteúdo** — a descrição mira uma situação exata; o corpo pode ensinar o princípio geral.
+- **Nomes com hífen, em formato verbo-ação** quando fizer sentido (ex: `revisando-prs` em vez de `revisao-de-pr`) — fica mais fácil de buscar.
+- **Uma skill = um problema.** Se você está documentando dois processos não relacionados, crie duas skills.
+- **Teste antes de confiar nela** — peça para o próprio agente resolver uma tarefa real usando a skill e veja se ele segue certinho; ajuste o texto onde ele "escorregar".
+- **Não crie skill para algo que só aconteceu uma vez** — se não é um padrão que vai se repetir, não vale o esforço; melhor deixar como instrução pontual na conversa.
