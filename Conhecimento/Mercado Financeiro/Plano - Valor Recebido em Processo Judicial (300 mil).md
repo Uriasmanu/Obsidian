@@ -4,6 +4,9 @@ Pessoa sozinha (solteira, sem dependentes) recebendo R$ 300 mil de um **processo
 
 > Não confundir com herança: aqui não há inventário nem ITCMD. O imposto que importa é o **IR**, e ele depende da **natureza da verba** recebida.
 
+> [!warning] Pré-requisito
+> Esta nota trata da alocação do dinheiro **depois** que a dívida cara estiver zerada. Enquanto houver rotativo de cartão e empréstimo atrasado em aberto, a prioridade é [[Mercado Financeiro/Plano - Sair das Dívidas|Plano - Sair das Dívidas]] — investir a 12% ao ano enquanto se paga 400% é matematicamente errado.
+
 ## Passo 0 — Entender a natureza da verba
 
 Esse é o passo que define quanto do valor é realmente seu. Verbas diferentes dentro do mesmo processo têm tratamento diferente:

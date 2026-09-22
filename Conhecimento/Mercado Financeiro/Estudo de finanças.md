@@ -9,6 +9,7 @@
 - [[Mercado Financeiro/Ferramentas e Plataformas|Ferramentas]]
 - [[Mercado Financeiro/Prática e Experiência|Prática]]
 - [[Mercado Financeiro/Leitura Recomendada|Leituras]]
+- [[Mercado Financeiro/Plano - Sair das Dívidas|Plano - Sair das Dívidas]]
 - [[Mercado Financeiro/Holding Patrimonial - Herança|Holding Patrimonial - Herança]]
 - [[Mercado Financeiro/Plano - Valor Recebido em Processo Judicial (300 mil)|Plano - Valor Recebido em Processo Judicial]]
 
