@@ -38,4 +38,5 @@ Isso é uma referência geral, não é aconselhamento jurídico ou tributário d
 
 ## Links
 
+- [[Mercado Financeiro/Plano - Valor Recebido em Processo Judicial (300 mil)|Plano - Valor Recebido em Processo Judicial]]
 - [[Mercado Financeiro/Estudo de finanças|Estudo de Finanças]]

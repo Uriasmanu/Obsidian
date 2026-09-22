@@ -10,6 +10,7 @@
 - [[Mercado Financeiro/Prática e Experiência|Prática]]
 - [[Mercado Financeiro/Leitura Recomendada|Leituras]]
 - [[Mercado Financeiro/Holding Patrimonial - Herança|Holding Patrimonial - Herança]]
+- [[Mercado Financeiro/Plano - Valor Recebido em Processo Judicial (300 mil)|Plano - Valor Recebido em Processo Judicial]]
 
 ---
 
