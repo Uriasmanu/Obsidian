@@ -24,6 +24,7 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 - [[SDD/SDD (Specification Driven Development)|SDD]]
 - [[Ferramentas/Samsung Notes|Samsung Notes]]
 - [[Ferramentas/Excalidraw|Excalidraw]]
+- [[Ferramentas/MCP (Model Context Protocol)|MCP (Model Context Protocol)]]
 
 ### Jiu-Jitsu
 [[JiuJitsu/Conhecimentos em Jiu-Jitsu|Meu Jiu-Jitsu]]

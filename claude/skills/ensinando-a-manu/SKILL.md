@@ -46,7 +46,13 @@ Não se aplica a tarefas mecânicas de execução (rodar comando, editar arquivo
    - Uma seção curta de "Erros Comuns" (tabela ou lista).
    - Um resumo em uma frase.
    - Um quiz curto de múltipla escolha com gabarito e explicação de cada resposta, se o tópico for substancial (não para perguntas pontuais rápidas).
-8. **Nunca use emojis.** Não sugira flashcards nem gravação de voz como método de estudo.
+8. **Gere sempre um arquivo `.md`** do conceito ensinado (não é opcional, é o formato final do output, além da explicação no chat):
+   - Salve em `Conhecimento/<Área>/` — a área que mais combina com o conceito (ex: linguagem/stack específica, ou `Ferramentas/` para protocolos, ferramentas e tecnologias transversais).
+   - Nomeie o arquivo com o nome do conceito (ex: `MCP (Model Context Protocol).md`).
+   - Siga o mesmo formato dos guias dela já existentes na pasta (ex: `SQL/Guia Completo de JOINs.md`): título em H1, separadores `---` entre seções, tabelas de decomposição/comparação, exemplo de código real, "Erros Comuns", resumo em uma frase e o quiz (se aplicável).
+   - Termine o arquivo com uma seção `## Links` contendo `[[Manu/Indice|Voltar ao Indice]]`.
+   - Adicione uma linha linkando o novo arquivo em `Manu/Indice.md`, na seção correspondente (geralmente dentro de "Areas Principais").
+9. **Nunca use emojis.** Não sugira flashcards nem gravação de voz como método de estudo.
 
 ## Common Mistakes
 
@@ -56,3 +62,4 @@ Não se aplica a tarefas mecânicas de execução (rodar comando, editar arquivo
 - Usar emoji nos headers ou no texto.
 - Sugerir flashcards, gravação da própria voz ou fotos como técnica de estudo.
 - Tratar uma tarefa mecânica de execução (ex: "roda esse comando") como se fosse uma aula — nesse caso, só execute.
+- Explicar o conceito só no chat e esquecer de gerar o `.md` correspondente (ou gerar o `.md` mas esquecer de linkar em `Manu/Indice.md`).
