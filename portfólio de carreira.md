@@ -97,6 +97,20 @@ Gere a entrada no seguinte formato:
 **Decisões técnicas:**
 - Definição de decisões de design e animação aplicadas ao dashboard em Three.js
 
+### 16/09/2026
+
+**O que foi feito:**
+- Início da preparação de ambiente para teste de uma feature nova sem confirmar antes os requisitos e os exemplos de resultado positivo esperado
+- A feature era uma tela nova utilizando dados já existentes e conhecidos, mas a existência dessa tela nova não era conhecida de antemão
+- Levantamento progressivo do que era necessário, percebendo ao longo do processo que faltavam informações
+- Alinhamento final por call, que esclareceu o que de fato precisava ser feito
+
+**Problema → Solução:**
+- Assumiu que o escopo já era conhecido por semelhança com algo visto anteriormente (os dados já eram familiares), sem perguntar por requisitos e exemplos de resultado esperado, e não sabia que haveria uma tela nova → durante o levantamento, identificou lacunas de informação e, por fim, uma call de alinhamento esclareceu o escopo real
+- Não chegou tão longe do resultado esperado, mas o problema principal foi buscar informação no lugar errado por conta da suposição inicial
+
+**Aprendizado/observação:** Antes de começar a preparar ambiente para teste de uma feature nova, é preciso perguntar explicitamente se existem requisitos definidos e exemplos de resultado positivo — familiaridade com uma parte do escopo (como os dados) não garante que o restante (como a existência de uma tela nova) também seja conhecido. Faltando esse alinhamento inicial, lacunas só aparecem aos poucos, tornando uma call de alinhamento necessária para fechar o entendimento.
+
 ### 17/09/2026 a 18/09/2026
 
 **Stack/Ferramentas:** Blender
@@ -114,3 +128,16 @@ Gere a entrada no seguinte formato:
 **Aprendizado/observação:** A quantidade de triângulos de um modelo impacta diretamente o desempenho da renderização 3D em tela, tornando a otimização de geometria uma etapa relevante do pipeline.
 
 **POC pessoal (opcional):** Como o Blender foi uma tecnologia nova nesse período, uma ideia de POC seria pegar um modelo 3D complexo, aplicar técnicas de retopologia/decimação no Blender e medir o ganho de FPS ao carregá-lo no Three.js antes e depois da otimização.
+
+### 21/09/2026
+
+**O que foi feito:**
+- Tomada de decisões técnicas de ajuste de desempenho e design em uma tarefa, sem orientação específica prévia do responsável pelo projeto
+
+**Problema → Solução:**
+- Falta de orientação específica do chefe sobre a tarefa → decisões tomadas de forma autônoma, buscando a maior coerência possível com o objetivo esperado
+
+**Decisões técnicas:**
+- Ajustes técnicos de desempenho e design definidos com base no objetivo esperado da tarefa, na ausência de direcionamento específico
+
+**Aprendizado/observação:** Diante da falta de orientação explícita, foi necessário exercer autonomia técnica e julgamento próprio para definir a abordagem mais coerente com o resultado esperado.
