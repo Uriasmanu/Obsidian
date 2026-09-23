@@ -27,7 +27,8 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 9. **O .csv/Excel de origem (o arquivo com o nome "limpo" no nome do arquivo) é quem origina o SQL e o JSON** — os três (csv/Excel, SQL, JSON) têm que bater entre si.
 10. **Se a coluna "Gráfico Rápido" do csv/Excel estiver "Sim" na frente de um campo, o tipo desse campo tem que ser `1537`.**
 11. **Se o `E3Lib` for um destes, avisar que existem especificidades para esse caso** (ainda não detalhadas): `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2`, `BM`.
-12. Outros erros comuns: lista ainda a ser detalhada por ela (checklist manual que ela já usa hoje).
+12. **Arquivos `sigma-sync-import` ficam numa pasta própria chamada `SYNC`.** Independente do protocolo (MDB/DNP), o SYNC é o mesmo — só existe 1 arquivo de SYNC por versão. Esse arquivo é um JSON e segue a mesma regra de espelhamento: tem que ter as mesmas informações que o SQL.
+13. Outros erros comuns: lista ainda a ser detalhada por ela (checklist manual que ela já usa hoje).
 
 ## Implementation
 
@@ -43,7 +44,8 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 10. Identificar o .csv/Excel de origem pelo nome "limpo" no nome do arquivo e cruzá-lo com o SQL e o JSON — os três têm que bater entre si.
 11. Para cada campo com "Sim" na coluna "Gráfico Rápido" do csv/Excel, conferir se o tipo do campo correspondente no SQL/JSON é `1537`.
 12. Conferir o valor de `E3Lib`/`identifier`: se for `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2` ou `BM`, avisar a Manu que esse mapeamento tem especificidades próprias (ainda não detalhadas na skill) antes de seguir a validação padrão.
-13. Reportar divergências encontradas (campo faltando, nome diferente, ID divergente entre script/JSON ou entre versões, mnemônico duplicado, hashCommitMap divergente do nome do arquivo, identifier/E3Lib divergente, ID do fl.sql ausente em GruposPadrao.sql/VersaoRecurso.sql, subtipo/categoria divergente entre versões ou incorreto na v1, divergência entre csv/Excel de origem e SQL/JSON, tipo de campo diferente de 1537 quando Gráfico Rápido = Sim, etc.) de forma direta, sem enrolação.
+13. Localizar o(s) arquivo(s) `sigma-sync-import` dentro da pasta `SYNC`; confirmar que existe apenas 1 arquivo de SYNC por versão (independente de ser MDB ou DNP) e cruzar esse JSON com o SQL, aplicando a mesma regra de espelhamento (item 1).
+14. Reportar divergências encontradas (campo faltando, nome diferente, ID divergente entre script/JSON ou entre versões, mnemônico duplicado, hashCommitMap divergente do nome do arquivo, identifier/E3Lib divergente, ID do fl.sql ausente em GruposPadrao.sql/VersaoRecurso.sql, subtipo/categoria divergente entre versões ou incorreto na v1, divergência entre csv/Excel de origem e SQL/JSON, tipo de campo diferente de 1537 quando Gráfico Rápido = Sim, sigma-sync-import fora da pasta SYNC, mais de 1 arquivo de SYNC na mesma versão, ou SYNC divergente do SQL, etc.) de forma direta, sem enrolação.
 
 ## Common Mistakes
 
@@ -58,6 +60,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 - Subtipo/categoria divergente entre versões, ou incorreto quando é v1.
 - .csv/Excel de origem (arquivo "limpo") divergente do SQL e/ou do JSON.
 - Campo com "Gráfico Rápido = Sim" no csv/Excel mas tipo diferente de `1537` no SQL/JSON.
+- Arquivo `sigma-sync-import` fora da pasta `SYNC`, mais de 1 arquivo de SYNC na mesma versão, ou conteúdo do SYNC divergente do SQL.
 - Demais erros comuns ainda a ser detalhados por ela.
 
 ## Exceções
