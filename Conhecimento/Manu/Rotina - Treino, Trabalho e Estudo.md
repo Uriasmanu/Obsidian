@@ -22,33 +22,33 @@ Quando a semana sair do script, são estas regras que valem — não a tabela.
 
 ### Segunda, quarta e sexta
 
-| Horário | |
-|---|---|
-| **7h00** | Acordar |
-| 7h00-8h00 | Manhã livre |
-| **8h00-8h30** | **Café da manhã** — não antes das 8h |
-| **8h30-9h00** | Trabalhar |
-| **9h00-9h45** | **Daily** — até 9h45, às vezes antes |
-| 9h45-10h00 | Respiro antes de engatar |
-| 10h00-11h15 | Trabalhar |
-| 11h15-11h25 | Pausa — levanta, água, janela |
-| 11h25-11h50 | Trabalhar |
-| **11h50-12h00** | **Almoço** — na mesa, ainda no ponto |
-| **12h00-13h00** | **Ponto batido** — deitada, cochilo 30 min+ |
-| 13h00-15h00 | Trabalhar |
-| 15h00-15h15 | Lanche, longe da tela |
-| 15h15-16h30 | Trabalhar |
-| **16h30-17h00** | **Escadaria** + listening de inglês |
-| 17h00-17h15 | Banho |
-| 17h15-18h00 | Trabalhar |
-| **18h00** | Fim do expediente |
-| 18h15-19h00 | **Jantar** |
-| **19h00-19h45** | **Estudo** — seg SQL · qua SDD · sex livre |
-| 19h45-22h30 | Livre — é aqui que cabe lavar o cabelo sem pressa |
-| 22h30-23h00 | Desligar — sem tela forte |
-| **23h00** | **Dormir** |
+| Horário         |                                                   |
+| --------------- | ------------------------------------------------- |
+| **7h00**        | Acordar                                           |
+| 7h00-8h00       | Manhã livre                                       |
+| **8h00-8h30**   | **Café da manhã** — não antes das 8h              |
+| 8h30-9h00       | Manhã livre                                       |
+| **9h00-9h45**   | **Daily** — até 9h45, às vezes antes              |
+| 9h45-10h00      | Respiro antes de engatar                          |
+| 10h00-11h15     | Trabalhar                                         |
+| 11h15-11h25     | Pausa — levanta, água, janela                     |
+| 11h25-11h50     | Trabalhar                                         |
+| **11h50-12h00** | **Almoço** — na mesa, ainda no ponto              |
+| **12h00-13h00** | **Ponto batido** — deitada, cochilo 30 min+       |
+| 13h00-15h00     | Trabalhar                                         |
+| 15h00-15h15     | Lanche, longe da tela                             |
+| 15h15-16h30     | Trabalhar                                         |
+| **16h30-17h00** | **Escadaria** + listening de inglês               |
+| 17h00-17h15     | Banho                                             |
+| 17h15-18h00     | Trabalhar                                         |
+| **18h00**       | Fim do expediente                                 |
+| 18h15-19h00     | **Jantar**                                        |
+| **19h00-19h45** | **Estudo** — seg SQL · qua SDD · sex livre        |
+| 19h45-22h30     | Livre — é aqui que cabe lavar o cabelo sem pressa |
+| 22h30-23h00     | Desligar — sem tela forte                         |
+| **23h00**       | **Dormir**                                        |
 
-Apontado: **7h05** (ou 6h40 se a daily for curta). Sono: **8h** + 1h de cochilo.
+Apontado: **6h35** (ou 6h10 se a daily for curta). Sono: **8h** + 1h de cochilo.
 
 ### Terça e quinta
 
@@ -104,7 +104,7 @@ Mínimo de **5h30/dia**. A daily conta; pausas, escadaria e banho não.
 
 | | Daily de 45 min | Daily de 20 min |
 |---|---|---|
-| Seg · Qua · Sex (8h30-18h) | 7h05 | 6h40 |
+| Seg · Qua · Sex (9h-18h) | 6h35 | 6h10 |
 | Ter · Qui (8h30-17h30) | 7h25 | 7h00 |
 
 **A chave é o almoço.** Comer na mesa às 11h50 mantém a manhã inteira como trabalho, e a hora das 12h vira a hora de almoço de verdade — ponto batido, deitada, fora da conta.
@@ -129,9 +129,8 @@ São 12h30 de dia comprometido. Não há arranjo que mude isso sem tirar alguma 
 ## Trabalho
 
 ### Horários
-- Começa **8h30 todos os dias**
-- Segunda, quarta e sexta: até 18h
-- Terça e quinta: até 17h30 (sai mais cedo para o jiu baby às 18h)
+- Segunda, quarta e sexta: **9h às 18h**
+- Terça e quinta: **8h30 às 17h30** (sai mais cedo para o jiu baby às 18h)
 - **Daily: 9h todos os dias, até 9h45 no máximo** — costuma terminar antes
 - Almoço: **11h50, na mesa**, ainda no ponto; a 1h de ponto batido é das 12h às 13h, para descansar
 - Lanche da tarde: 15h
