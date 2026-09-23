@@ -28,7 +28,8 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 10. **Se a coluna "Gráfico Rápido" do csv/Excel estiver "Sim" na frente de um campo, o tipo desse campo tem que ser `1537`.**
 11. **Se o `E3Lib` for um destes, avisar que existem especificidades para esse caso** (ainda não detalhadas): `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2`, `BM`.
 12. **Arquivos `sigma-sync-import` ficam numa pasta própria chamada `SYNC`.** Independente do protocolo (MDB/DNP), o SYNC é o mesmo — só existe 1 arquivo de SYNC por versão. Esse arquivo é um JSON e segue a mesma regra de espelhamento: tem que ter as mesmas informações que o SQL.
-13. Outros erros comuns: lista ainda a ser detalhada por ela (checklist manual que ela já usa hoje).
+13. **Arquivos não podem ter problemas de encoding** — nenhum caractere estranho/corrompido no meio de uma descrição (ex: um `?` sozinho no meio da frase, onde deveria ter um acento ou caractere especial). A lista de padrões problemáticos ainda está sendo levantada pela Manu; se a skill encontrar qualquer coisa que pareça suspeita nesse sentido (símbolo fora de lugar, sequência estranha de caracteres, etc.), mesmo que não esteja nessa lista, tem que avisar.
+14. Outros erros comuns: lista ainda a ser detalhada por ela (checklist manual que ela já usa hoje).
 
 ## Implementation
 
@@ -47,7 +48,8 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 11. Para cada campo com "Sim" na coluna "Gráfico Rápido" do csv/Excel, conferir se o tipo do campo correspondente no SQL/JSON é `1537`.
 12. Conferir o valor de `E3Lib`/`identifier`: se for `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2` ou `BM`, avisar a Manu que esse mapeamento tem especificidades próprias (ainda não detalhadas na skill) antes de seguir a validação padrão.
 13. Localizar o(s) arquivo(s) `sigma-sync-import` dentro da pasta `SYNC`; confirmar que existe apenas 1 arquivo de SYNC por versão (independente de ser MDB ou DNP) e cruzar esse JSON com o SQL, aplicando a mesma regra de espelhamento (item 1).
-14. Ao final, gerar um relatório com tudo que está incorreto (ver seção "Formato do Relatório Final"). Se já existia uma doc de validação anterior (ver item 0.5), atualizar essa mesma doc em vez de criar uma nova.
+14. Varrer as descrições/textos dos arquivos (SQL, JSON, csv/Excel) procurando problemas de encoding: caracteres estranhos/corrompidos no meio de uma descrição, começando pelo `?` isolado, mas também qualquer outro símbolo ou sequência de caracteres que pareça fora do lugar. Reportar qualquer ocorrência suspeita, mesmo sem ter certeza absoluta.
+15. Ao final, gerar um relatório com tudo que está incorreto (ver seção "Formato do Relatório Final"). Se já existia uma doc de validação anterior (ver item 0.5), atualizar essa mesma doc em vez de criar uma nova.
 
 ## Segunda Validação
 
@@ -85,6 +87,7 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - .csv/Excel de origem (arquivo "limpo") divergente do SQL e/ou do JSON.
 - Campo com "Gráfico Rápido = Sim" no csv/Excel mas tipo diferente de `1537` no SQL/JSON.
 - Arquivo `sigma-sync-import` fora da pasta `SYNC`, mais de 1 arquivo de SYNC na mesma versão, ou conteúdo do SYNC divergente do SQL.
+- Problema de encoding numa descrição (ex: `?` isolado ou outro caractere estranho no meio do texto).
 - Demais erros comuns ainda a ser detalhados por ela.
 
 ## Exceções
