@@ -45,7 +45,16 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 11. Para cada campo com "Sim" na coluna "Gráfico Rápido" do csv/Excel, conferir se o tipo do campo correspondente no SQL/JSON é `1537`.
 12. Conferir o valor de `E3Lib`/`identifier`: se for `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2` ou `BM`, avisar a Manu que esse mapeamento tem especificidades próprias (ainda não detalhadas na skill) antes de seguir a validação padrão.
 13. Localizar o(s) arquivo(s) `sigma-sync-import` dentro da pasta `SYNC`; confirmar que existe apenas 1 arquivo de SYNC por versão (independente de ser MDB ou DNP) e cruzar esse JSON com o SQL, aplicando a mesma regra de espelhamento (item 1).
-14. Reportar divergências encontradas (campo faltando, nome diferente, ID divergente entre script/JSON ou entre versões, mnemônico duplicado, hashCommitMap divergente do nome do arquivo, identifier/E3Lib divergente, ID do fl.sql ausente em GruposPadrao.sql/VersaoRecurso.sql, subtipo/categoria divergente entre versões ou incorreto na v1, divergência entre csv/Excel de origem e SQL/JSON, tipo de campo diferente de 1537 quando Gráfico Rápido = Sim, sigma-sync-import fora da pasta SYNC, mais de 1 arquivo de SYNC na mesma versão, ou SYNC divergente do SQL, etc.) de forma direta, sem enrolação.
+14. Ao final, gerar um relatório com tudo que está incorreto (ver seção "Formato do Relatório Final").
+
+## Formato do Relatório Final
+
+Ao terminar todas as checagens, sempre fechar com um relatório único listando tudo que foi encontrado de incorreto (não é opcional, mesmo que a divergência pareça pequena):
+
+- Organizar por regra/categoria (ex: IDs, mnemônicos, hashCommitMap, identifier/E3Lib, fl.sql x GruposPadrao/VersaoRecurso, subtipo/categoria, csv/Excel de origem, Gráfico Rápido, SYNC).
+- Para cada item incorreto: dizer o que é, onde foi encontrado (arquivo/campo) e qual o valor esperado x valor encontrado.
+- Se nada foi encontrado de errado, dizer isso explicitamente (não omitir o relatório).
+- Se algum caso caiu numa exceção (ver seção "Exceções") e por isso não foi reportado como erro, também pode mencionar rapidamente, para deixar claro que foi conferido.
 
 ## Common Mistakes
 
