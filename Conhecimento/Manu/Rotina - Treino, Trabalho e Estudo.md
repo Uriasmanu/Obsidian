@@ -38,7 +38,7 @@ Quando a semana sair do script, são estas regras que valem — não a tabela.
 | 13h00-15h00     | Trabalhar                                         |
 | 15h00-15h15     | Lanche, longe da tela                             |
 | 15h15-16h30     | Trabalhar                                         |
-| **16h30-17h00** | **Escadaria** + listening de inglês               |
+| **16h30-17h00** | **Escadaria**                                     |
 | 17h00-17h15     | Banho                                             |
 | 17h15-18h00     | Trabalhar                                         |
 | **18h00**       | Fim do expediente                                 |
@@ -280,7 +280,7 @@ O que vale reparar todo dia, para o ajuste de domingo ter em que se apoiar:
 | Dia | Como foi | Ajustar |
 |---|---|---|
 | Ter 22/09 *(antes de começar)* | Dormiu **0h**. Alvo para dia de jiu é 23h30 — 30 min a mais. Baseline. | |
-| Qua 23/09 | Daily de 20 min. ~5h30 apontadas (com a daily). Almoço às 12h05, 15 min depois do previsto (11h50). Cochilo esticou — acordou 14h, 1h depois do previsto (13h). | |
+| Qua 23/09 | Daily de 20 min. ~5h30 apontadas (com a daily). Almoço às 12h05, 15 min depois do previsto (11h50). Cochilo esticou — acordou 14h, 1h depois do previsto (13h). Lanche na frente da tela, não longe dela como o plano pede — hábito antigo. | |
 | Qui 24/09 | | |
 | Sex 25/09 | | |
 | Sáb 26/09 | | |
