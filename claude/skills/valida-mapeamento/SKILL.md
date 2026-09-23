@@ -33,6 +33,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 ## Implementation
 
 0. **Antes de começar, perguntar para a Manu:** (a) qual versão do módulo está sendo validada (v1, v2, etc.) e (b) se é um mapa de cliente (para aplicar a exceção de descrição personalizada por UID, ver seção "Exceções") — não presumir nenhuma das duas coisas sozinho.
+0.5. **Verificar se já existe uma doc de relatório de validação (`.md`) na pasta do módulo** (ver "Formato do Relatório Final"). Se existir — é uma segunda validação —, ler essa doc inteira antes de validar de novo: Manu pode ter feito alterações e observações manuais nela (comentários, explicações, itens já marcados como corrigidos). Levar essas observações em consideração ao revalidar (ver "Segunda Validação").
 1. Ler o JSON de mapeamento, o script SQL e o .csv/Excel de origem indicados.
 2. Cruzar campo a campo: todo campo do JSON deve ter correspondente no SQL, e todo campo relevante do SQL deve estar mapeado no JSON (JSON é espelho do SQL).
 3. Extrair todo `DECLARE @XxxId ... = 'valor'` do script e conferir se o mesmo ID aparece no JSON.
@@ -46,7 +47,16 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 11. Para cada campo com "Sim" na coluna "Gráfico Rápido" do csv/Excel, conferir se o tipo do campo correspondente no SQL/JSON é `1537`.
 12. Conferir o valor de `E3Lib`/`identifier`: se for `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2` ou `BM`, avisar a Manu que esse mapeamento tem especificidades próprias (ainda não detalhadas na skill) antes de seguir a validação padrão.
 13. Localizar o(s) arquivo(s) `sigma-sync-import` dentro da pasta `SYNC`; confirmar que existe apenas 1 arquivo de SYNC por versão (independente de ser MDB ou DNP) e cruzar esse JSON com o SQL, aplicando a mesma regra de espelhamento (item 1).
-14. Ao final, gerar um relatório com tudo que está incorreto (ver seção "Formato do Relatório Final").
+14. Ao final, gerar um relatório com tudo que está incorreto (ver seção "Formato do Relatório Final"). Se já existia uma doc de validação anterior (ver item 0.5), atualizar essa mesma doc em vez de criar uma nova.
+
+## Segunda Validação
+
+Quando já existe uma doc de relatório (`.md`) de uma validação anterior na pasta do módulo:
+
+1. Ler a doc inteira antes de começar a revalidar — Manu pode ter adicionado observações, explicações ou anotações manuais nos itens (ex: por que algo não foi corrigido, contexto adicional, item marcado como já resolvido).
+2. Levar essas observações em consideração durante a nova validação — não ignorar nem sobrescrever sem checar o que ela escreveu.
+3. Refazer todas as checagens normalmente (Quick Reference / Implementation).
+4. Por último, **atualizar a mesma doc** (não criar um relatório novo do zero): manter os checkboxes já marcados e as observações da Manu, atualizar o status dos itens que foram corrigidos, e adicionar quaisquer novos itens incorretos encontrados nessa rodada.
 
 ## Formato do Relatório Final
 
@@ -55,6 +65,7 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - **Organizar por arquivo** (ex: `fl.sql`, `GruposPadrao.sql`, `VersaoRecurso.sql`, JSON de mapeamento, JSON de SYNC, csv/Excel) — Manu depois vai comentar os problemas no Pull Request do Azure DevOps, e lá a navegação é arquivo por arquivo, não por categoria de regra.
 - **Para cada item incorreto, incluir um trecho exato e literal do arquivo (um `Ctrl+F` funcional)** — ex: a linha inteira do `DECLARE @ModuloId ...`, o nome exato do campo/mnemônico, o trecho de JSON — para ela localizar rapidamente o ponto certo no Azure DevOps na hora de comentar. Não descrever só "o campo X está errado": copiar o texto como aparece no arquivo.
 - Junto do trecho, dizer o que é o problema e qual o valor esperado x valor encontrado.
+- **Cada item incorreto vira um checkbox Markdown (`- [ ] `)** — Manu marca conforme vai comentando no Pull Request do Azure DevOps, então o relatório funciona como checklist vivo pra conferir depois se todas as correções foram feitas.
 - Se nada foi encontrado de errado, dizer isso explicitamente (não omitir o relatório).
 - Se algum caso caiu numa exceção (ver seção "Exceções") e por isso não foi reportado como erro, também pode mencionar rapidamente, para deixar claro que foi conferido.
 - **O relatório tem que ser salvo como um arquivo `.md` dentro da pasta do módulo** (não é só mostrar no chat) — ele serve de guia depois para conferir se as correções apontadas foram feitas.
