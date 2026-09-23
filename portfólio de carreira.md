@@ -141,3 +141,15 @@ Gere a entrada no seguinte formato:
 - Ajustes técnicos de desempenho e design definidos com base no objetivo esperado da tarefa, na ausência de direcionamento específico
 
 **Aprendizado/observação:** Diante da falta de orientação explícita, foi necessário exercer autonomia técnica e julgamento próprio para definir a abordagem mais coerente com o resultado esperado.
+
+### 23/09/2026
+
+**O que foi feito:**
+- Criação de uma skill para facilitar uma task repetitiva
+- Apoio a uma colega de trabalho que estava cometendo muitos erros na tarefa, ajudando-a a compreender melhor o que precisava ser feito
+
+**Problema → Solução:**
+- Task repetitiva consumindo tempo/atenção de forma manual → criação de uma skill para automatizar/facilitar essa execução
+- Colega cometendo muitos erros na tarefa por falta de compreensão → alinhamento direto para esclarecer a tarefa
+
+**Aprendizado/observação:** Automatizar tasks repetitivas via skill reduz a chance de erro humano recorrente; apoiar colegas na compreensão da tarefa (não só corrigir o erro pontual) ajuda a evitar reincidência.

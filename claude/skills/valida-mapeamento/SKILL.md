@@ -20,7 +20,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 2. **IDs declarados no script (ex: `DECLARE @ModuloId UNIQUEIDENTIFIER = '...'`) têm que ser idênticos ao valor correspondente no JSON.**
 3. **Se a pasta já tem uma versão anterior (v1, v2, ...), os IDs têm que bater em todas as versões** — não só entre o script e o JSON da mesma versão, mas também comparando script/JSON de uma versão contra os das outras.
 4. **Mnemônicos não podem se repetir dentro do mesmo arquivo** — cada mnemônico deve ser único no script/JSON. Além disso, se existe v1 e está sendo feita a v2, o mnemônico de cada UID deve permanecer o mesmo entre as versões (não pode trocar o mnemônico de um UID já existente).
-5. **`hashCommitMap` do JSON tem que bater com o hash no nome do arquivo** — ex: arquivo `TreetechGit-mapa_clientes-da9dfe577f87` → `hashCommitMap: da9dfe577f87` (o hash é o trecho depois do último `-` no nome do arquivo).
+5. **`hashCommitMap` é exclusivo do arquivo JSON de SYNC** (`sigma-sync-import`, dentro da pasta `SYNC` — ver item 12) — não existe no JSON de mapeamento. O `hashCommitMap` desse arquivo tem que bater com o hash no nome do arquivo — ex: arquivo `TreetechGit-mapa_clientes-da9dfe577f87` → `hashCommitMap: da9dfe577f87` (o hash é o trecho depois do último `-` no nome do arquivo).
 6. **`identifier` (JSON) é equivalente a `E3Lib` (script) — os dois têm que estar iguais.**
 7. **Todos os IDs existentes no `fl.sql` têm que constar também em `GruposPadrao.sql` e `VersaoRecurso.sql`.**
 8. **Subtipo e categoria têm que ser iguais em todas as versões** — se for v1 (sem versão anterior para comparar), confirmar manualmente se subtipo e categoria estão corretos.
@@ -38,7 +38,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 3. Extrair todo `DECLARE @XxxId ... = 'valor'` do script e conferir se o mesmo ID aparece no JSON.
 4. Se existir(em) versão(ões) anterior(es) na mesma pasta (v1, v2, ...), extrair os mesmos IDs de cada versão e comparar entre todas — todos os IDs equivalentes devem ser idênticos entre versões.
 5. Listar todos os mnemônicos do arquivo e verificar se algum se repete dentro do mesmo arquivo. Se existir v1, conferir também se o mnemônico de cada UID que já existia na v1 permanece o mesmo na v2.
-6. Extrair o hash do final do nome do arquivo (após o último `-`) e conferir se é idêntico ao valor de `hashCommitMap` no JSON.
+6. No arquivo JSON de SYNC (`sigma-sync-import`), extrair o hash do final do nome do arquivo (após o último `-`) e conferir se é idêntico ao valor de `hashCommitMap` desse arquivo (não confundir com o JSON de mapeamento, que não tem esse campo).
 7. Conferir se `identifier` (JSON) é idêntico a `E3Lib` (script).
 8. Extrair todos os IDs do `fl.sql` e conferir se cada um também aparece em `GruposPadrao.sql` e em `VersaoRecurso.sql`.
 9. Comparar subtipo e categoria entre todas as versões existentes (v1, v2, ...) — devem ser idênticos. Se só existir v1, conferir manualmente se subtipo e categoria estão corretos (sem versão anterior para comparar).
@@ -52,8 +52,9 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 
 Ao terminar todas as checagens, sempre fechar com um relatório único listando tudo que foi encontrado de incorreto (não é opcional, mesmo que a divergência pareça pequena):
 
-- Organizar por regra/categoria (ex: IDs, mnemônicos, hashCommitMap, identifier/E3Lib, fl.sql x GruposPadrao/VersaoRecurso, subtipo/categoria, csv/Excel de origem, Gráfico Rápido, SYNC).
-- Para cada item incorreto: dizer o que é, onde foi encontrado (arquivo/campo) e qual o valor esperado x valor encontrado.
+- **Organizar por arquivo** (ex: `fl.sql`, `GruposPadrao.sql`, `VersaoRecurso.sql`, JSON de mapeamento, JSON de SYNC, csv/Excel) — Manu depois vai comentar os problemas no Pull Request do Azure DevOps, e lá a navegação é arquivo por arquivo, não por categoria de regra.
+- **Para cada item incorreto, incluir um trecho exato e literal do arquivo (um `Ctrl+F` funcional)** — ex: a linha inteira do `DECLARE @ModuloId ...`, o nome exato do campo/mnemônico, o trecho de JSON — para ela localizar rapidamente o ponto certo no Azure DevOps na hora de comentar. Não descrever só "o campo X está errado": copiar o texto como aparece no arquivo.
+- Junto do trecho, dizer o que é o problema e qual o valor esperado x valor encontrado.
 - Se nada foi encontrado de errado, dizer isso explicitamente (não omitir o relatório).
 - Se algum caso caiu numa exceção (ver seção "Exceções") e por isso não foi reportado como erro, também pode mencionar rapidamente, para deixar claro que foi conferido.
 - **O relatório tem que ser salvo como um arquivo `.md` dentro da pasta do módulo** (não é só mostrar no chat) — ele serve de guia depois para conferir se as correções apontadas foram feitas.
@@ -66,7 +67,7 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - Campo ou ID presente no SQL mas ausente (ou diferente) no JSON, quebrando o espelhamento.
 - Mnemônico repetido dentro do mesmo arquivo.
 - Mnemônico de um UID que já existia na v1 mudou na v2.
-- `hashCommitMap` do JSON diferente do hash presente no nome do arquivo.
+- `hashCommitMap` do JSON de SYNC diferente do hash presente no nome do arquivo.
 - `identifier` (JSON) diferente de `E3Lib` (script).
 - ID presente no `fl.sql` mas faltando em `GruposPadrao.sql` e/ou `VersaoRecurso.sql`.
 - Subtipo/categoria divergente entre versões, ou incorreto quando é v1.
