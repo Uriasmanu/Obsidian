@@ -283,7 +283,7 @@ O que vale reparar todo dia, para o ajuste de domingo ter em que se apoiar:
 | Dia | Como foi | Ajustar |
 |---|---|---|
 | Ter 22/09 *(antes de começar)* | Dormiu **0h**. Alvo para dia de jiu é 23h30 — 30 min a mais. Baseline. | |
-| Qua 23/09 | | |
+| Qua 23/09 | Daily de 20 min | |
 | Qui 24/09 | | |
 | Sex 25/09 | | |
 | Sáb 26/09 | | |
