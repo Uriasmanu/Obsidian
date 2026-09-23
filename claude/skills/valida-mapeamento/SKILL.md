@@ -32,7 +32,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 
 ## Implementation
 
-0. **Antes de começar, perguntar para a Manu qual versão do módulo está sendo validada** (v1, v2, etc.) — não presumir a versão sozinho.
+0. **Antes de começar, perguntar para a Manu:** (a) qual versão do módulo está sendo validada (v1, v2, etc.) e (b) se é um mapa de cliente (para aplicar a exceção de descrição personalizada por UID, ver seção "Exceções") — não presumir nenhuma das duas coisas sozinho.
 1. Ler o JSON de mapeamento, o script SQL e o .csv/Excel de origem indicados.
 2. Cruzar campo a campo: todo campo do JSON deve ter correspondente no SQL, e todo campo relevante do SQL deve estar mapeado no JSON (JSON é espelho do SQL).
 3. Extrair todo `DECLARE @XxxId ... = 'valor'` do script e conferir se o mesmo ID aparece no JSON.
