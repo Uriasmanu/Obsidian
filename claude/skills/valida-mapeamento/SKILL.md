@@ -20,15 +20,15 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 2. **IDs declarados no script (ex: `DECLARE @ModuloId UNIQUEIDENTIFIER = '...'`) têm que ser idênticos ao valor correspondente no JSON.**
 3. **Se a pasta já tem uma versão anterior (v1, v2, ...), os IDs têm que bater em todas as versões** — não só entre o script e o JSON da mesma versão, mas também comparando script/JSON de uma versão contra os das outras.
 4. **Mnemônicos não podem se repetir dentro do mesmo arquivo** — cada mnemônico deve ser único no script/JSON. Além disso, se existe v1 e está sendo feita a v2, o mnemônico de cada UID deve permanecer o mesmo entre as versões (não pode trocar o mnemônico de um UID já existente).
-5. **`hashCommitMap` é exclusivo do arquivo JSON de SYNC** (`sigma-sync-import`, dentro da pasta `SYNC` — ver item 12) — não existe no JSON de mapeamento. O `hashCommitMap` desse arquivo tem que bater com o hash no nome do arquivo — ex: arquivo `TreetechGit-mapa_clientes-da9dfe577f87` → `hashCommitMap: da9dfe577f87` (o hash é o trecho depois do último `-` no nome do arquivo).
-6. **`identifier` (JSON) é equivalente a `E3Lib` (script) — os dois têm que estar iguais.**
+5. **`hashCommitMap` é exclusivo do arquivo JSON de SYNC** (`sigma-sync-import`, dentro da pasta `SYNC` — ver item 12) — não existe no JSON de mapeamento. **Atenção: o hash NÃO está no nome do próprio arquivo SYNC** (o arquivo `sigma-sync-import.json` normalmente não tem hash no nome, ex: `nome-do-modulo-sigma-sync-import.json`). O `hashCommitMap` do SYNC tem que bater com o hash que aparece no nome do **csv/Excel de origem** e/ou do **zip** — ex: csv `Fabricante_Nome-Do-Modulo_mdb_v1_da9dfe577f87.csv` e zip `TreetechGit-mapa_clientes-da9dfe577f87.zip` → `hashCommitMap: da9dfe577f87` (o hash é o trecho depois do último `_`/`-` no nome desses arquivos).
+6. **`identifier` é um campo exclusivo do JSON de SYNC** (não existe no JSON de mapeamento, ex: `fl.json` — lá o campo já se chama `E3Lib`, igual ao script). Em ambos os casos a checagem é a mesma: o valor tem que ser idêntico ao `E3Lib` do script SQL.
 7. **Todos os IDs existentes no `fl.sql` têm que constar também em `GruposPadrao.sql` e `VersaoRecurso.sql`.**
 8. **Subtipo e categoria têm que ser iguais em todas as versões** — se for v1 (sem versão anterior para comparar), confirmar manualmente se subtipo e categoria estão corretos.
-9. **O .csv/Excel de origem (o arquivo com o nome "limpo" no nome do arquivo) é quem origina o SQL e o JSON** — os três (csv/Excel, SQL, JSON) têm que bater entre si.
+9. **O .csv/Excel de origem (o arquivo com o nome "limpo" no nome do arquivo) é quem origina o SQL e o JSON** — os três (csv/Excel, SQL, JSON) têm que bater entre si. **Atenção ao formato do UUID**: no csv de origem os UUIDs costumam vir sem hífen (ex: `1ca40722324346a1b92e56270fd35ea7`), enquanto SQL e JSON usam o formato com hífen (ex: `1ca40722-3243-46a1-b92e-56270fd35ea7`) — são o mesmo valor, só formatado diferente. Ao comparar, normalizar removendo hífens dos dois lados antes de concluir que os IDs divergem, senão dá falso positivo de erro.
 10. **Se a coluna "Gráfico Rápido" do csv/Excel estiver "Sim" na frente de um campo, o tipo desse campo tem que ser `1537`.**
 11. **Se o `E3Lib` for um destes, avisar que existem especificidades para esse caso** (ainda não detalhadas): `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2`, `BM`.
 12. **Arquivos `sigma-sync-import` ficam numa pasta própria chamada `SYNC`.** Independente do protocolo (MDB/DNP), o SYNC é o mesmo — só existe 1 arquivo de SYNC por versão. Esse arquivo é um JSON e segue a mesma regra de espelhamento: tem que ter as mesmas informações que o SQL.
-13. **Arquivos não podem ter problemas de encoding** — nenhum caractere estranho/corrompido no meio de uma descrição (ex: um `?` sozinho no meio da frase, onde deveria ter um acento ou caractere especial). A lista de padrões problemáticos ainda está sendo levantada pela Manu; se a skill encontrar qualquer coisa que pareça suspeita nesse sentido (símbolo fora de lugar, sequência estranha de caracteres, etc.), mesmo que não esteja nessa lista, tem que avisar.
+13. **Arquivos não podem ter problemas de encoding** — nenhum caractere estranho/corrompido no meio de uma descrição (ex: um `?` sozinho no meio da frase, onde deveria ter um acento ou caractere especial). Exemplo real já encontrado: descrição `Concentração de H?` / `Gas sensor H?`, onde o `?` substituiu o "2" de "H2"/"H₂" — ou seja, não é só acentuação perdida, também pode ser número/subscrito perdido. A lista de padrões problemáticos ainda está sendo levantada pela Manu; se a skill encontrar qualquer coisa que pareça suspeita nesse sentido (símbolo fora de lugar, sequência estranha de caracteres, etc.), mesmo que não esteja nessa lista, tem que avisar.
 14. Outros erros comuns: lista ainda a ser detalhada por ela (checklist manual que ela já usa hoje).
 
 ## Implementation
@@ -40,11 +40,11 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 3. Extrair todo `DECLARE @XxxId ... = 'valor'` do script e conferir se o mesmo ID aparece no JSON.
 4. Se existir(em) versão(ões) anterior(es) na mesma pasta (v1, v2, ...), extrair os mesmos IDs de cada versão e comparar entre todas — todos os IDs equivalentes devem ser idênticos entre versões.
 5. Listar todos os mnemônicos do arquivo e verificar se algum se repete dentro do mesmo arquivo. Se existir v1, conferir também se o mnemônico de cada UID que já existia na v1 permanece o mesmo na v2.
-6. No arquivo JSON de SYNC (`sigma-sync-import`), extrair o hash do final do nome do arquivo (após o último `-`) e conferir se é idêntico ao valor de `hashCommitMap` desse arquivo (não confundir com o JSON de mapeamento, que não tem esse campo).
-7. Conferir se `identifier` (JSON) é idêntico a `E3Lib` (script).
+6. Extrair o `hashCommitMap` do arquivo JSON de SYNC (`sigma-sync-import`, dentro de `SYNC`) e comparar com o hash presente no nome do csv/Excel de origem e/ou do zip (não com o nome do próprio arquivo SYNC, que geralmente não tem hash). O JSON de mapeamento não tem esse campo — não confundir os dois.
+7. Conferir se o `E3Lib` do script bate com o campo equivalente no JSON: `identifier` no JSON de SYNC, e `E3Lib` no JSON de mapeamento (`fl.json`) — nos dois casos, os valores têm que ser idênticos.
 8. Extrair todos os IDs do `fl.sql` e conferir se cada um também aparece em `GruposPadrao.sql` e em `VersaoRecurso.sql`.
 9. Comparar subtipo e categoria entre todas as versões existentes (v1, v2, ...) — devem ser idênticos. Se só existir v1, conferir manualmente se subtipo e categoria estão corretos (sem versão anterior para comparar).
-10. Identificar o .csv/Excel de origem pelo nome "limpo" no nome do arquivo e cruzá-lo com o SQL e o JSON — os três têm que bater entre si.
+10. Identificar o .csv/Excel de origem pelo nome "limpo" no nome do arquivo e cruzá-lo com o SQL e o JSON — os três têm que bater entre si. Ao comparar UUIDs, normalizar removendo hífens antes (o csv costuma vir sem hífen, SQL/JSON com hífen).
 11. Para cada campo com "Sim" na coluna "Gráfico Rápido" do csv/Excel, conferir se o tipo do campo correspondente no SQL/JSON é `1537`.
 12. Conferir o valor de `E3Lib`/`identifier`: se for `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2` ou `BM`, avisar a Manu que esse mapeamento tem especificidades próprias (ainda não detalhadas na skill) antes de seguir a validação padrão.
 13. Localizar o(s) arquivo(s) `sigma-sync-import` dentro da pasta `SYNC`; confirmar que existe apenas 1 arquivo de SYNC por versão (independente de ser MDB ou DNP) e cruzar esse JSON com o SQL, aplicando a mesma regra de espelhamento (item 1).
@@ -80,8 +80,8 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - Campo ou ID presente no SQL mas ausente (ou diferente) no JSON, quebrando o espelhamento.
 - Mnemônico repetido dentro do mesmo arquivo.
 - Mnemônico de um UID que já existia na v1 mudou na v2.
-- `hashCommitMap` do JSON de SYNC diferente do hash presente no nome do arquivo.
-- `identifier` (JSON) diferente de `E3Lib` (script).
+- `hashCommitMap` do JSON de SYNC diferente do hash presente no nome do csv/Excel de origem ou do zip.
+- `identifier` (JSON de SYNC) ou `E3Lib` (JSON de mapeamento) diferente do `E3Lib` do script.
 - ID presente no `fl.sql` mas faltando em `GruposPadrao.sql` e/ou `VersaoRecurso.sql`.
 - Subtipo/categoria divergente entre versões, ou incorreto quando é v1.
 - .csv/Excel de origem (arquivo "limpo") divergente do SQL e/ou do JSON.
@@ -89,6 +89,14 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - Arquivo `sigma-sync-import` fora da pasta `SYNC`, mais de 1 arquivo de SYNC na mesma versão, ou conteúdo do SYNC divergente do SQL.
 - Problema de encoding numa descrição (ex: `?` isolado ou outro caractere estranho no meio do texto).
 - Demais erros comuns ainda a ser detalhados por ela.
+
+## Fora de Escopo
+
+Os arquivos abaixo podem aparecer na pasta do módulo, mas **não fazem parte da validação desta skill** — não precisam ser cruzados com SQL/JSON/csv:
+
+- `slave.json` (config de simulador Modbus).
+- `tbl_a_IED.csv`, `tbl_d_IED.csv`, `tbl_h_IED.csv`, `tbl_s_IED.csv`.
+- `alarms_*.csv`.
 
 ## Exceções
 
