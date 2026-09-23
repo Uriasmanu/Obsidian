@@ -26,7 +26,8 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 8. **Subtipo e categoria têm que ser iguais em todas as versões** — se for v1 (sem versão anterior para comparar), confirmar manualmente se subtipo e categoria estão corretos.
 9. **O .csv/Excel de origem (o arquivo com o nome "limpo" no nome do arquivo) é quem origina o SQL e o JSON** — os três (csv/Excel, SQL, JSON) têm que bater entre si.
 10. **Se a coluna "Gráfico Rápido" do csv/Excel estiver "Sim" na frente de um campo, o tipo desse campo tem que ser `1537`.**
-11. Outros erros comuns: lista ainda a ser detalhada por ela (checklist manual que ela já usa hoje).
+11. **Se o `E3Lib` for um destes, avisar que existem especificidades para esse caso** (ainda não detalhadas): `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2`, `BM`.
+12. Outros erros comuns: lista ainda a ser detalhada por ela (checklist manual que ela já usa hoje).
 
 ## Implementation
 
@@ -41,7 +42,8 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 9. Comparar subtipo e categoria entre todas as versões existentes (v1, v2, ...) — devem ser idênticos. Se só existir v1, conferir manualmente se subtipo e categoria estão corretos (sem versão anterior para comparar).
 10. Identificar o .csv/Excel de origem pelo nome "limpo" no nome do arquivo e cruzá-lo com o SQL e o JSON — os três têm que bater entre si.
 11. Para cada campo com "Sim" na coluna "Gráfico Rápido" do csv/Excel, conferir se o tipo do campo correspondente no SQL/JSON é `1537`.
-12. Reportar divergências encontradas (campo faltando, nome diferente, ID divergente entre script/JSON ou entre versões, mnemônico duplicado, hashCommitMap divergente do nome do arquivo, identifier/E3Lib divergente, ID do fl.sql ausente em GruposPadrao.sql/VersaoRecurso.sql, subtipo/categoria divergente entre versões ou incorreto na v1, divergência entre csv/Excel de origem e SQL/JSON, tipo de campo diferente de 1537 quando Gráfico Rápido = Sim, etc.) de forma direta, sem enrolação.
+12. Conferir o valor de `E3Lib`/`identifier`: se for `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2` ou `BM`, avisar a Manu que esse mapeamento tem especificidades próprias (ainda não detalhadas na skill) antes de seguir a validação padrão.
+13. Reportar divergências encontradas (campo faltando, nome diferente, ID divergente entre script/JSON ou entre versões, mnemônico duplicado, hashCommitMap divergente do nome do arquivo, identifier/E3Lib divergente, ID do fl.sql ausente em GruposPadrao.sql/VersaoRecurso.sql, subtipo/categoria divergente entre versões ou incorreto na v1, divergência entre csv/Excel de origem e SQL/JSON, tipo de campo diferente de 1537 quando Gráfico Rápido = Sim, etc.) de forma direta, sem enrolação.
 
 ## Common Mistakes
 
