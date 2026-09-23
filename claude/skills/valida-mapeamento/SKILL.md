@@ -20,6 +20,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 2. **IDs declarados no script (ex: `DECLARE @ModuloId UNIQUEIDENTIFIER = '...'`) têm que ser idênticos ao valor correspondente no JSON.**
 3. **Se a pasta já tem uma versão anterior (v1, v2, ...), os IDs têm que bater em todas as versões** — não só entre o script e o JSON da mesma versão, mas também comparando script/JSON de uma versão contra os das outras.
 4. **Mnemônicos não podem se repetir dentro do mesmo arquivo** — cada mnemônico deve ser único no script/JSON. Além disso, se existe v1 e está sendo feita a v2, o mnemônico de cada UID deve permanecer o mesmo entre as versões (não pode trocar o mnemônico de um UID já existente). **Se encontrar mnemônicos duplicados, não resolver sozinho** (ex: não inventar um sufixo tipo acrescentar "2" no final para desempatar) — só reportar a duplicidade para a Manu avaliar como corrigir.
+4.1. **Descrições também não podem se repetir dentro do mesmo arquivo** — cada descrição deve ser única no script/JSON, mesma lógica do item 4. Se encontrar descrições duplicadas, também não resolver sozinho — só reportar para a Manu avaliar.
 5. **`hashCommitMap` é exclusivo do arquivo JSON de SYNC** (`sigma-sync-import`, dentro da pasta `SYNC` — ver item 12) — não existe no JSON de mapeamento. **Atenção: o hash NÃO está no nome do próprio arquivo SYNC** (o arquivo `sigma-sync-import.json` normalmente não tem hash no nome, ex: `nome-do-modulo-sigma-sync-import.json`). O `hashCommitMap` do SYNC tem que bater com o hash que aparece no nome do **csv/Excel de origem** e/ou do **zip** — ex: csv `Fabricante_Nome-Do-Modulo_mdb_v1_da9dfe577f87.csv` e zip `TreetechGit-mapa_clientes-da9dfe577f87.zip` → `hashCommitMap: da9dfe577f87` (o hash é o trecho depois do último `_`/`-` no nome desses arquivos).
 6. **`identifier` é um campo exclusivo do JSON de SYNC** (não existe no JSON de mapeamento, ex: `fl.json` — lá o campo já se chama `E3Lib`, igual ao script). Em ambos os casos a checagem é a mesma: o valor tem que ser idêntico ao `E3Lib` do script SQL.
 7. **Todos os IDs existentes no `fl.sql` têm que constar também em `GruposPadrao.sql` e `VersaoRecurso.sql`.**
@@ -40,6 +41,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 3. Extrair todo `DECLARE @XxxId ... = 'valor'` do script e conferir se o mesmo ID aparece no JSON.
 4. Se existir(em) versão(ões) anterior(es) na mesma pasta (v1, v2, ...), extrair os mesmos IDs de cada versão e comparar entre todas — todos os IDs equivalentes devem ser idênticos entre versões.
 5. Listar todos os mnemônicos do arquivo e verificar se algum se repete dentro do mesmo arquivo. Se existir v1, conferir também se o mnemônico de cada UID que já existia na v1 permanece o mesmo na v2. Se achar duplicidade, apenas reportar — nunca sugerir/aplicar uma correção automática tipo acrescentar um número no final do mnemônico.
+5.1. Listar todas as descrições do arquivo e verificar se alguma se repete dentro do mesmo arquivo. Se achar duplicidade, apenas reportar, mesma regra do item 5 (não resolver sozinho).
 6. Extrair o `hashCommitMap` do arquivo JSON de SYNC (`sigma-sync-import`, dentro de `SYNC`) e comparar com o hash presente no nome do csv/Excel de origem e/ou do zip (não com o nome do próprio arquivo SYNC, que geralmente não tem hash). O JSON de mapeamento não tem esse campo — não confundir os dois.
 7. Conferir se o `E3Lib` do script bate com o campo equivalente no JSON: `identifier` no JSON de SYNC, e `E3Lib` no JSON de mapeamento (`fl.json`) — nos dois casos, os valores têm que ser idênticos.
 8. Extrair todos os IDs do `fl.sql` e conferir se cada um também aparece em `GruposPadrao.sql` e em `VersaoRecurso.sql`.
@@ -79,6 +81,7 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - ID divergente entre versões (v1 vs v2 etc.) quando deveria ser o mesmo.
 - Campo ou ID presente no SQL mas ausente (ou diferente) no JSON, quebrando o espelhamento.
 - Mnemônico repetido dentro do mesmo arquivo.
+- Descrição repetida dentro do mesmo arquivo.
 - Mnemônico de um UID que já existia na v1 mudou na v2.
 - `hashCommitMap` do JSON de SYNC diferente do hash presente no nome do csv/Excel de origem ou do zip.
 - `identifier` (JSON de SYNC) ou `E3Lib` (JSON de mapeamento) diferente do `E3Lib` do script.
