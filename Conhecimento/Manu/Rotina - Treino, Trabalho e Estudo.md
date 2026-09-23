@@ -48,7 +48,7 @@ Quando a semana sair do script, são estas regras que valem — não a tabela.
 | 22h30-23h00     | Desligar — sem tela forte                         |
 | **23h00**       | **Dormir**                                        |
 
-Apontado: **6h35** (ou 6h10 se a daily for curta). Sono: **8h** + 1h de cochilo.
+Apontado seguindo a tabela até o fim: **6h35**. Alvo real: **5h30**, daily inclusa. Sono: **8h** + 1h de cochilo.
 
 ### Terça e quinta
 
@@ -81,7 +81,7 @@ Apontado: **6h35** (ou 6h10 se a daily for curta). Sono: **8h** + 1h de cochilo.
 | 23h00-23h30     | Desligar                                    |
 | **23h30**       | **Dormir**                                  |
 
-Apontado: **7h25** (ou 7h se a daily for curta). Sono: **7h30** + 1h de cochilo.
+Apontado seguindo a tabela até o fim: **7h25**. Alvo real: **5h30**, daily inclusa. Sono: **7h30** + 1h de cochilo.
 
 ### Fim de semana
 
@@ -100,12 +100,9 @@ Fora isso, os dois dias são livres.
 
 ## Apontamento
 
-Mínimo de **5h30/dia**. A daily conta; pausas, escadaria e banho não.
+Alvo: **5h30/dia, sempre** — não um piso pra superar, é o que fecha o dia. A daily entra nessa conta como trabalho normal, não como hora extra por cima; pausas, escadaria e banho não contam.
 
-| | Daily de 45 min | Daily de 20 min |
-|---|---|---|
-| Seg · Qua · Sex (9h-18h) | 6h35 | 6h10 |
-| Ter · Qui (8h30-17h30) | 7h25 | 7h00 |
+O cronograma tem mais folga que isso: seguindo a tabela semanal do começo ao fim, o apontado passaria de 6h30 em seg/qua/sex e de 7h em ter/qui. Essa folga é pra pausa e imprevisto, não é meta — bater 5h30 é dia completo.
 
 **A chave é o almoço.** Comer na mesa às 11h50 mantém a manhã inteira como trabalho, e a hora das 12h vira a hora de almoço de verdade — ponto batido, deitada, fora da conta.
 
@@ -283,7 +280,7 @@ O que vale reparar todo dia, para o ajuste de domingo ter em que se apoiar:
 | Dia | Como foi | Ajustar |
 |---|---|---|
 | Ter 22/09 *(antes de começar)* | Dormiu **0h**. Alvo para dia de jiu é 23h30 — 30 min a mais. Baseline. | |
-| Qua 23/09 | Daily de 20 min | |
+| Qua 23/09 | Daily de 20 min. ~5h30 apontadas (com a daily). | |
 | Qui 24/09 | | |
 | Sex 25/09 | | |
 | Sáb 26/09 | | |
