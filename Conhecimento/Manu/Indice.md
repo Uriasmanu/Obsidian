@@ -68,6 +68,7 @@ Bem-vindo ao meu vault de conhecimento. Este e o ponto central de navegacao.
 [[Livros/Minhas leituras|Livros]]
 [[Manu/Wiki Manu|Wiki Manu]] - Visão geral sobre mim
 [[Manu/Jogos e Entretenimento|Jogos]]
+[[Manu/Rotina - Treino, Trabalho e Estudo|Rotina - Treino, Trabalho e Estudo]]
 
 ---
 
