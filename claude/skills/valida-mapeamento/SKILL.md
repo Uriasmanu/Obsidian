@@ -56,7 +56,8 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - Para cada item incorreto: dizer o que é, onde foi encontrado (arquivo/campo) e qual o valor esperado x valor encontrado.
 - Se nada foi encontrado de errado, dizer isso explicitamente (não omitir o relatório).
 - Se algum caso caiu numa exceção (ver seção "Exceções") e por isso não foi reportado como erro, também pode mencionar rapidamente, para deixar claro que foi conferido.
-- **O relatório tem que ser salvo como um arquivo `.md` dentro da própria pasta do mapeamento validado** (não é só mostrar no chat) — ele serve de guia depois para conferir se as correções apontadas foram feitas.
+- **O relatório tem que ser salvo como um arquivo `.md` dentro da pasta do módulo** (não é só mostrar no chat) — ele serve de guia depois para conferir se as correções apontadas foram feitas.
+- **Salvar na raiz da pasta do módulo, fora das subpastas de protocolo** (ex: `MDB`, `DNP`, `SYNC`) — não dentro delas.
 
 ## Common Mistakes
 
