@@ -32,6 +32,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 
 ## Implementation
 
+0. **Antes de começar, perguntar para a Manu qual versão do módulo está sendo validada** (v1, v2, etc.) — não presumir a versão sozinho.
 1. Ler o JSON de mapeamento, o script SQL e o .csv/Excel de origem indicados.
 2. Cruzar campo a campo: todo campo do JSON deve ter correspondente no SQL, e todo campo relevante do SQL deve estar mapeado no JSON (JSON é espelho do SQL).
 3. Extrair todo `DECLARE @XxxId ... = 'valor'` do script e conferir se o mesmo ID aparece no JSON.
@@ -55,6 +56,7 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - Para cada item incorreto: dizer o que é, onde foi encontrado (arquivo/campo) e qual o valor esperado x valor encontrado.
 - Se nada foi encontrado de errado, dizer isso explicitamente (não omitir o relatório).
 - Se algum caso caiu numa exceção (ver seção "Exceções") e por isso não foi reportado como erro, também pode mencionar rapidamente, para deixar claro que foi conferido.
+- **O relatório tem que ser salvo como um arquivo `.md` dentro da própria pasta do mapeamento validado** (não é só mostrar no chat) — ele serve de guia depois para conferir se as correções apontadas foram feitas.
 
 ## Common Mistakes
 
