@@ -1,7 +1,7 @@
 # Trilha de estudos — além do código
 
 > Contexto: com as IAs cobrindo boa parte da escrita de código, o foco de estudo passa a ser o que torna os *prompts* e as *decisões técnicas* melhores — arquitetura, boas práticas, cibersegurança e infraestrutura.
-
+https://github.com/littlee/littlee.github.io/blob/master/OReilly.Fundamentals.of.Software.Architecture.2020.1.pdf
 ---
 
 ## 1. Arquitetura de software
