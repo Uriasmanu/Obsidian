@@ -18,6 +18,8 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 
 **A skill só pode ler arquivos dentro da pasta indicada por Manu no VSCode** (a pasta do módulo aberta/apontada). Não abrir, buscar ou ler arquivos fora dessa pasta (ex: outros módulos, outras pastas do workspace) mesmo que pareçam relevantes para comparação — se faltar algum arquivo esperado dentro da pasta indicada, perguntar para Manu em vez de procurar em outro lugar.
 
+**Não rodar comandos git** (ex: `git log`, `git diff`, `git show`, `git blame`) para buscar contexto, histórico ou versões anteriores de arquivo. A validação usa só os arquivos presentes na pasta indicada, exatamente como estão no momento — nunca consultar o histórico do repositório.
+
 ## Quick Reference — o que checar
 
 1. **JSON é espelho do SQL**: todo campo e todo ID do SQL devem aparecer, idênticos, no JSON (e vice-versa) — não é só "parecido", tem que bater 1:1.
