@@ -21,7 +21,9 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 
 ## Antes de Começar
 
-Perguntar para a Manu, sempre, antes de validar qualquer coisa:
+**A primeira coisa a fazer, antes de qualquer pergunta ou leitura de arquivo, é checar se já existe uma doc de relatório de validação (`.md`) na raiz da pasta do módulo** — é rápido (só olhar a pasta) e evita perder tempo perguntando ou lendo arquivo à toa. Se existir, é uma segunda validação: ler essa doc inteira (Manu pode ter feito alterações e observações manuais nela — comentários, explicações, itens já marcados como corrigidos) e seguir o fluxo descrito em "Segunda Validação". O cabeçalho da doc já responde versão, protocolo e se é mapa de cliente — não perguntar de novo o que já está escrito lá, só confirmar com a Manu se mudou algo.
+
+Se não existir doc (primeira validação), perguntar para a Manu, sempre, antes de validar qualquer coisa:
 
 1. Qual versão do módulo está sendo validada (v1, v2, etc.).
 2. Se é um mapa de cliente (para aplicar a exceção de descrição personalizada por UID, ver "Exceções").
@@ -29,28 +31,45 @@ Perguntar para a Manu, sempre, antes de validar qualquer coisa:
 
 Não presumir nenhuma dessas três coisas sozinho.
 
-Em seguida, **verificar se já existe uma doc de relatório de validação (`.md`) na raiz da pasta do módulo**. Se existir, é uma segunda validação: ler essa doc inteira antes de validar de novo (Manu pode ter feito alterações e observações manuais nela — comentários, explicações, itens já marcados como corrigidos) e seguir o fluxo descrito em "Segunda Validação".
-
 ## Passo a Passo de Validação
 
-1. **Ler os arquivos.** JSON de mapeamento, script SQL (`fl.sql`, `GruposPadrao.sql`, `VersaoRecurso.sql`), JSON de SYNC (`sigma-sync-import`) e o .csv/Excel de origem, todos do protocolo escolhido.
+A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ script ↔ JSON), só depois compara com versão anterior (se houver), só depois valida o SYNC, e por último o relatório.
+
+### Bloco A — csv ↔ script ↔ JSON desta versão
+
+1. **Ler os arquivos.** JSON de mapeamento e script SQL (`fl.sql`, `GruposPadrao.sql`, `VersaoRecurso.sql`) do protocolo escolhido, mais o .csv/Excel de origem.
 2. **Espelhamento JSON ↔ SQL.** Todo campo e todo ID do SQL devem aparecer, idênticos, no JSON de mapeamento (e vice-versa) — não é só "parecido", tem que bater 1:1. Extrair todo `DECLARE @XxxId ... = 'valor'` do script (`@ModuloId`, `@CampoIdN`, `@AlarmeIdN`, etc.) e conferir se o mesmo ID aparece no JSON.
-3. **IDs entre versões.** Se a pasta já tem uma versão anterior (v1, v2, ...), extrair os mesmos IDs de cada versão e comparar entre todas — todos os IDs equivalentes devem ser idênticos entre versões (não só script/JSON da mesma versão, também versão contra versão).
-4. **Mnemônicos únicos e estáveis.** Nenhum mnemônico pode se repetir dentro do mesmo arquivo. Se existe v1 e está sendo feita a v2, o mnemônico de cada UID já existente deve permanecer o mesmo entre versões. **Se encontrar duplicidade, não resolver sozinho** (ex: não inventar um sufixo tipo "2" para desempatar) — só reportar para a Manu avaliar.
-5. **Descrições únicas.** Mesma regra do item 4, aplicada às descrições em vez dos mnemônicos: nenhuma repetida dentro do arquivo, e não resolver duplicidade sozinho, só reportar.
-6. **Versão do mapa (SYNC ↔ JSON de mapeamento).** `resourceVersionValue` e `productVersion` do JSON de SYNC são derivados do campo `VersaoMapa` do JSON de mapeamento (ex: `"VersaoMapa": "v2-MDB"`):
-   - `resourceVersionValue` é só o número da versão, formato `N.0` (`v2-MDB` → `"2.0"`).
-   - `productVersion` é o mesmo número, com o protocolo trocado por `sync` (`v2-MDB` → `"v2.0-sync"`).
-7. **Hash do mapa (SYNC ↔ csv/zip).** `hashCommitMap` é exclusivo do JSON de SYNC (não existe no JSON de mapeamento — não confundir os dois). **O hash NÃO está no nome do próprio arquivo SYNC** (`sigma-sync-import.json` normalmente não tem hash no nome). Ele tem que bater com o hash presente no nome do **csv/Excel de origem** e/ou do **zip** — ex: csv `Fabricante_Nome-Do-Modulo_mdb_v1_da9dfe577f87.csv` e zip `TreetechGit-mapa_clientes-da9dfe577f87.zip` → `hashCommitMap: da9dfe577f87` (trecho depois do último `_`/`-` no nome desses arquivos).
-8. **E3Lib / identifier.** `identifier` é um campo exclusivo do JSON de SYNC (no JSON de mapeamento o campo equivalente já se chama `E3Lib`, igual ao script). Em ambos os casos, o valor tem que ser idêntico ao `E3Lib` do script SQL.
-9. **IDs no GruposPadrao/VersaoRecurso.** Todos os IDs existentes no `fl.sql` (ModuloId + CampoIds + AlarmeIds) têm que constar também em `GruposPadrao.sql` e em `VersaoRecurso.sql`.
-10. **Subtipo e categoria.** Têm que ser iguais em todas as versões existentes. Se for v1 (sem versão anterior para comparar), confirmar manualmente se os valores estão corretos.
-11. **Identificar e cruzar o csv/Excel de origem.** É o arquivo que traz o hash de commit no nome (o mesmo do item 7) ou o arquivo com o mesmo nome do csv dentro da pasta zipada — **não é o `modulo.csv` genérico, nem um arquivo com nome igual ao `E3Lib`** (ex: `BM.csv`). Esse tipo costuma ser export de tags OPC/Archestra (colunas como `ObjectType;Name;AdviseType;...AllowRead;AllowWrite`), sem UUID, sem "Mnemônico" e sem "Gráfico Rápido" — para confirmar que achou o arquivo certo, checar se ele tem colunas `UUID` e `Mnemônico`. Depois de identificado, cruzar com SQL e JSON — os três têm que bater entre si. **Atenção ao formato do UUID**: no csv costuma vir sem hífen (`1ca40722324346a1b92e56270fd35ea7`), SQL/JSON com hífen (`1ca40722-3243-46a1-b92e-56270fd35ea7`) — mesmo valor, formatação diferente; normalizar removendo hífens dos dois lados antes de comparar, senão dá falso positivo.
-12. **Gráfico Rápido → tipo 1537.** Se a coluna "Gráfico Rápido" do csv/Excel estiver "Sim" na frente de um campo, o tipo desse campo no SQL/JSON tem que ser `1537`.
-13. **E3Lib com especificidades conhecidas.** Se o `E3Lib`/`identifier` for um destes, avisar a Manu que existem especificidades para esse caso (ainda não detalhadas na skill) antes de seguir a validação padrão: `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2`, `BM`.
-14. **Localizar e cruzar o SYNC.** Arquivos `sigma-sync-import` ficam na pasta própria `SYNC` — confirmar que existe apenas 1 arquivo de SYNC por versão (independente do protocolo ser MDB ou DNP). Cruzar esse JSON com o SQL, aplicando a mesma regra de espelhamento do item 2.
-15. **Encoding.** Varrer descrições/textos (SQL, JSON, csv/Excel) procurando caracteres estranhos/corrompidos no meio de uma descrição, começando pelo `?` isolado, mas também qualquer outro símbolo ou sequência fora do lugar. Exemplo real já encontrado: `Concentração de H?` / `Gas sensor H?`, onde o `?` substituiu o "2" de "H2"/"H₂" — não é só acentuação perdida, também pode ser número/subscrito perdido. **Atenção ao falso positivo**: csv de origem em **Windows-1252/ISO-8859-1** é normal — ler assumindo UTF-8 faz acentos aparecerem trocados mesmo com o arquivo correto; ler respeitando a codificação real antes de julgar. Reportar qualquer ocorrência suspeita que sobrar depois disso, mesmo sem certeza absoluta.
-16. **Gerar o relatório final** (ver "Formato do Relatório Final"). Se já existia uma doc de validação anterior, atualizar essa mesma doc em vez de criar uma nova (ver "Segunda Validação").
+3. **Mnemônicos únicos dentro do arquivo.** Nenhum mnemônico pode se repetir dentro do mesmo arquivo. **Se encontrar duplicidade, não resolver sozinho** (ex: não inventar um sufixo tipo "2" para desempatar) — só reportar para a Manu avaliar.
+4. **Descrições únicas dentro do arquivo.** Mesma regra do item 3, aplicada às descrições em vez dos mnemônicos: nenhuma repetida dentro do arquivo, e não resolver duplicidade sozinho, só reportar.
+5. **E3Lib.** O valor do `E3Lib` do script tem que ser idêntico ao `E3Lib` do JSON de mapeamento.
+6. **IDs no GruposPadrao/VersaoRecurso.** Todos os IDs existentes no `fl.sql` (ModuloId + CampoIds + AlarmeIds) têm que constar também em `GruposPadrao.sql` e em `VersaoRecurso.sql`.
+7. **Identificar e cruzar o csv/Excel de origem.** É o arquivo que traz o hash de commit no nome ou o arquivo com o mesmo nome do csv dentro da pasta zipada — **não é o `modulo.csv` genérico, nem um arquivo com nome igual ao `E3Lib`** (ex: `BM.csv`). Esse tipo costuma ser export de tags OPC/Archestra (colunas como `ObjectType;Name;AdviseType;...AllowRead;AllowWrite`), sem UUID, sem "Mnemônico" e sem "Gráfico Rápido" — para confirmar que achou o arquivo certo, checar se ele tem colunas `UUID` e `Mnemônico`. Depois de identificado, cruzar com SQL e JSON — os três têm que bater entre si. **Atenção ao formato do UUID**: no csv costuma vir sem hífen (`1ca40722324346a1b92e56270fd35ea7`), SQL/JSON com hífen (`1ca40722-3243-46a1-b92e-56270fd35ea7`) — mesmo valor, formatação diferente; normalizar removendo hífens dos dois lados antes de comparar, senão dá falso positivo.
+8. **Gráfico Rápido → tipo 1537.** Se a coluna "Gráfico Rápido" do csv/Excel estiver "Sim" na frente de um campo, o tipo desse campo no SQL/JSON tem que ser `1537`.
+9. **E3Lib com especificidades conhecidas.** Se o `E3Lib` for um destes, avisar a Manu que existem especificidades para esse caso (ainda não detalhadas na skill) antes de seguir a validação padrão: `DM1`, `SEL2414`, `TM_V2`, `DM2`, `SPS`, `TMV e SDV`, `AVR`, `TM1 e TM2`, `BM`.
+10. **Encoding.** Varrer descrições/textos (SQL, JSON, csv/Excel) procurando caracteres estranhos/corrompidos no meio de uma descrição, começando pelo `?` isolado, mas também qualquer outro símbolo ou sequência fora do lugar. Exemplo real já encontrado: `Concentração de H?` / `Gas sensor H?`, onde o `?` substituiu o "2" de "H2"/"H₂" — não é só acentuação perdida, também pode ser número/subscrito perdido. **Atenção ao falso positivo**: csv de origem em **Windows-1252/ISO-8859-1** é normal — ler assumindo UTF-8 faz acentos aparecerem trocados mesmo com o arquivo correto; ler respeitando a codificação real antes de julgar. Reportar qualquer ocorrência suspeita que sobrar depois disso, mesmo sem certeza absoluta.
+
+### Bloco B — Comparação com versão anterior (só se existir v1, v2, ... na mesma pasta)
+
+Só executar este bloco depois do Bloco A estar fechado (csv ↔ script ↔ JSON já conferidos nesta versão). Se não existir versão anterior, pular para o Bloco C e, no lugar deste bloco, confirmar manualmente se subtipo/categoria estão corretos (não há referência para comparar).
+
+11. **IDs entre versões.** Extrair os mesmos IDs de cada versão e comparar entre todas — todos os IDs equivalentes devem ser idênticos entre versões.
+12. **Mnemônico estável entre versões.** O mnemônico de cada UID já existente na versão anterior deve permanecer o mesmo na versão nova (não pode trocar). Se achar mudança, só reportar — não corrigir sozinho.
+13. **Subtipo e categoria.** Têm que ser iguais em todas as versões existentes.
+
+### Bloco C — SYNC
+
+Validar por último, depois que script/JSON/csv (e a comparação de versão, se houve) já estiverem fechados.
+
+14. **Localizar o SYNC e espelhar contra o SQL.** Arquivos `sigma-sync-import` ficam na pasta própria `SYNC` — confirmar que existe apenas 1 arquivo de SYNC por versão (independente do protocolo ser MDB ou DNP). Cruzar esse JSON com o SQL, aplicando a mesma regra de espelhamento do item 2.
+15. **identifier.** `identifier` é um campo exclusivo do JSON de SYNC (no JSON de mapeamento o campo equivalente já se chama `E3Lib`) — o valor tem que ser idêntico ao `E3Lib` do script/JSON de mapeamento.
+16. **Hash do mapa (SYNC ↔ csv/zip).** `hashCommitMap` é exclusivo do JSON de SYNC (não existe no JSON de mapeamento — não confundir os dois). **O hash NÃO está no nome do próprio arquivo SYNC** (`sigma-sync-import.json` normalmente não tem hash no nome). Ele tem que bater com o hash presente no nome do **csv/Excel de origem** e/ou do **zip** — ex: csv `Fabricante_Nome-Do-Modulo_mdb_v1_da9dfe577f87.csv` e zip `TreetechGit-mapa_clientes-da9dfe577f87.zip` → `hashCommitMap: da9dfe577f87` (trecho depois do último `_`/`-` no nome desses arquivos).
+17. **Versão do mapa (SYNC ↔ JSON de mapeamento).** `resourceVersionValue` e `productVersion` do JSON de SYNC são derivados do campo `VersaoMapa` do JSON de mapeamento (ex: `"VersaoMapa": "v2-MDB"`):
+    - `resourceVersionValue` é só o número da versão, formato `N.0` (`v2-MDB` → `"2.0"`).
+    - `productVersion` é o mesmo número, com o protocolo trocado por `sync` (`v2-MDB` → `"v2.0-sync"`).
+
+### Bloco D — Relatório
+
+18. **Gerar o relatório final** (ver "Formato do Relatório Final"). Se já existia uma doc de validação anterior, atualizar essa mesma doc em vez de criar uma nova (ver "Segunda Validação").
 
 ## Segunda Validação
 
@@ -116,11 +135,11 @@ Os arquivos abaixo podem aparecer na pasta do módulo, mas **não fazem parte da
 
 - **Mapas de cliente** (Manu avisa explicitamente quando o mapeamento é de um cliente específico): pode acontecer, raramente, de v1 e v2 terem campos com o mesmo ID mas descrição personalizada para aquele cliente. Isso **não é divergência** — não reportar como erro quando for esse caso.
 - **Csv de origem em Windows-1252/ISO-8859-1**: é normal e esperado que o csv de origem não esteja em UTF-8. Ler assumindo UTF-8 e ver acentos trocados **não é um problema de encoding real** — os bytes do arquivo estão corretos, só precisa ler com a codificação certa. Não reportar isso como erro de encoding.
-- **Evolução normal entre v1 → v2**: o que precisa se manter estável é o **mnemônico de cada UID já existente** (regra fixa, ver item 4 do "Passo a Passo de Validação"). Já é esperado e normal que a v2 tenha: campos novos que não existiam na v1, mudança de unidade de medida de um campo existente, ou mudança de descrição de um campo existente. Essas mudanças **não são erro** — só reportar como divergência se o mnemônico de um UID que já existia mudou.
+- **Evolução normal entre v1 → v2**: o que precisa se manter estável é o **mnemônico de cada UID já existente** (regra fixa, ver item 12 do "Passo a Passo de Validação", Bloco B). Já é esperado e normal que a v2 tenha: campos novos que não existiam na v1, mudança de unidade de medida de um campo existente, ou mudança de descrição de um campo existente. Essas mudanças **não são erro** — só reportar como divergência se o mnemônico de um UID que já existia mudou.
 - **Linhas do tipo "Comando" no csv/Excel de origem não entram nos arquivos de mapeamento.** Quando a coluna "Tratamento"/tipo do csv indica que a linha é um comando (ex: mnemônicos `cmdreset...`, tipicamente `RW`/`Holding register` sem leitura associada), é esperado e normal que esse UUID **não** apareça no `fl.sql`, `fl.json`, `GruposPadrao.sql`, `VersaoRecurso.sql` nem no SYNC — comandos não fazem parte deste mapeamento. **Não reportar a ausência desses UUIDs como erro/faltando.**
 - **Trechos de debug/comando não fazem parte do script final**: é normal e esperado que o SQL não contenha comandos de debug (ex: `SELECT`, `PRINT` avulsos usados só para conferir valor durante o desenvolvimento) nem outros comandos auxiliares que não sejam parte da lógica de mapeamento. A ausência desses trechos nos arquivos **não é erro** — não reportar como divergência ou item faltante.
 - **Campos de metadado do framework não têm origem no csv/Excel** — mnemônicos como `VersaoProduto`, `VersaoMapa`, `HashCommitMapa` e `DataHoraUltimaLeituraSensor` (e equivalentes) existem no `fl.sql`/`fl.json` mas são gerados/controlados pelo próprio framework, não dados do equipamento. **Não reportar a ausência deles no csv como erro/faltando.**
-  - No SYNC, a maioria desses campos **tem sim equivalente** e deve ser conferida normalmente: `VersaoMapa` ↔ `resourceVersionValue`/`productVersion` e `HashCommitMapa` ↔ `hashCommitMap` (ver item 6/7 do "Passo a Passo de Validação" — nomes diferentes, mas é o mesmo dado). Só `DataHoraUltimaLeituraSensor` realmente **não tem** e nunca vai ter equivalente no JSON de SYNC (vem do software em tempo de execução, não é dado estático de mapeamento) — só esse pode ter a ausência no SYNC ignorada, sem virar item de checklist.
+  - No SYNC, a maioria desses campos **tem sim equivalente** e deve ser conferida normalmente: `VersaoMapa` ↔ `resourceVersionValue`/`productVersion` e `HashCommitMapa` ↔ `hashCommitMap` (ver itens 16/17 do "Passo a Passo de Validação", Bloco C — nomes diferentes, mas é o mesmo dado). Só `DataHoraUltimaLeituraSensor` realmente **não tem** e nunca vai ter equivalente no JSON de SYNC (vem do software em tempo de execução, não é dado estático de mapeamento) — só esse pode ter a ausência no SYNC ignorada, sem virar item de checklist.
 
 ## Pendências
 
