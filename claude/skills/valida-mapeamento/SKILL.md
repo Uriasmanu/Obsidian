@@ -75,7 +75,7 @@ Quando já existe uma doc de relatório (`.md`) de uma validação anterior na p
 
 Ao terminar todas as checagens, sempre fechar com um relatório único listando tudo que foi encontrado de incorreto (não é opcional, mesmo que a divergência pareça pequena):
 
-- **Abrir o relatório com um cabeçalho padrão**, neste formato:
+- **OBRIGATÓRIO: todo relatório abre com o cabeçalho padrão abaixo — nunca pular essa parte, mesmo em revalidação de doc existente.** Formato:
   - Título `# Validação de Mapeamento — Módulo <NOME> (<versão> / <protocolo>)` (ex: `# Validação de Mapeamento — Módulo MDJ (V2 / MDB)`).
   - Uma linha logo abaixo indicando o contexto da validação: se é a primeira validação do módulo (sem versão anterior para comparar) ou uma revalidação, e se é mapeamento de cliente específico ou não (ver seção "Exceções").
   - Uma lista `Arquivos analisados:` com todos os arquivos usados na validação (SQL, JSON, csv/Excel fonte, SYNC), com o caminho relativo (ex: `MDB/MDJ-fl.sql`).
@@ -108,6 +108,7 @@ Ao terminar todas as checagens, sempre fechar com um relatório único listando 
 - Campo com "Gráfico Rápido = Sim" no csv/Excel mas tipo diferente de `1537` no SQL/JSON.
 - Arquivo `sigma-sync-import` fora da pasta `SYNC`, mais de 1 arquivo de SYNC na mesma versão, ou conteúdo do SYNC divergente do SQL.
 - Problema de encoding numa descrição (ex: `?` isolado ou outro caractere estranho no meio do texto).
+- **Esquecer o cabeçalho do relatório** (título com módulo/versão/protocolo, linha de contexto e lista `Arquivos analisados:`) — ver "Formato do Relatório Final". Isso é obrigatório em todo relatório, não só um extra opcional.
 - Demais erros comuns ainda a ser detalhados por ela.
 
 ## Fora de Escopo
