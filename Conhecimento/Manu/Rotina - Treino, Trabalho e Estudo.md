@@ -284,7 +284,7 @@ O que vale reparar todo dia, para o ajuste de domingo ter em que se apoiar:
 |---|---|---|
 | Ter 22/09 *(antes de começar)* | Dormiu **0h**. Alvo para dia de jiu é 23h30 — 30 min a mais. Baseline. | |
 | Qua 23/09 | Daily de 20 min. ~5h30 apontadas (com a daily). Almoço às 12h05, 15 min depois do previsto (11h50). Cochilo esticou — acordou 14h, 1h depois do previsto (13h). Lanche na frente da tela, não longe dela como o plano pede — hábito antigo. Escadaria das 16h30 não aconteceu — perdeu a hora, só notou às 16h51. Foi fazer escada às 17h01, mais tarde que o previsto. Expediente passou das 18h — encerrou só agora, ficou no meio de um raciocínio. Jantou mais tarde que o previsto (18h15-19h) e não fez o estudo das 19h. | |
-| Qui 24/09 | | |
+| Qui 24/09 | Daily de 20 min. Voltou a trabalhar às 10h. | |
 | Sex 25/09 | | |
 | Sáb 26/09 | | |
 | Dom 27/09 | | |
