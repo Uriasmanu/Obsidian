@@ -44,7 +44,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 
 ## Implementation
 
-0. **Antes de começar, perguntar para a Manu:** (a) qual versão do módulo está sendo validada (v1, v2, etc.) e (b) se é um mapa de cliente (para aplicar a exceção de descrição personalizada por UID, ver seção "Exceções") — não presumir nenhuma das duas coisas sozinho.
+0. **Antes de começar, perguntar para a Manu:** (a) qual versão do módulo está sendo validada (v1, v2, etc.), (b) se é um mapa de cliente (para aplicar a exceção de descrição personalizada por UID, ver seção "Exceções") e (c) qual protocolo está sendo validado, `DNP` ou `MDB` — **só se valida um protocolo por vez**, mesmo que a pasta do módulo tenha as duas subpastas. Não presumir nenhuma das três coisas sozinho.
 0.5. **Verificar se já existe uma doc de relatório de validação (`.md`) na pasta do módulo** (ver "Formato do Relatório Final"). Se existir — é uma segunda validação —, ler essa doc inteira antes de validar de novo: Manu pode ter feito alterações e observações manuais nela (comentários, explicações, itens já marcados como corrigidos). Levar essas observações em consideração ao revalidar (ver "Segunda Validação").
 1. Ler o JSON de mapeamento, o script SQL e o .csv/Excel de origem indicados.
 2. Cruzar campo a campo: todo campo do JSON deve ter correspondente no SQL, e todo campo relevante do SQL deve estar mapeado no JSON (JSON é espelho do SQL).
