@@ -21,6 +21,10 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 3. **Se a pasta já tem uma versão anterior (v1, v2, ...), os IDs têm que bater em todas as versões** — não só entre o script e o JSON da mesma versão, mas também comparando script/JSON de uma versão contra os das outras.
 4. **Mnemônicos não podem se repetir dentro do mesmo arquivo** — cada mnemônico deve ser único no script/JSON. Além disso, se existe v1 e está sendo feita a v2, o mnemônico de cada UID deve permanecer o mesmo entre as versões (não pode trocar o mnemônico de um UID já existente). **Se encontrar mnemônicos duplicados, não resolver sozinho** (ex: não inventar um sufixo tipo acrescentar "2" no final para desempatar) — só reportar a duplicidade para a Manu avaliar como corrigir.
 4.1. **Descrições também não podem se repetir dentro do mesmo arquivo** — cada descrição deve ser única no script/JSON, mesma lógica do item 4. Se encontrar descrições duplicadas, também não resolver sozinho — só reportar para a Manu avaliar.
+4.2. **`resourceVersionValue` e `productVersion` (JSON de SYNC) são derivados do campo `VersaoMapa` do JSON de mapeamento** (ex: `"VersaoMapa": "v2-MDB"`):
+   - `resourceVersionValue` é só o número da versão, no formato `N.0` (ex: `VersaoMapa: "v2-MDB"` → `resourceVersionValue: "2.0"`).
+   - `productVersion` é o mesmo número de versão, mas com o protocolo trocado por `sync` (ex: `VersaoMapa: "v2-MDB"` → `productVersion: "v2.0-sync"`).
+   - Conferir se esses dois valores no SYNC batem com o `VersaoMapa` do JSON de mapeamento antes de reportar divergência de versão.
 5. **`hashCommitMap` é exclusivo do arquivo JSON de SYNC** (`sigma-sync-import`, dentro da pasta `SYNC` — ver item 12) — não existe no JSON de mapeamento. **Atenção: o hash NÃO está no nome do próprio arquivo SYNC** (o arquivo `sigma-sync-import.json` normalmente não tem hash no nome, ex: `nome-do-modulo-sigma-sync-import.json`). O `hashCommitMap` do SYNC tem que bater com o hash que aparece no nome do **csv/Excel de origem** e/ou do **zip** — ex: csv `Fabricante_Nome-Do-Modulo_mdb_v1_da9dfe577f87.csv` e zip `TreetechGit-mapa_clientes-da9dfe577f87.zip` → `hashCommitMap: da9dfe577f87` (o hash é o trecho depois do último `_`/`-` no nome desses arquivos).
 6. **`identifier` é um campo exclusivo do JSON de SYNC** (não existe no JSON de mapeamento, ex: `fl.json` — lá o campo já se chama `E3Lib`, igual ao script). Em ambos os casos a checagem é a mesma: o valor tem que ser idêntico ao `E3Lib` do script SQL.
 7. **Todos os IDs existentes no `fl.sql` têm que constar também em `GruposPadrao.sql` e `VersaoRecurso.sql`.**
@@ -42,6 +46,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 4. Se existir(em) versão(ões) anterior(es) na mesma pasta (v1, v2, ...), extrair os mesmos IDs de cada versão e comparar entre todas — todos os IDs equivalentes devem ser idênticos entre versões.
 5. Listar todos os mnemônicos do arquivo e verificar se algum se repete dentro do mesmo arquivo. Se existir v1, conferir também se o mnemônico de cada UID que já existia na v1 permanece o mesmo na v2. Se achar duplicidade, apenas reportar — nunca sugerir/aplicar uma correção automática tipo acrescentar um número no final do mnemônico.
 5.1. Listar todas as descrições do arquivo e verificar se alguma se repete dentro do mesmo arquivo. Se achar duplicidade, apenas reportar, mesma regra do item 5 (não resolver sozinho).
+5.2. Conferir se `resourceVersionValue` e `productVersion` do JSON de SYNC batem com o `VersaoMapa` do JSON de mapeamento: `resourceVersionValue` deve ser o número da versão no formato `N.0`, e `productVersion` o mesmo número com o protocolo trocado por `sync` (ex: `VersaoMapa: "v2-MDB"` → `resourceVersionValue: "2.0"` e `productVersion: "v2.0-sync"`).
 6. Extrair o `hashCommitMap` do arquivo JSON de SYNC (`sigma-sync-import`, dentro de `SYNC`) e comparar com o hash presente no nome do csv/Excel de origem e/ou do zip (não com o nome do próprio arquivo SYNC, que geralmente não tem hash). O JSON de mapeamento não tem esse campo — não confundir os dois.
 7. Conferir se o `E3Lib` do script bate com o campo equivalente no JSON: `identifier` no JSON de SYNC, e `E3Lib` no JSON de mapeamento (`fl.json`) — nos dois casos, os valores têm que ser idênticos.
 8. Extrair todos os IDs do `fl.sql` e conferir se cada um também aparece em `GruposPadrao.sql` e em `VersaoRecurso.sql`.
@@ -66,9 +71,15 @@ Quando já existe uma doc de relatório (`.md`) de uma validação anterior na p
 
 Ao terminar todas as checagens, sempre fechar com um relatório único listando tudo que foi encontrado de incorreto (não é opcional, mesmo que a divergência pareça pequena):
 
+- **Abrir o relatório com um cabeçalho padrão**, neste formato:
+  - Título `# Validação de Mapeamento — Módulo <NOME> (<versão> / <protocolo>)` (ex: `# Validação de Mapeamento — Módulo MDJ (V2 / MDB)`).
+  - Uma linha logo abaixo indicando o contexto da validação: se é a primeira validação do módulo (sem versão anterior para comparar) ou uma revalidação, e se é mapeamento de cliente específico ou não (ver seção "Exceções").
+  - Uma lista `Arquivos analisados:` com todos os arquivos usados na validação (SQL, JSON, csv/Excel fonte, SYNC), com o caminho relativo (ex: `MDB/MDJ-fl.sql`).
+  - Um separador (`---`) antes do corpo do relatório.
 - **Organizar por arquivo** (ex: `fl.sql`, `GruposPadrao.sql`, `VersaoRecurso.sql`, JSON de mapeamento, JSON de SYNC, csv/Excel) — Manu depois vai comentar os problemas no Pull Request do Azure DevOps, e lá a navegação é arquivo por arquivo, não por categoria de regra.
 - **Para cada item incorreto, incluir um trecho exato e literal do arquivo (um `Ctrl+F` funcional)** — ex: a linha inteira do `DECLARE @ModuloId ...`, o nome exato do campo/mnemônico, o trecho de JSON — para ela localizar rapidamente o ponto certo no Azure DevOps na hora de comentar. Não descrever só "o campo X está errado": copiar o texto como aparece no arquivo.
 - Junto do trecho, dizer o que é o problema e qual o valor esperado x valor encontrado.
+- **Ao citar um trecho do csv/Excel de origem**, montar uma tabela Markdown usando o `;` do csv como separador de coluna (cabeçalho + linha(s) relevante(s)), em vez de colar a linha crua — fica mais legível no relatório.
 - **Cada item incorreto vira um checkbox Markdown (`- [ ] `)** — Manu marca conforme vai comentando no Pull Request do Azure DevOps, então o relatório funciona como checklist vivo pra conferir depois se todas as correções foram feitas.
 - Se nada foi encontrado de errado, dizer isso explicitamente (não omitir o relatório).
 - Se algum caso caiu numa exceção (ver seção "Exceções") e por isso não foi reportado como erro, também pode mencionar rapidamente, para deixar claro que foi conferido.
@@ -108,6 +119,8 @@ Os arquivos abaixo podem aparecer na pasta do módulo, mas **não fazem parte da
 - **Mapas de cliente** (Manu avisa explicitamente quando o mapeamento é de um cliente específico): pode acontecer, raramente, de v1 e v2 terem campos com o mesmo ID mas descrição personalizada para aquele cliente. Isso **não é divergência** — não reportar como erro quando for esse caso.
 - **Csv de origem em Windows-1252/ISO-8859-1**: é normal e esperado que o csv de origem não esteja em UTF-8. Ler assumindo UTF-8 e ver acentos trocados **não é um problema de encoding real** — os bytes do arquivo estão corretos, só precisa ler com a codificação certa. Não reportar isso como erro de encoding.
 - **Evolução normal entre v1 → v2**: quando existe v1 e está sendo feita v2, o que precisa se manter estável é o **mnemônico de cada UID já existente** (regra fixa, ver item 4/5 do Quick Reference). Já é esperado e normal que a v2 tenha: campos novos que não existiam na v1, mudança de unidade de medida de um campo existente, ou mudança de descrição de um campo existente. Essas mudanças **não são erro** — só reportar como divergência se o mnemônico de um UID que já existia mudou.
+
+- **Trechos de debug/comando não fazem parte do script final**: é normal e esperado que o SQL não contenha comandos de debug (ex: `SELECT`, `PRINT` avulsos usados só para conferir valor durante o desenvolvimento) nem outros comandos auxiliares que não sejam parte da lógica de mapeamento. A ausência desses trechos nos arquivos **não é erro** — não reportar como divergência ou item faltante.
 
 ## Pendências
 
