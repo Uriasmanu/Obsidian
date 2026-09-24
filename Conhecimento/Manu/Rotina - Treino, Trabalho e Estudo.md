@@ -186,6 +186,9 @@ Só em seg/qua/sex, depois do jantar. Nada de estudo focado em terça e quinta.
 - [[Roadmaps/SDD e IA/Roadmap SDD e IA - Nivel 1|SDD e IA Nível 1]]
 - [[Roadmaps/SQL/Roadmap SQL - Nivel 1|SQL Nível 1]]
 
+### Leitura diária
+- **Fundamentals of Software Architecture** (O'Reilly, 2020) — leitura como estudo diário, fora dos blocos fixos de seg/qua/sex
+
 ---
 
 ## Refeições

@@ -8,6 +8,7 @@ https://github.com/littlee/littlee.github.io/blob/master/OReilly.Fundamentals.of
 
 - **Fundamentals of Software Architecture** (Ford & Richards) — trade-offs, sem prender a uma stack específica.
 - **Clean Architecture** (Uncle Bob) — por que separar camadas; conecta bem com C#/.NET.
+- **Building Microservices** (Sam Newman, O'Reilly) — referência clássica sobre quando (e quando não) vale a pena dividir um sistema em microsserviços; complementa o entendimento de trade-offs de [[Arquitetura de Software/Microsserviços|Microsserviços]].
 - Prática: pegar um projeto próprio já pronto e questionar "por que essa pasta está aqui, essa dependência aponta pra onde" — entender arquitetura lendo/criticando código real rende mais que só teoria.
 
 ## 2. Boas práticas / design
