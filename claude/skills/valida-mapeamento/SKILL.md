@@ -14,6 +14,10 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 - Manu pede para validar/conferir um mapeamento contra um script SQL.
 - Ela cola ou aponta um conjunto (JSON de mapeamento + script SQL + .csv/Excel de origem) e pede revisão.
 
+## Escopo de Leitura
+
+**A skill só pode ler arquivos dentro da pasta indicada por Manu no VSCode** (a pasta do módulo aberta/apontada). Não abrir, buscar ou ler arquivos fora dessa pasta (ex: outros módulos, outras pastas do workspace) mesmo que pareçam relevantes para comparação — se faltar algum arquivo esperado dentro da pasta indicada, perguntar para Manu em vez de procurar em outro lugar.
+
 ## Quick Reference — o que checar
 
 1. **JSON é espelho do SQL**: todo campo e todo ID do SQL devem aparecer, idênticos, no JSON (e vice-versa) — não é só "parecido", tem que bater 1:1.
