@@ -42,6 +42,7 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 | | 3 | Mnemônicos únicos dentro do arquivo |
 | | 4 | Descrições únicas dentro do arquivo |
 | | 5 | `E3Lib` do script == `E3Lib` do JSON de mapeamento |
+| | 5b | `Imagem` == `<E3Lib>.svg`, e idêntico entre script e JSON |
 | | 6 | IDs do `fl.sql` também em `GruposPadrao.sql`/`VersaoRecurso.sql`, e formato/conteúdo de `TagsVersaoMapa`/`TagsVersaoFirmware` |
 | | 7 | Identificar e cruzar o csv/Excel de origem correto |
 | | 8 | "Gráfico Rápido = Sim" → tipo `1537` |

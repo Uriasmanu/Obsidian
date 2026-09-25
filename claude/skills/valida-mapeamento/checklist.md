@@ -9,6 +9,7 @@ Detalhamento completo de cada item do "Quick Reference" do `SKILL.md`. A ordem i
 3. **Mnemônicos únicos dentro do arquivo.** Nenhum mnemônico pode se repetir dentro do mesmo arquivo. **Se encontrar duplicidade, não resolver sozinho** (ex: não inventar um sufixo tipo "2" para desempatar) — só reportar para a Manu avaliar.
 4. **Descrições únicas dentro do arquivo.** Mesma regra do item 3, aplicada às descrições em vez dos mnemônicos: nenhuma repetida dentro do arquivo, e não resolver duplicidade sozinho, só reportar.
 5. **E3Lib.** O valor do `E3Lib` do script tem que ser idêntico ao `E3Lib` do JSON de mapeamento.
+5b. **Imagem do módulo.** O campo `Imagem` (`fl.sql` e `fl.json`) segue por padrão `<E3Lib>.svg` (o mesmo valor do `E3Lib` daquele módulo, com extensão `.svg`). Conferir também que o valor é idêntico entre `fl.sql` e `fl.json`. Se o nome do arquivo de imagem não bater com `<E3Lib>.svg`, reportar a divergência para a Manu avaliar (pode ser um caso válido de imagem compartilhada entre módulos, mas não presumir isso sozinho).
 6. **IDs no GruposPadrao/VersaoRecurso.** Todos os IDs existentes no `fl.sql` (ModuloId + CampoIds + AlarmeIds) têm que constar também em `GruposPadrao.sql` e em `VersaoRecurso.sql`.
 6b. **Conteúdo de `TagsVersaoMapa`/`TagsVersaoFirmware` no `VersaoRecurso.sql`.**
     - `TagsVersaoMapa` segue o formato `v<major>-<PROTOCOLO>` (`MDB` ou `DNP`), **sem minor** — ex: TAGs de engenharia `eng_mdb_13.0`, `eng_mdb_13.2`, `eng_mdb_13.3` viram só `v13-MDB`. Mais de uma versão fica separada por `;` (ex: `v2-MDB;v2-DNP;v17-MDB;v17-DNP`).
