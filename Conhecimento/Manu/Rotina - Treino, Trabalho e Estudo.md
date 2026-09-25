@@ -68,9 +68,11 @@ Apontado seguindo a tabela até o fim: **6h35**. Alvo real: **5h30**, daily incl
 | 15h00-15h15     | Lanche                                      |
 | 15h15-16h30     | Trabalhar                                   |
 | 16h30-16h40     | Pausa                                       |
-| 16h40-17h30     | Trabalhar                                   |
-| **17h30-17h45** | **Comer antes de sair** — ainda em casa     |
-| 17h45-18h00     | Ir para o CT                                |
+| 16h40-17h10     | Trabalhar                                   |
+| **17h10-17h20** | **Comer antes de sair** — ainda em casa     |
+| **17h20-17h30** | **Banho rápido** — antes de ir para o CT    |
+| **17h30**       | **Pronta para sair de casa**                |
+| 17h30-17h45     | Ir para o CT                                |
 | 18h00-18h45     | **Jiu baby**                                |
 | 18h45-19h15     | Algo leve, se precisar — fruta, barra       |
 | 19h15-19h50     | **Força**                                   |
@@ -81,7 +83,7 @@ Apontado seguindo a tabela até o fim: **6h35**. Alvo real: **5h30**, daily incl
 | 23h00-23h30     | Desligar                                    |
 | **23h30**       | **Dormir**                                  |
 
-Apontado seguindo a tabela até o fim: **7h25**. Alvo real: **5h30**, daily inclusa. Sono: **7h30** + 1h de cochilo.
+Apontado seguindo a tabela até o fim: **7h05**. Alvo real: **5h30**, daily inclusa. Sono: **7h30** + 1h de cochilo.
 
 ### Fim de semana
 
@@ -116,7 +118,8 @@ Em ter/qui a folga é ainda maior: mesmo com 12h30 de dia comprometido, o aponta
 
 São 12h30 de dia comprometido. Não há arranjo que mude isso sem tirar alguma coisa — o que dá para fazer é não piorar:
 
-- **Comer às 17h30, antes de sair de casa.** Este é o ponto que mais falha hoje — e falhava porque estava marcado para as 18h45, quando você já está no CT, sem cozinha e a 30 min da musculação. Às 17h30 você acabou de fechar o notebook e está do lado da geladeira. Entre o lanche das 15h e o jantar das 21h30 são 6h30 com 3h de atividade física no meio: sem essa refeição, você treina no vazio, e é isso que mais pesa no cansaço físico.
+- **Pronta para sair de casa às 17h30.** Comer (17h10-17h20) e o banho rápido (17h20-17h30) acontecem antes disso, não depois — o notebook fecha às 17h10, 20 min mais cedo que o expediente padrão, para sobrar esse tempo. Entre o lanche das 15h e o jantar das 21h30 são 6h30 com 3h de atividade física no meio: sem essa refeição, você treina no vazio, e é isso que mais pesa no cansaço físico.
+- **Banho rápido antes de sair, 17h20-17h30.** Você prefere chegar limpa no CT em vez de só lavar tudo à noite. O banho completo (lavar e secar o cabelo) continua depois do treino, às 22h — este de antes é só uma passada rápida.
 - **Jantar antes do cabelo, não depois.** Chegando com fome de 2h de treino, comer às 21h30 faz a comida digerir durante a hora de cabelo, em vez de ficar parada no estômago na hora de deitar. Invertido, o jantar vai para as 23h.
 - **A conversa no CT custa sono na razão de 1 para 1.** Chegar 21h30 é dormir 23h30; chegar 22h é dormir meia-noite e perder 30 min. Não é para cortar a conversa — é para saber o preço e escolher.
 - **Nada de estudo focado.** No máximo o listening, se der vontade.
@@ -127,7 +130,7 @@ São 12h30 de dia comprometido. Não há arranjo que mude isso sem tirar alguma 
 
 ### Horários
 - Segunda, quarta e sexta: **9h às 18h**
-- Terça e quinta: **8h30 às 17h30** (sai mais cedo para o jiu baby às 18h)
+- Terça e quinta: **8h30 às 17h10** (sai mais cedo — come e toma banho antes de ir para o jiu baby às 18h, saindo de casa às 17h30)
 - **Daily: 9h todos os dias, até 9h45 no máximo** — costuma terminar antes
 - Almoço: **11h50, na mesa**, ainda no ponto; a 1h de ponto batido é das 12h às 13h, para descansar
 - Lanche da tarde: 15h
@@ -274,7 +277,7 @@ O que vale reparar todo dia, para o ajuste de domingo ter em que se apoiar:
 
 - Consegui deitar às 12h? Cochilei mesmo?
 - A escadaria aconteceu? (seg/qua/sex)
-- Comi às 17h30? (ter/qui)
+- Comi às 17h30 e tomei banho antes de sair? (ter/qui)
 - Que horas dormi **de fato** — não o horário previsto
 - O estudo das 19h rendeu ou foi só cumprir tabela?
 
@@ -284,7 +287,7 @@ O que vale reparar todo dia, para o ajuste de domingo ter em que se apoiar:
 |---|---|---|
 | Ter 22/09 *(antes de começar)* | Dormiu **0h**. Alvo para dia de jiu é 23h30 — 30 min a mais. Baseline. | |
 | Qua 23/09 | Daily de 20 min. ~5h30 apontadas (com a daily). Almoço às 12h05, 15 min depois do previsto (11h50). Cochilo esticou — acordou 14h, 1h depois do previsto (13h). Lanche na frente da tela, não longe dela como o plano pede — hábito antigo. Escadaria das 16h30 não aconteceu — perdeu a hora, só notou às 16h51. Foi fazer escada às 17h01, mais tarde que o previsto. Expediente passou das 18h — encerrou só agora, ficou no meio de um raciocínio. Jantou mais tarde que o previsto (18h15-19h) e não fez o estudo das 19h. | |
-| Qui 24/09 | Daily de 20 min. Voltou a trabalhar às 10h. Fora essa pausa, nenhuma outra até sair para almoçar às 12h. Voltou a trabalhar às 13h30 — 1h30 de almoço, 30 min a mais que o previsto. | |
+| Qui 24/09 | Daily de 20 min. Voltou a trabalhar às 10h. Fora essa pausa, nenhuma outra até sair para almoçar às 12h. Voltou a trabalhar às 13h30 — 1h30 de almoço, 30 min a mais que o previsto. Chegou em casa às 22h — 30 min depois do previsto (21h30). Foi jantar na sequência. | |
 | Sex 25/09 | | |
 | Sáb 26/09 | | |
 | Dom 27/09 | | |
