@@ -27,9 +27,9 @@ Se não existir doc (primeira validação), perguntar para a Manu, sempre, antes
 
 1. Qual versão do módulo está sendo validada (v1, v2, etc.).
 2. Se é um mapa de cliente (para aplicar a exceção de descrição personalizada por UID, ver "Exceções").
-3. Qual protocolo está sendo validado, `DNP` ou `MDB` — **só se valida um protocolo por vez**, mesmo que a pasta do módulo tenha as duas subpastas.
+3. Qual protocolo está sendo validado, `DNP` ou `MDB` — **só se valida um protocolo por vez**, mesmo que a pasta do módulo tenha as duas subpastas. **Só perguntar se a pasta do módulo tiver as duas subpastas (`DNP` e `MDB`)**; se só existir uma delas, usar essa direto, sem perguntar.
 
-Não presumir nenhuma dessas três coisas sozinho.
+Não presumir a versão nem se é mapa de cliente sozinho — essas duas sempre pergunta.
 
 ## Quick Reference — Passo a Passo
 
@@ -81,9 +81,10 @@ Ao terminar todas as checagens, sempre fechar com um relatório único (não é 
   - Isso vale mesmo quando está tudo OK num arquivo: listar cada checagem feita como `- [x]` em vez de um subtítulo tipo "Nenhum problema encontrado" seguido de texto corrido.
 - **Para cada item (marcado ou não), incluir um trecho exato e literal do arquivo (um `Ctrl+F` funcional)** — ex: a linha inteira do `DECLARE @ModuloId ...`, o nome exato do campo/mnemônico, o trecho de JSON. Não descrever só "o campo X está errado" ou "campo X confere": copiar o texto como aparece no arquivo.
 - Junto do trecho, dizer o que é o problema e qual o valor esperado x valor encontrado (itens `- [ ]`), ou por que está OK (itens `- [x]`).
+- **Linguagem simples e direta, fácil de entender de primeira** — frases curtas, sem palavra rebuscada/técnica desnecessária nem jargão de validação. Quem vai ler é a própria Manu comentando no PR, não precisa soar formal.
 - **OBRIGATÓRIO: ao citar qualquer trecho do csv/Excel de origem, montar uma tabela Markdown usando o `;` do csv como separador de coluna** (cabeçalho + linha(s) relevante(s)) — nunca colar a linha crua com `;` direto no relatório.
 - **Não incluir checagem de algo estrutural/esperado que não faz parte da regra de validação daquele arquivo** — ex: não relatar "fl.json não possui `hashCommitMap`" como item `[x]`, porque esse campo já é sabidamente exclusivo do SYNC (não é uma checagem, é só um fato conhecido de estrutura). Só vira item de checklist algo que de fato foi comparado/cruzado entre arquivos.
-- Se algum caso caiu numa exceção (ver "Exceções") e por isso não foi reportado como erro, pode mencionar rapidamente, para deixar claro que foi conferido.
+- **Caso enquadrado numa exceção (ver "Exceções") não vira item de checklist no relatório** — não é uma divergência, então não gera `- [x]` nem `- [ ]`, mesmo com nota de "exceção aplicada". Se for útil registrar que foi conferido, no máximo uma menção curta em texto corrido perto do item relacionado, nunca como linha de checklist própria.
 - **O relatório tem que ser salvo como um arquivo `.md` dentro da pasta do módulo** (não é só mostrar no chat) — ele serve de guia depois para conferir se as correções apontadas foram feitas.
 - **Salvar na raiz da pasta do módulo, fora das subpastas de protocolo** (ex: `MDB`, `DNP`, `SYNC`) — não dentro delas.
 
