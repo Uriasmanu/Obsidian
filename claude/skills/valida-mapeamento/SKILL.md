@@ -70,6 +70,7 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 | | 8 | "Gráfico Rápido = Sim" → tipo `1537` |
 | | 9 | `E3Lib` com especificidades conhecidas → avisar |
 | | 10 | Encoding (caracteres corrompidos numa descrição) |
+| | 10b | `modulo.csv` deve sempre ter encoding ANSI |
 | B — comparação com versão anterior / outro protocolo | 11 | IDs idênticos entre versões |
 | | 12 | Mnemônico estável entre versões (UID já existente) |
 | | 12b | Mnemônico igual entre protocolos (MDB ↔ DNP) para o mesmo UUID |
@@ -132,9 +133,11 @@ Casos abaixo não são divergência. O `checklist.md` cita cada um pelo código 
 - **E5 — Linhas do tipo "Comando" ou "Debug" no csv/Excel de origem não entram nos arquivos de mapeamento.** Quando a coluna "Classificação"/"Tratamento" indica comando (ex: mnemônicos `cmdreset...`, tipicamente `RW`/`Holding register` sem leitura associada) ou debug, é esperado que esse UUID **não** apareça no `fl.sql`, `fl.json`, `GruposPadrao.sql`, `VersaoRecurso.sql` nem no SYNC. **Não reportar a ausência desses UUIDs como erro/faltando.**
 - **E6 — Trechos de debug/comando não fazem parte do script final**: é normal que o SQL não contenha comandos de debug (ex: `SELECT`, `PRINT` avulsos) nem outros comandos auxiliares fora da lógica de mapeamento. A ausência deles **não é erro**.
 - **E7 — Campos de metadado do framework não têm origem no csv/Excel** — mnemônicos como `VersaoProduto`, `VersaoMapa`, `HashCommitMapa` e `DataHoraUltimaLeituraSensor` (e equivalentes) existem no `fl.sql`/`fl.json` mas são gerados pelo framework. **Não reportar a ausência deles no csv como erro/faltando.**
-  - No SYNC, metadados e alarmes do framework (ex: `@AlarmeRedeDigitalId`) deveriam aparecer em `fields`: a ausência vira ponto de atenção (`Atenção:`) no item 14, não erro. `VersaoMapa`/`HashCommitMapa` também são conferidos nos itens 16/17.
+  - No SYNC, a ausência dos campos de metadado (`versaoproduto`, `versaomapa`, `hashcommitmapa`, `datahoraultimaleiturasensor`) em `fields` **não é item de relatório** — nem erro nem ponto de atenção. `VersaoMapa`/`HashCommitMapa` são conferidos separadamente nos itens 16/17.
+  - Já a ausência de alarmes do framework (ex: `@AlarmeRedeDigitalId`) em `fields` **é ponto de atenção** no item 14 — não erro, mas deve ser registrado.
 - **E8 — Mapa de cliente (equipamento que não é produto Treetech, sem branch/versão no Bitbucket)** — vale quando a resposta a "É mapa de cliente?" foi sim: `TagsVersaoMapa` padrão esperado é `v1-MDB` ou `v1-DNP` (conforme o protocolo), e `TagsVersaoFirmware` padrão é `v1[fw1.0]`. Não reportar como erro/faltando quando o `VersaoRecurso.sql` desse tipo de equipamento tiver só esses valores.
 - **E9 — Imagem em mapa de cliente** — em mapas de cliente, o campo `Imagem` não segue o padrão `<E3Lib>.svg`: é esperado que use a imagem de um módulo Treetech existente. Não reportar como erro quando o valor de `Imagem` não corresponder à `E3Lib` do equipamento (item 5b).
+- **E10 — Csv com variante `- Limpo`** — quando existem dois arquivos na pasta (ex: `<hash>.csv` sem coluna `Mnemônico` e `<hash> - Limpo.csv` com coluna `Mnemônico`), o `- Limpo` é o csv de origem a ser validado. O sufixo `- Limpo` não é erro de nome (item 7b) — é a versão tratada que deve ser usada.
 
 ## Pendências
 
