@@ -71,6 +71,8 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 | | 9 | `E3Lib` com especificidades conhecidas → avisar |
 | | 10 | Encoding (caracteres corrompidos numa descrição) |
 | | 10b | `modulo.csv` deve sempre ter encoding ANSI |
+| | 10c | `tbl_a_IED.csv`, `tbl_d_IED.csv`, `tbl_h_IED.csv`, `tbl_s_IED.csv` devem ter encoding ANSI |
+| | 10d | `alarms_*.csv` deve ter encoding ANSI |
 | B — comparação com versão anterior / outro protocolo | 11 | IDs idênticos entre versões |
 | | 12 | Mnemônico estável entre versões (UID já existente) |
 | | 12b | Mnemônico igual entre protocolos (MDB ↔ DNP) para o mesmo UUID |
@@ -116,8 +118,8 @@ Obrigatório ao fim de toda validação, mesmo que a divergência pareça pequen
 **Não abrir** os arquivos abaixo, nem para "dar uma olhada" — não fazem parte da validação:
 
 - `slave.json` (config de simulador Modbus).
-- `tbl_a_IED.csv`, `tbl_d_IED.csv`, `tbl_h_IED.csv`, `tbl_s_IED.csv`.
-- `alarms_*.csv`.
+- `tbl_a_IED.csv`, `tbl_d_IED.csv`, `tbl_h_IED.csv`, `tbl_s_IED.csv` — conteúdo fora de escopo (não abrir para validação), mas encoding deve ser conferido automaticamente pelo `valida.py` (item 10c).
+- `alarms_*.csv` — conteúdo fora de escopo (não abrir para validação), mas encoding deve ser conferido automaticamente pelo `valida.py` (item 10d).
 - `modulo.csv` genérico e `<E3Lib>.csv` (export de tags OPC/Archestra).
 - Qualquer outro csv cujo nome não segue o padrão do csv de origem (item 7).
 
