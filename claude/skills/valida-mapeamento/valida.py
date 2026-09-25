@@ -242,8 +242,8 @@ def sem_prefixo(nome, mnemonico_csv=None):
 def estilo(mnemonico):
     if re.fullmatch(r"[a-z0-9]+", mnemonico):
         return "minusculo"
-    if re.fullmatch(r"[a-z][a-zA-Z0-9]*", mnemonico):
-        return "camelCase"
+    if re.fullmatch(r"[A-Z][a-zA-Z0-9]*", mnemonico):
+        return "PascalCase"
     return "invalido"
 
 
@@ -342,12 +342,12 @@ def checar_bloco_a(m, rel, anterior, outro):
         if estilos["invalido"]:
             rel.add("ERRO", "3c", m.csv_path.name, "mnemônico com caractere fora de [a-zA-Z0-9] (acento, `_`, espaço...)",
                     [f"`{n}`" for n in estilos["invalido"]])
-        if estilos["minusculo"] and estilos["camelCase"]:
-            minoria = min(("minusculo", "camelCase"), key=lambda e: len(estilos[e]))
-            rel.add("ERRO", "3c", m.csv_path.name, f"arquivo mistura minúsculo e camelCase; os em {minoria}:",
+        if estilos["minusculo"] and estilos["PascalCase"]:
+            minoria = min(("minusculo", "PascalCase"), key=lambda e: len(estilos[e]))
+            rel.add("ERRO", "3c", m.csv_path.name, f"arquivo mistura minúsculo e PascalCase; os em {minoria}:",
                     [f"`{n}`" for n in estilos[minoria]])
-        elif estilos["camelCase"]:
-            rel.add("ATENCAO", "3c", m.csv_path.name, "arquivo todo em camelCase: só é aceito em mapa antigo (padrão atual é tudo minúsculo)")
+        elif estilos["PascalCase"]:
+            rel.add("ATENCAO", "3c", m.csv_path.name, "arquivo todo em PascalCase: só é aceito em mapa antigo (padrão atual é tudo minúsculo)")
         elif not estilos["invalido"]:
             rel.add("OK", "3c", m.csv_path.name, "todos os mnemônicos no padrão atual (tudo minúsculo, ^[a-z0-9]+$)")
 

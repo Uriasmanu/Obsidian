@@ -9,7 +9,7 @@
 
 - **Cabeçalho obrigatório em todo relatório, inclusive revalidação**: título, linha de contexto, `Arquivos analisados:` com caminho relativo, painel de rodadas e `---`.
 - **Uma seção por arquivo** (`fl.sql`, `GruposPadrao.sql`, `VersaoRecurso.sql`, JSON de mapeamento, csv de origem, JSON de SYNC) — o usuário comenta no PR do Azure DevOps arquivo por arquivo.
-- **Tudo é checklist**: `- [ ]` = problema, `- [x]` = conferido e OK. Ponto de atenção (3b herdado, 3c camelCase, 9, 14 framework ausente no SYNC) e sugestão (3d) também são `- [ ]`, com o título começando por `Atenção:` ou `Sugestão:`. Nada de parágrafo solto nem "Nenhum problema encontrado" — arquivo sem problema lista cada checagem feita como `- [x]`.
+- **Tudo é checklist**: `- [ ]` = problema, `- [x]` = conferido e OK. Ponto de atenção (3b herdado, 3c PascalCase, 9, 14 framework ausente no SYNC) e sugestão (3d) também são `- [ ]`, com o título começando por `Atenção:` ou `Sugestão:`. Nada de parágrafo solto nem "Nenhum problema encontrado" — arquivo sem problema lista cada checagem feita como `- [x]`.
 - **Dentro de cada seção: todos os `- [ ]` primeiro (em ordem de ID), depois todos os `- [x]`.**
 - **Todo item traz um trecho literal do arquivo** (Ctrl+F funcional): a linha do `DECLARE`, o nome exato do campo, o trecho do JSON.
 - `- [ ]` diz o problema e **esperado x encontrado**; `- [x]` diz **por que está OK**.

@@ -56,7 +56,7 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 | | 2 | Espelhamento JSON ↔ SQL (todo ID/campo bate 1:1) |
 | | 3 | Mnemônicos únicos dentro do arquivo |
 | | 3b | Mnemônico com no máximo 50 caracteres |
-| | 3c | Mnemônico `^[a-z0-9]+$` sem o prefixo do software (`get_`); camelCase só em mapa antigo, nunca misturado |
+| | 3c | Mnemônico `^[a-z0-9]+$` sem o prefixo do software (`get_`); PascalCase só em mapa antigo, nunca misturado |
 | | 3d | Abreviações padrão (só sugestão) |
 | | 4 | Descrições únicas dentro do arquivo |
 | | 5 | `E3Lib` do script == `E3Lib` do JSON de mapeamento |
