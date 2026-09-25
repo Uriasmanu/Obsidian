@@ -42,7 +42,7 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 | | 3 | Mnemônicos únicos dentro do arquivo |
 | | 4 | Descrições únicas dentro do arquivo |
 | | 5 | `E3Lib` do script == `E3Lib` do JSON de mapeamento |
-| | 6 | IDs do `fl.sql` também em `GruposPadrao.sql`/`VersaoRecurso.sql` |
+| | 6 | IDs do `fl.sql` também em `GruposPadrao.sql`/`VersaoRecurso.sql`, e formato/conteúdo de `TagsVersaoMapa`/`TagsVersaoFirmware` |
 | | 7 | Identificar e cruzar o csv/Excel de origem correto |
 | | 8 | "Gráfico Rápido = Sim" → tipo `1537` |
 | | 9 | `E3Lib` com especificidades conhecidas → avisar |
@@ -75,7 +75,8 @@ Ao terminar todas as checagens, sempre fechar com um relatório único (não é 
   - Uma lista `Arquivos analisados:` com todos os arquivos usados na validação (SQL, JSON, csv/Excel fonte, SYNC), com o caminho relativo (ex: `MDB/MDJ-fl.sql`).
   - Um separador (`---`) antes do corpo do relatório.
 - **Organizar por arquivo** (ex: `fl.sql`, `GruposPadrao.sql`, `VersaoRecurso.sql`, JSON de mapeamento, JSON de SYNC, csv/Excel) — Manu depois vai comentar os problemas no Pull Request do Azure DevOps, e lá a navegação é arquivo por arquivo, não por categoria de regra.
-- **O relatório inteiro é uma checklist Markdown, sem parágrafos soltos de texto explicando "nada de errado encontrado"**: cada checagem feita (de cada item do "Quick Reference"/`checklist.md` aplicável àquele arquivo) vira uma linha de checklist, `- [x]` quando validado e OK, `- [ ]` quando é um problema/divergência. Tudo é checklist, item por item, na ordem que fizer sentido para o arquivo — não separar em "primeiro os problemas, depois um texto corrido do que foi validado".
+- **O relatório inteiro é uma checklist Markdown, sem parágrafos soltos de texto explicando "nada de errado encontrado"**: cada checagem feita (de cada item do "Quick Reference"/`checklist.md` aplicável àquele arquivo) vira uma linha de checklist, `- [x]` quando validado e OK, `- [ ]` quando é um problema/divergência. Tudo é checklist, item por item — nunca um parágrafo corrido explicando o que foi validado.
+- **Dentro de cada arquivo, ordem fixa: todos os `- [ ]` (problemas) primeiro, depois todos os `- [x]` (OK)** — quem for comentar no PR precisa achar os problemas de cara, sem escanear item OK no meio.
   - `- [x] **<o que foi checado>**: <trecho/valor relevante> — <resultado, por que está OK>.`
   - `- [ ] **<o que foi checado>**: <trecho literal do arquivo, Ctrl+F> — <o problema, valor esperado x valor encontrado>.`
   - Isso vale mesmo quando está tudo OK num arquivo: listar cada checagem feita como `- [x]` em vez de um subtítulo tipo "Nenhum problema encontrado" seguido de texto corrido.
@@ -117,6 +118,8 @@ Os arquivos abaixo podem aparecer na pasta do módulo, mas **não fazem parte da
 - `tbl_a_IED.csv`, `tbl_d_IED.csv`, `tbl_h_IED.csv`, `tbl_s_IED.csv`.
 - `alarms_*.csv`.
 
+Na tabela `VersaoRecurso`, os tipos de recurso `Ativo` (5), `Instalacao` (6), `Empresa` (7) e `Sistema` (8) **não são versionados** — ausência deles no `VersaoRecurso.sql` é esperada, não é erro/faltando.
+
 ## Exceções
 
 - **Mapas de cliente** (Manu avisa explicitamente quando o mapeamento é de um cliente específico): pode acontecer, raramente, de v1 e v2 terem campos com o mesmo ID mas descrição personalizada para aquele cliente. Isso **não é divergência** — não reportar como erro quando for esse caso.
@@ -126,6 +129,7 @@ Os arquivos abaixo podem aparecer na pasta do módulo, mas **não fazem parte da
 - **Trechos de debug/comando não fazem parte do script final**: é normal e esperado que o SQL não contenha comandos de debug (ex: `SELECT`, `PRINT` avulsos usados só para conferir valor durante o desenvolvimento) nem outros comandos auxiliares que não sejam parte da lógica de mapeamento. A ausência desses trechos nos arquivos **não é erro** — não reportar como divergência ou item faltante.
 - **Campos de metadado do framework não têm origem no csv/Excel** — mnemônicos como `VersaoProduto`, `VersaoMapa`, `HashCommitMapa` e `DataHoraUltimaLeituraSensor` (e equivalentes) existem no `fl.sql`/`fl.json` mas são gerados/controlados pelo próprio framework, não dados do equipamento. **Não reportar a ausência deles no csv como erro/faltando.**
   - No SYNC, a maioria desses campos **tem sim equivalente** e deve ser conferida normalmente: `VersaoMapa` ↔ `resourceVersionValue`/`productVersion` e `HashCommitMapa` ↔ `hashCommitMap` (ver itens 16/17 do `checklist.md`, Bloco C — nomes diferentes, mas é o mesmo dado). Só `DataHoraUltimaLeituraSensor` realmente **não tem** e nunca vai ter equivalente no JSON de SYNC (vem do software em tempo de execução, não é dado estático de mapeamento) — só esse pode ter a ausência no SYNC ignorada, sem virar item de checklist.
+- **Equipamento que não é produto Treetech** (sem branch/versão no Bitbucket): `TagsVersaoMapa` padrão esperado é `v1-MDB` ou `v1-DNP` (conforme o protocolo), e `TagsVersaoFirmware` padrão é `v1[fw1.0]`. Não reportar como erro/faltando quando o `VersaoRecurso.sql` desse tipo de equipamento tiver só esses valores.
 
 ## Pendências
 
