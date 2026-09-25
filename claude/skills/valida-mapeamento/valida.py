@@ -1,6 +1,6 @@
 """Checagens mecânicas da skill valida-mapeamento (só lê, nunca altera arquivos).
 
-Uso: python valida.py <pasta_protocolo> [--anterior <pasta_protocolo>] [--outro-protocolo <pasta_protocolo>]
+Uso: python valida.py <pasta_protocolo> [--anterior <pasta_protocolo>] [--outro-protocolo <pasta_protocolo>] [--completo]
 """
 import argparse
 import csv
@@ -53,23 +53,48 @@ def mesmo_valor(a, b):
     return a == b
 
 
-class Relatorio:
-    def __init__(self):
-        self.itens = defaultdict(list)
+def tipo_arquivo(arquivo):
+    nome = Path(arquivo).name.lower()
+    for sufixo, tipo in (("-fl.sql", "fl.sql"), ("-fl.json", "fl.json"), ("grupospadrao.sql", "GruposPadrao"),
+                         ("versaorecurso.sql", "VersaoRecurso")):
+        if nome.endswith(sufixo):
+            return tipo
+    if "sigma-sync-import" in nome:
+        return "SYNC"
+    return "csv" if nome.endswith(".csv") else "pasta"
 
-    def add(self, status, item, arquivo, msg, trechos=()):
-        self.itens[arquivo].append((status, item, msg, list(trechos)))
+
+def slug(msg):
+    # Tira valores variáveis (entre crases/aspas, parênteses, números, lista após ':') para a chave não mudar entre rodadas.
+    s = re.sub(r"`[^`]*`|'[^']*'|\([^)]*\)|\d+", " ", msg.split(" — ")[0].split(":")[0])
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
+    return "-".join(re.findall(r"[a-z]+", s)[:6]) or "item"
+
+
+class Relatorio:
+    def __init__(self, completo=False):
+        self.itens = defaultdict(list)
+        self.chaves = Counter()
+        self.completo = completo
+
+    def add(self, status, item, arquivo, msg, trechos=(), chave=None):
+        chave = f"{item}/{tipo_arquivo(arquivo)}/{chave or slug(msg)}"
+        self.chaves[chave] += 1
+        if self.chaves[chave] > 1:
+            chave += f"-{self.chaves[chave]}"
+        self.itens[arquivo].append((status, item, msg, list(trechos), chave))
 
     def imprimir(self):
         saida = io.StringIO()
+        limite = None if self.completo else LIMITE_LISTA
         for arquivo, itens in self.itens.items():
             saida.write(f"\n## {arquivo}\n")
-            for status, item, msg, trechos in sorted(itens, key=lambda i: ORDEM_STATUS.index(i[0])):
-                saida.write(f"[{status}] {item} — {msg}\n")
-                for t in trechos[:LIMITE_LISTA]:
+            for status, item, msg, trechos, chave in sorted(itens, key=lambda i: ORDEM_STATUS.index(i[0])):
+                saida.write(f"[{status}] {item} — {msg}  {{chave: {chave}}}\n")
+                for t in trechos[:limite]:
                     saida.write(f"    > {t}\n")
-                if len(trechos) > LIMITE_LISTA:
-                    saida.write(f"    > ... +{len(trechos) - LIMITE_LISTA}\n")
+                if limite and len(trechos) > limite:
+                    saida.write(f"    > ... +{len(trechos) - limite} (rodar com --completo para ver todos)\n")
         resumo = Counter(s for itens in self.itens.values() for s, *_ in itens)
         saida.write("\nResumo: " + ", ".join(f"{s}={resumo[s]}" for s in ORDEM_STATUS if resumo[s]) + "\n")
         sys.stdout.buffer.write(saida.getvalue().encode("utf-8"))
@@ -230,7 +255,7 @@ def classificar_csv(linha):
     if linha.get("nivel de acesso", "").lower() == "privado":
         return "privado"
     texto = " ".join([linha.get("classificacao", ""), linha.get("tratamento", "")]).lower()
-    if "comando" in texto or linha.get("mnemonico", "").lower().startswith("cmd"):
+    if "comando" in texto or "debug" in texto or linha.get("mnemonico", "").lower().startswith("cmd"):
         return "comando"
     return "mapeavel"
 
@@ -485,7 +510,7 @@ def checar_csv(m, rel):
     if not any(classes[c] for c in ("sem_uuid", "sem_classificacao", "privado")):
         rel.add("OK", "7c", nome, "csv limpo: nenhuma linha sem UUID, sem classificação ou Privado")
     if classes["comando"]:
-        rel.add("INFO", "7", nome, f"{len(classes['comando'])} linha(s) de comando fora do mapeamento (E5)",
+        rel.add("INFO", "7", nome, f"{len(classes['comando'])} linha(s) de comando/debug fora do mapeamento (E5)",
                 [f"`{l['mnemonico']}`" for l in classes["comando"]])
 
     if m.protocolo == "DNP":
@@ -535,10 +560,6 @@ def checar_csv(m, rel):
         rel.add("ERRO" if suspeitos else "OK", "10", arquivo,
                 "caractere suspeito na descrição (? no lugar de letra/número, � ou acento corrompido)" if suspeitos else
                 "nenhum caractere suspeito nas descrições", [f"`{s}`" for s in suspeitos])
-    if m.csv_encoding != "UTF-8":
-        rel.add("ATENCAO", "10b", nome, f"csv em {m.csv_encoding} (o processo pede UTF-8) — lido na codificação real (E2)")
-    else:
-        rel.add("OK", "10b", nome, "csv em UTF-8")
 
 
 def checar_bloco_b(m, rel, anterior, outro):
@@ -611,19 +632,22 @@ def checar_bloco_c(m, rel):
             f"espelhamento SYNC x fl.sql com {len(diffs)} divergência(s)" if diffs else f"{len(campos_sync)} fields batem com o fl.sql", diffs)
 
     e3 = mod["campos"].get("E3Lib") if mod else jmod.get("E3Lib")
-    rel.add("OK" if smod.get("identifier") == e3 else "ERRO", "15", nome, f"`\"identifier\": \"{smod.get('identifier')}\"` x E3Lib `{e3}`")
+    rel.add("OK" if smod.get("identifier") == e3 else "ERRO", "15", nome, f"`\"identifier\": \"{smod.get('identifier')}\"` x E3Lib `{e3}`",
+            chave="identifier")
 
     versoes = smod.get("versions", [{}])
     hash_csv = re.search(r"_([0-9a-fA-F]{12})\.csv$", m.csv_path.name).group(1) if m.csv_path else None
     for v in versoes:
         h = v.get("hashCommitMap")
-        rel.add("OK" if h and h == hash_csv else "ERRO", "16", nome, f"`\"hashCommitMap\": \"{h}\"` x hash do csv `{hash_csv}`")
+        rel.add("OK" if h and h == hash_csv else "ERRO", "16", nome, f"`\"hashCommitMap\": \"{h}\"` x hash do csv `{hash_csv}`",
+                chave="hashcommitmap")
         vm = re.fullmatch(r"v(\d+)-(MDB|DNP)", jmod.get("VersaoMapa", "") or "")
         if vm:
             esperado_rv, esperado_pv = f"{vm.group(1)}.0", f"v{vm.group(1)}.0-sync"
             for campo, esperado in (("resourceVersionValue", esperado_rv), ("productVersion", esperado_pv)):
                 rel.add("OK" if v.get(campo) == esperado else "ERRO", "17", nome,
-                        f"`\"{campo}\": \"{v.get(campo)}\"` x esperado `{esperado}` (VersaoMapa `{jmod.get('VersaoMapa')}`)")
+                        f"`\"{campo}\": \"{v.get(campo)}\"` x esperado `{esperado}` (VersaoMapa `{jmod.get('VersaoMapa')}`)",
+                        chave=campo.lower())
             sem_versao = [f"`{f.get('name')}` versions {f.get('versions')}" for f in campos_sync.values() if esperado_rv not in (f.get("versions") or [])]
             if sem_versao:
                 rel.add("ERRO", "17", nome, f"field sem a versão `{esperado_rv}` em versions", sem_versao)
@@ -634,11 +658,12 @@ def main():
     ap.add_argument("pasta", type=Path, help="pasta do protocolo validado (ex: .../v2/MDB)")
     ap.add_argument("--anterior", type=Path, help="pasta do mesmo protocolo na versão anterior (Bloco B)")
     ap.add_argument("--outro-protocolo", type=Path, help="pasta do outro protocolo da mesma versão (item 12b)")
+    ap.add_argument("--completo", action="store_true", help="lista todos os trechos, sem cortar (usar na revalidação)")
     args = ap.parse_args()
     m = Mapa(args.pasta.resolve())
     anterior = Mapa(args.anterior.resolve()) if args.anterior else None
     outro = Mapa(args.outro_protocolo.resolve()) if args.outro_protocolo else None
-    rel = Relatorio()
+    rel = Relatorio(args.completo)
     print_cab = f"# valida.py — {m.pasta} (v{m.versao} / {m.protocolo})"
     sys.stdout.buffer.write((print_cab + "\n").encode("utf-8"))
     checar_bloco_a(m, rel, anterior, outro)

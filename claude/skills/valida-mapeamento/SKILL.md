@@ -42,6 +42,8 @@ python valida.py <pasta_protocolo> [--anterior <pasta_protocolo_versao_anterior>
 - Se `python` abrir a Microsoft Store, usar `%LOCALAPPDATA%\Programs\Python\Python313\python.exe`.
 - Passar `--anterior`/`--outro-protocolo` só com pastas que estão dentro da pasta indicada pelo usuário (ver "Restrições").
 - A saída vem agrupada por arquivo: `[ERRO]` vira `- [ ]`, `[OK]` vira `- [x]`. `[ATENCAO]`/`[SUGESTAO]` viram `- [ ]` marcados como ponto de atenção/sugestão, e `[INFO]` não vira item.
+- Cada achado termina com `{chave: <item>/<tipo de arquivo>/<slug>}`. A chave não muda entre rodadas (não depende de nome de arquivo, número nem valor) — copiar para a linha `Chave:` do item rastreável no relatório.
+- Na revalidação, rodar com `--completo` para listar todos os trechos sem corte (necessário para detectar correção parcial).
 - O script não substitui o julgamento. Continua manual: aplicar as exceções E1–E8, confirmar subtipo/categoria na v1 (item 13), ler a doc anterior na revalidação e copiar o trecho literal (Ctrl+F) de cada item com grep direcionado. Nunca ler os `.sql`/`.json` inteiros.
 
 ## Quick Reference — Passo a Passo
@@ -68,7 +70,6 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 | | 8 | "Gráfico Rápido = Sim" → tipo `1537` |
 | | 9 | `E3Lib` com especificidades conhecidas → avisar |
 | | 10 | Encoding (caracteres corrompidos numa descrição) |
-| | 10b | Csv de origem fora de UTF-8 → ponto de atenção |
 | B — comparação com versão anterior / outro protocolo | 11 | IDs idênticos entre versões |
 | | 12 | Mnemônico estável entre versões (UID já existente) |
 | | 12b | Mnemônico igual entre protocolos (MDB ↔ DNP) para o mesmo UUID |
@@ -81,12 +82,23 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 
 ## Segunda Validação
 
-Quando já existe uma doc de relatório (`.md`) de uma validação anterior na pasta do módulo:
+Quando já existe uma doc de relatório (`.md`) de uma validação anterior na pasta do módulo. Formato dos itens rastreáveis (ID, status, `Onde:`, `Chave:`, `Depende de:`, `Histórico:`) em `report-template.md`.
 
-1. Ler a doc inteira antes de começar a revalidar — o usuário pode ter adicionado observações, explicações ou anotações manuais nos itens (ex: por que algo não foi corrigido, contexto adicional, item marcado como já resolvido).
-2. Levar essas observações em consideração durante a nova validação — não ignorar nem sobrescrever sem checar o que foi escrito ali.
-3. Refazer todas as checagens normalmente ("Quick Reference" / `checklist.md`).
-4. Por último, **atualizar a mesma doc** (não criar um relatório novo do zero): manter os checkboxes já marcados e as observações do usuário, atualizar o status dos itens que foram corrigidos, e adicionar quaisquer novos itens incorretos encontrados nessa rodada.
+1. **Ler a doc inteira** e montar a lista de itens rastreáveis: ID, status, `Onde:`, `Chave:`, `Depende de:`, trechos encontrados e `Obs.:`. A rodada nova é `R<última + 1>` do painel.
+   - Se a doc for do formato antigo (sem IDs), converter primeiro: dar ID a cada `- [ ]`, status 🔴 `aberto`, `Histórico: R1 aberto`, e montar o painel com a R1.
+2. **Status de PR**: se o usuário disser na conversa quais itens comentou (ex: "comentei CSV-01 e VR-03"), mudar esses para 💬 `no-pr` e preencher `PR:` se ele passar o link. Status que ele mudou à mão na doc prevalece.
+3. **Rodar `valida.py --completo`** e refazer as checagens manuais ("Quick Reference" / `checklist.md`).
+4. **Reconferir cada item em aberto** (🔴, 💬, 🟡, 🔁), com a chave e com grep no `Onde:`:
+   - Chave some da saída ou aparece só como `[OK]`, **e** o trecho do `Onde:` não é mais encontrado → ✅ `resolvido na R<n>`. Vira `- [x]`, com uma linha `Agora:` trazendo o trecho literal atual.
+   - Chave continua, mas com menos trechos que antes → 🟡 `parcial`. Atualizar a lista só com o que falta e registrar `parcial (<faltam> de <antes>)`.
+   - Chave continua com os mesmos trechos → mantém o status e registra `R<n> continua`.
+   - `Chave: manual` → decidir só pelo grep do `Onde:` e pela checagem manual do item.
+   - Item com `Depende de:` → reconferir mesmo que a chave pareça igual; se a causa raiz foi resolvida, o derivado costuma sumir junto.
+   - Se o `Onde:` sumiu mas a chave continua (ex: o valor errado mudou para outro valor errado), **não é resolvido**: atualizar `Encontrado:` e `Onde:` e manter aberto.
+5. **Itens já fechados**: ✅ cuja chave/`Onde:` voltou → 🔁 `reaberto` (volta a `- [ ]`). ⚪ `nao-corrigir` não é reaberto; se o problema sumiu, vira ✅.
+6. **Achado novo** (chave que não existe na doc) → item novo com o próximo ID livre do prefixo, `Histórico: R<n> novo`.
+7. **Atualizar a mesma doc** (nunca criar outra): linha de contexto `Revalidação (R<n>)`, `Arquivos analisados:` (o csv pode ter nome/hash novo — atualizar o título da seção e registrar o nome antigo no `Histórico:` do item afetado), nova linha no painel, reordenar cada seção (`- [ ]` por ID, depois `- [x]`). Nunca apagar item, `Obs.:` ou `PR:`.
+8. Na resposta ao usuário, resumir a rodada: resolvidos, parciais, reabertos e novos, por ID.
 
 ## Relatório Final
 
@@ -97,7 +109,6 @@ Obrigatório ao fim de toda validação, mesmo que a divergência pareça pequen
 - **Corrigir o arquivo em vez de só apontar** — ver "Restrições".
 - **Esquecer o cabeçalho do relatório** (título, linha de contexto, `Arquivos analisados:`) — obrigatório em todo relatório, inclusive revalidação.
 - Confundir o `modulo.csv` genérico ou um export `<E3Lib>.csv` (tags OPC/Archestra) com o csv de origem real — ver item 7.
-- Reportar acento "trocado" como erro de encoding quando é só um csv em Windows-1252 lido como UTF-8 — ver exceção E2.
 
 ## Fora de Escopo
 
@@ -116,10 +127,9 @@ Na tabela `VersaoRecurso`, os tipos de recurso `Ativo` (5), `Instalacao` (6), `E
 Casos abaixo não são divergência. O `checklist.md` cita cada um pelo código (E1, E2...).
 
 - **E1 — Mapas de cliente** (o usuário avisa explicitamente quando o mapeamento é de um cliente específico): pode acontecer, raramente, de v1 e v2 terem campos com o mesmo ID mas descrição personalizada para aquele cliente. Isso **não é divergência** — não reportar como erro quando for esse caso.
-- **E2 — Csv de origem em Windows-1252/ISO-8859-1**: ler assumindo UTF-8 e ver acentos trocados **não é um problema de encoding real nos textos** — os bytes estão corretos, só precisa ler com a codificação certa. Não reportar os acentos como corrupção (item 10); a codificação do arquivo em si fora de UTF-8 é só o ponto de atenção do item 10b.
 - **E3 — Mnemônico herdado acima de 50 caracteres**: se veio igual de versão/protocolo anterior (mesmo UUID), é ponto de atenção do item 3b, não erro — a regra de mnemônico estável (item 12/12b) tem prioridade.
 - **E4 — Evolução normal entre v1 → v2**: o que precisa se manter estável é o **mnemônico de cada UID já existente** (item 12). É esperado e normal que a v2 tenha campos novos, mudança de unidade de medida ou mudança de descrição de um campo existente — **não é erro**.
-- **E5 — Linhas do tipo "Comando" no csv/Excel de origem não entram nos arquivos de mapeamento.** Quando a coluna "Tratamento"/tipo do csv indica que a linha é um comando (ex: mnemônicos `cmdreset...`, tipicamente `RW`/`Holding register` sem leitura associada), é esperado que esse UUID **não** apareça no `fl.sql`, `fl.json`, `GruposPadrao.sql`, `VersaoRecurso.sql` nem no SYNC. **Não reportar a ausência desses UUIDs como erro/faltando.**
+- **E5 — Linhas do tipo "Comando" ou "Debug" no csv/Excel de origem não entram nos arquivos de mapeamento.** Quando a coluna "Classificação"/"Tratamento" indica comando (ex: mnemônicos `cmdreset...`, tipicamente `RW`/`Holding register` sem leitura associada) ou debug, é esperado que esse UUID **não** apareça no `fl.sql`, `fl.json`, `GruposPadrao.sql`, `VersaoRecurso.sql` nem no SYNC. **Não reportar a ausência desses UUIDs como erro/faltando.**
 - **E6 — Trechos de debug/comando não fazem parte do script final**: é normal que o SQL não contenha comandos de debug (ex: `SELECT`, `PRINT` avulsos) nem outros comandos auxiliares fora da lógica de mapeamento. A ausência deles **não é erro**.
 - **E7 — Campos de metadado do framework não têm origem no csv/Excel** — mnemônicos como `VersaoProduto`, `VersaoMapa`, `HashCommitMapa` e `DataHoraUltimaLeituraSensor` (e equivalentes) existem no `fl.sql`/`fl.json` mas são gerados pelo framework. **Não reportar a ausência deles no csv como erro/faltando.**
   - No SYNC, metadados e alarmes do framework (ex: `@AlarmeRedeDigitalId`) deveriam aparecer em `fields`: a ausência vira ponto de atenção (`Atenção:`) no item 14, não erro. `VersaoMapa`/`HashCommitMapa` também são conferidos nos itens 16/17.

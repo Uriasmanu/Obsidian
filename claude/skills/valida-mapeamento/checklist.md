@@ -43,9 +43,7 @@ Detalhamento completo de cada item do "Quick Reference" do `SKILL.md` (a ordem d
     - `AVR`
     - `TM1` e `TM2` (andam juntos — tratar como um caso só)
     - `BM`
-10. **Encoding.** Varrer descrições/textos (SQL, JSON, csv/Excel) procurando caracteres estranhos/corrompidos no meio de uma descrição, começando pelo `?` isolado, mas também qualquer outro símbolo ou sequência fora do lugar. Exemplo real já encontrado: `Concentração de H?` / `Gas sensor H?`, onde o `?` substituiu o "2" de "H2"/"H₂" — não é só acentuação perdida, também pode ser número/subscrito perdido. Antes de julgar, ler o csv na codificação real (exceção E2). Reportar qualquer ocorrência suspeita que sobrar depois disso, mesmo sem certeza absoluta.
-10b. **Codificação do arquivo csv.** O processo de mapeamento pede o csv em UTF-8. Se o csv de origem estiver em outra codificação (ex: Windows-1252), reportar como ponto de atenção (`- [ ]` com a codificação encontrada), não como corrupção de dados (exceção E2).
-
+10. **Encoding.** Varrer descrições/textos (SQL, JSON, csv/Excel) procurando caracteres estranhos/corrompidos no meio de uma descrição, começando pelo `?` isolado, mas também qualquer outro símbolo ou sequência fora do lugar. Exemplo real já encontrado: `Concentração de H?` / `Gas sensor H?`, onde o `?` substituiu o "2" de "H2"/"H₂" — não é só acentuação perdida, também pode ser número/subscrito perdido. Antes de julgar, ler o csv na codificação real (o script faz isso automaticamente). Reportar qualquer ocorrência suspeita que sobrar depois disso, mesmo sem certeza absoluta.
 ## Bloco B — Comparação com versão anterior / outro protocolo (só se existir v1, v2, ... ou outro protocolo na mesma pasta)
 
 Só executar este bloco depois do Bloco A estar fechado (csv ↔ script ↔ JSON já conferidos nesta versão). Se não existir versão anterior, rodar só o 12b (se houver outro protocolo) e pular para o Bloco C e, no lugar deste bloco, confirmar manualmente se subtipo/categoria estão corretos (não há referência para comparar).
@@ -68,4 +66,4 @@ Validar por último, depois que script/JSON/csv (e a comparação de versão, se
 
 ## Bloco D — Relatório
 
-18. **Gerar o relatório final** preenchendo o esqueleto de `report-template.md`. Se já existia uma doc de validação anterior, atualizar essa mesma doc em vez de criar uma nova (ver "Segunda Validação" no `SKILL.md`).
+18. **Gerar o relatório final** preenchendo o esqueleto de `report-template.md`, com cada problema como item rastreável (ID, status, `Onde:`, `Chave:`) e o painel de rodadas. Se já existia uma doc de validação anterior, atualizar essa mesma doc em vez de criar uma nova (ver "Segunda Validação" no `SKILL.md`).
