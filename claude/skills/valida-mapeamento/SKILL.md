@@ -16,6 +16,7 @@ Skill de apoio à task "Teste mapeamento" do trabalho da Manu. O objetivo é com
 
 ## Restrições
 
+- **A skill só valida e aponta — nunca altera nenhum arquivo do mapeamento** (csv, SQL, JSON, SYNC). Nem para "limpar" o csv, encurtar mnemônico, numerar `16_M`/`16_U` ou corrigir encoding: tudo vira item `- [ ]` no relatório para a Manu corrigir. O único arquivo que a skill cria/atualiza é o relatório `.md` da validação.
 - **Só pode ler arquivos dentro da pasta indicada por Manu no VSCode** (a pasta do módulo aberta/apontada). Não abrir, buscar ou ler arquivos fora dessa pasta (ex: outros módulos, outras pastas do workspace) mesmo que pareçam relevantes para comparação — se faltar algum arquivo esperado dentro da pasta indicada, perguntar para Manu em vez de procurar em outro lugar.
 - **Não rodar comandos git** (ex: `git log`, `git diff`, `git show`, `git blame`) para buscar contexto, histórico ou versões anteriores de arquivo. A validação usa só os arquivos presentes na pasta indicada, exatamente como estão no momento — nunca consultar o histórico do repositório.
 
@@ -27,7 +28,7 @@ Se não existir doc (primeira validação), perguntar para a Manu, sempre, antes
 
 1. Qual versão do módulo está sendo validada (v1, v2, etc.).
 2. Se é um mapa de cliente (para aplicar a exceção de descrição personalizada por UID, ver "Exceções").
-3. Qual protocolo está sendo validado, `DNP` ou `MDB` — **só se valida um protocolo por vez**, mesmo que a pasta do módulo tenha as duas subpastas. **Só perguntar se a pasta do módulo tiver as duas subpastas (`DNP` e `MDB`)**; se só existir uma delas, usar essa direto, sem perguntar.
+3. Qual protocolo está sendo validado, `DNP` ou `MDB` — **só se valida um protocolo por vez**, mesmo que a pasta do módulo tenha as duas subpastas. **Só perguntar se a pasta do módulo tiver as duas subpastas (`DNP` e `MDB`)**; se só existir uma delas, usar essa direto, sem perguntar. O outro protocolo só é lido como referência para o item 12b (mnemônico igual por UUID).
 
 Não presumir a versão nem se é mapa de cliente sozinho — essas duas sempre pergunta.
 
@@ -40,16 +41,25 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 | A — csv ↔ script ↔ JSON desta versão | 1 | Ler os arquivos (JSON, SQL, csv/Excel de origem) |
 | | 2 | Espelhamento JSON ↔ SQL (todo ID/campo bate 1:1) |
 | | 3 | Mnemônicos únicos dentro do arquivo |
+| | 3b | Mnemônico com no máximo 50 caracteres |
+| | 3c | Mnemônico no formato `^[a-z0-9]+$` (minúsculo, sem `_`/acento) |
+| | 3d | Abreviações padrão (só sugestão) |
 | | 4 | Descrições únicas dentro do arquivo |
 | | 5 | `E3Lib` do script == `E3Lib` do JSON de mapeamento |
 | | 5b | `Imagem` == `<E3Lib>.svg`, e idêntico entre script e JSON |
 | | 6 | IDs do `fl.sql` também em `GruposPadrao.sql`/`VersaoRecurso.sql`, e formato/conteúdo de `TagsVersaoMapa`/`TagsVersaoFirmware` |
 | | 7 | Identificar e cruzar o csv/Excel de origem correto |
+| | 7b | Nome do csv: `<nome>_<protocolo>_v<N>_<hash12>.csv`, batendo com pasta/protocolo |
+| | 7c | Csv limpo (sem UUID vazio, sem linha sem classificação, sem `Privado`) e nada disso mapeado |
+| | 7d | Classificado sem Tipo/Registrador → SAM Team (`#docs-mapa`) |
+| | 7e | Tratamento `16_M`/`16_U` → mnemônicos numerados |
 | | 8 | "Gráfico Rápido = Sim" → tipo `1537` |
 | | 9 | `E3Lib` com especificidades conhecidas → avisar |
 | | 10 | Encoding (caracteres corrompidos numa descrição) |
-| B — comparação com versão anterior (só se existir v1/v2...) | 11 | IDs idênticos entre versões |
+| | 10b | Csv de origem fora de UTF-8 → ponto de atenção |
+| B — comparação com versão anterior / outro protocolo | 11 | IDs idênticos entre versões |
 | | 12 | Mnemônico estável entre versões (UID já existente) |
+| | 12b | Mnemônico igual entre protocolos (MDB ↔ DNP) para o mesmo UUID |
 | | 13 | Subtipo/categoria iguais entre versões |
 | C — SYNC (validar por último) | 14 | Localizar SYNC e espelhar contra o SQL |
 | | 15 | `identifier` (SYNC) == `E3Lib` |
@@ -98,6 +108,12 @@ Ao terminar todas as checagens, sempre fechar com um relatório único (não é 
 - Mnemônico repetido dentro do mesmo arquivo.
 - Descrição repetida dentro do mesmo arquivo.
 - Mnemônico de um UID que já existia na v1 mudou na v2.
+- Mnemônico do mesmo UUID diferente entre MDB e DNP.
+- Mnemônico novo com mais de 50 caracteres, com maiúscula, `_`, acento ou caractere especial.
+- Csv de origem com linha em branco / UUID vazio, linha sem classificação ou linha `Privado` — ou alguma delas mapeada no SQL/JSON/SYNC.
+- Nome do csv sem protocolo/versão/hash, ou com protocolo/versão diferente da pasta.
+- Linhas com tratamento `16_M`/`16_U` com mnemônico sem numeração (ex: dois `indnumeroserie` em vez de `indnumeroserie1`/`indnumeroserie2`).
+- **Corrigir o arquivo em vez de só apontar** — a skill nunca edita csv/SQL/JSON/SYNC (ver "Restrições").
 - `hashCommitMap` do JSON de SYNC diferente do hash presente no nome do csv/Excel de origem ou do zip.
 - `identifier` (JSON de SYNC) ou `E3Lib` (JSON de mapeamento) diferente do `E3Lib` do script.
 - ID presente no `fl.sql` mas faltando em `GruposPadrao.sql` e/ou `VersaoRecurso.sql`.
@@ -124,7 +140,8 @@ Na tabela `VersaoRecurso`, os tipos de recurso `Ativo` (5), `Instalacao` (6), `E
 ## Exceções
 
 - **Mapas de cliente** (Manu avisa explicitamente quando o mapeamento é de um cliente específico): pode acontecer, raramente, de v1 e v2 terem campos com o mesmo ID mas descrição personalizada para aquele cliente. Isso **não é divergência** — não reportar como erro quando for esse caso.
-- **Csv de origem em Windows-1252/ISO-8859-1**: é normal e esperado que o csv de origem não esteja em UTF-8. Ler assumindo UTF-8 e ver acentos trocados **não é um problema de encoding real** — os bytes do arquivo estão corretos, só precisa ler com a codificação certa. Não reportar isso como erro de encoding.
+- **Csv de origem em Windows-1252/ISO-8859-1**: ler assumindo UTF-8 e ver acentos trocados **não é um problema de encoding real nos textos** — os bytes estão corretos, só precisa ler com a codificação certa. Não reportar os acentos como corrupção (item 10); a codificação do arquivo em si fora de UTF-8 é só o ponto de atenção do item 10b.
+- **Mnemônico herdado acima de 50 caracteres**: se veio igual de versão/protocolo anterior (mesmo UUID), é ponto de atenção do item 3b, não erro — a regra de mnemônico estável (item 12/12b) tem prioridade.
 - **Evolução normal entre v1 → v2**: o que precisa se manter estável é o **mnemônico de cada UID já existente** (regra fixa, ver item 12 do `checklist.md`, Bloco B). Já é esperado e normal que a v2 tenha: campos novos que não existiam na v1, mudança de unidade de medida de um campo existente, ou mudança de descrição de um campo existente. Essas mudanças **não são erro** — só reportar como divergência se o mnemônico de um UID que já existia mudou.
 - **Linhas do tipo "Comando" no csv/Excel de origem não entram nos arquivos de mapeamento.** Quando a coluna "Tratamento"/tipo do csv indica que a linha é um comando (ex: mnemônicos `cmdreset...`, tipicamente `RW`/`Holding register` sem leitura associada), é esperado e normal que esse UUID **não** apareça no `fl.sql`, `fl.json`, `GruposPadrao.sql`, `VersaoRecurso.sql` nem no SYNC — comandos não fazem parte deste mapeamento. **Não reportar a ausência desses UUIDs como erro/faltando.**
 - **Trechos de debug/comando não fazem parte do script final**: é normal e esperado que o SQL não contenha comandos de debug (ex: `SELECT`, `PRINT` avulsos usados só para conferir valor durante o desenvolvimento) nem outros comandos auxiliares que não sejam parte da lógica de mapeamento. A ausência desses trechos nos arquivos **não é erro** — não reportar como divergência ou item faltante.
