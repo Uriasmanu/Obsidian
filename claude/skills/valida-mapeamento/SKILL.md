@@ -134,6 +134,7 @@ Casos abaixo não são divergência. O `checklist.md` cita cada um pelo código 
 - **E7 — Campos de metadado do framework não têm origem no csv/Excel** — mnemônicos como `VersaoProduto`, `VersaoMapa`, `HashCommitMapa` e `DataHoraUltimaLeituraSensor` (e equivalentes) existem no `fl.sql`/`fl.json` mas são gerados pelo framework. **Não reportar a ausência deles no csv como erro/faltando.**
   - No SYNC, metadados e alarmes do framework (ex: `@AlarmeRedeDigitalId`) deveriam aparecer em `fields`: a ausência vira ponto de atenção (`Atenção:`) no item 14, não erro. `VersaoMapa`/`HashCommitMapa` também são conferidos nos itens 16/17.
 - **E8 — Mapa de cliente (equipamento que não é produto Treetech, sem branch/versão no Bitbucket)** — vale quando a resposta a "É mapa de cliente?" foi sim: `TagsVersaoMapa` padrão esperado é `v1-MDB` ou `v1-DNP` (conforme o protocolo), e `TagsVersaoFirmware` padrão é `v1[fw1.0]`. Não reportar como erro/faltando quando o `VersaoRecurso.sql` desse tipo de equipamento tiver só esses valores.
+- **E9 — Imagem em mapa de cliente** — em mapas de cliente, o campo `Imagem` não segue o padrão `<E3Lib>.svg`: é esperado que use a imagem de um módulo Treetech existente. Não reportar como erro quando o valor de `Imagem` não corresponder à `E3Lib` do equipamento (item 5b).
 
 ## Pendências
 
