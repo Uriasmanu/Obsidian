@@ -19,6 +19,8 @@ Skill de apoio à implantação em produção. O objetivo é verificar se a estr
 
 - **A skill só valida e aponta — nunca altera arquivos.** Qualquer problema encontrado vira item `- [ ]` no relatório para o usuário corrigir.
 - **Só pode verificar a pasta indicada pelo usuário.** Não buscar arquivos fora dela — se faltar algo esperado, perguntar ao usuário.
+- **PROIBIDO rodar qualquer comando git** (`git log`, `git diff`, `git show`, `git status` ou qualquer outro). A validação usa só os arquivos presentes na pasta indicada, exatamente como estão no momento.
+- **PROIBIDO salvar, gravar ou persistir qualquer dado dos arquivos avaliados** (scripts, configs, binários ou qualquer outro arquivo da pasta). O único arquivo que a skill cria/atualiza é o relatório `.md` da validação.
 
 ## Antes de Começar
 
