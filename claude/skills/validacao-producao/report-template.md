@@ -24,7 +24,6 @@ Todo problema (`- [ ]`) é um **item rastreável**.
   | Status | Checkbox | Quando |
   |---|---|---|
   | 🔴 `aberto` | `- [ ]` | Encontrado, ainda não resolvido |
-  | 💬 `no-pr` | `- [ ]` | Usuário foi avisado, aguardando correção |
   | 🟡 `parcial` | `- [ ]` | Parte corrigida, parte continua |
   | 🔁 `reaberto` | `- [ ]` | Estava resolvido e o problema voltou |
   | ✅ `resolvido` | `- [x]` | Corrigido — sempre com a rodada (`resolvido na R2`) |
@@ -53,9 +52,9 @@ Arquivos analisados:
 - Versão: 1.0 | Rev X.X
 - Comunicação: Sync | E3
 
-| Rodada | Data | 🔴 Abertos | 💬 Aguardando | 🟡 Parciais | ✅ Resolvidos | Novos |
-|---|---|---|---|---|---|---|
-| R1 | AAAA-MM-DD | 2 | 0 | 0 | 0 | 2 |
+| Rodada | Data | 🔴 Abertos | 🟡 Parciais | ✅ Resolvidos | Novos |
+|---|---|---|---|---|---|
+| R1 | AAAA-MM-DD | 2 | 0 | 0 | 2 |
 
 ---
 

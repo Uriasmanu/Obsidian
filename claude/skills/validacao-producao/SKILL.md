@@ -30,7 +30,8 @@ A skill roda em cima da **pasta aberta no VSCode**. **PROIBIDO pedir o caminho d
 
 ## Antes de Começar
 
-Fazer **todas as perguntas numa única chamada** (AskUserQuestion):
+1. **Antes de qualquer pergunta ou leitura de arquivo, verificar se já existe um relatório `Validacao-Producao-*.md`** na pasta de maior hierarquia aberta no VSCode. Se existir, é uma revalidação — ler o relatório inteiro e seguir "Segunda Validação". O cabeçalho do relatório já responde tipo, versão e comunicação — não perguntar de novo, só confirmar com o usuário se mudou algo.
+2. Se não existir (primeira validação), fazer **todas as perguntas numa única chamada** (AskUserQuestion):
 
 1. **É 4NET ou 4WEB?**
 2. **É Rev ou 1.0?**
@@ -91,9 +92,22 @@ A ordem importa. **Detalhamento completo de cada item em `checklist.md`, nesta m
 | 6 | Reportar qualquer coisa fora do padrão como `- [ ]` |
 | 7 | Gerar relatório final usando `report-template.md` |
 
+## Segunda Validação
+
+Quando já existe um relatório `Validacao-Producao-*.md` na pasta de maior hierarquia. Formato dos itens rastreáveis (`Onde:`, `Histórico:`) em `report-template.md`.
+
+1. **Ler o relatório inteiro** e listar todos os itens em aberto (`- [ ]`): ID, status, `Onde:`, `Obs.:`. A rodada nova é `R<última + 1>` do painel.
+2. **Reconferir cada item em aberto** (🔴, 🟡, 🔁) verificando se a pasta ou arquivo agora existe no caminho indicado em `Onde:`:
+   - Pasta/arquivo existe agora → ✅ `resolvido na R<n>`. Vira `- [x]` com linha `Agora:` confirmando.
+   - Ainda ausente → manter status, adicionar `R<n> continua` no `Histórico:`.
+   - Corrigido parcialmente (ex: pasta existe mas arquivo obrigatório ainda falta) → 🟡 `parcial`.
+3. **Achado novo** (não está no relatório) → item novo com o próximo ID livre do prefixo, `Histórico: R<n> novo`.
+4. **Atualizar o mesmo relatório** (nunca criar outro): adicionar linha de contexto `Revalidação (R<n>)`, nova linha no painel, reordenar cada seção (`- [ ]` por ID, depois `- [x]`). Nunca apagar item ou `Obs.:`.
+5. Resumir a rodada para o usuário: resolvidos, parciais, reabertos e novos, por ID.
+
 ## Relatório Final
 
-Obrigatório ao fim de toda validação. **Formato e esqueleto em `report-template.md`, nesta mesma pasta da skill** — preencher o esqueleto, não montar de cabeça.
+Obrigatório ao fim de toda validação. **O relatório deve sempre ser escrito em português**, independente do idioma usado na conversa. **Formato e esqueleto em `report-template.md`, nesta mesma pasta da skill** — preencher o esqueleto, não montar de cabeça.
 
 ## Common Mistakes
 
