@@ -24,6 +24,10 @@ Uma task de deploy não está concluída até que a estrutura de pastas e arquiv
 - **PROIBIDO rodar qualquer comando git** (`git log`, `git diff`, `git show`, `git status` ou qualquer outro). Usar só o que está na pasta indicada no momento.
 - **PROIBIDO salvar ou persistir dados dos arquivos avaliados** (scripts, configs, binários ou qualquer outro arquivo da pasta). O único arquivo que a skill cria ou atualiza é o relatório `.md` da validação.
 
+## Escopo
+
+A skill roda em cima da **pasta aberta no VSCode**. Não pedir caminho ao usuário — ler diretamente da pasta aberta. O relatório de validação é salvo na **pasta de maior hierarquia** dessa estrutura (o nível mais alto disponível na pasta aberta).
+
 ## Antes de Começar
 
 Fazer **todas as perguntas numa única chamada** (AskUserQuestion):

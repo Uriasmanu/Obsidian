@@ -1,6 +1,6 @@
 # Relatório Final — Template
 
-- **Local**: na pasta da empresa indicada pelo usuário no VSCode.
+- **Local**: na pasta de maior hierarquia da estrutura aberta no VSCode (o nível mais alto disponível). Nunca dentro de subpastas como `DB/`, `client/` ou `E3/`.
 - **Nome**: `Validacao-Producao-<EMPRESA>-<tipo>-<versao>.md`
 - Os caminhos em `Arquivos analisados:` são relativos a onde o relatório foi salvo.
 
