@@ -2,22 +2,19 @@
 
 Detalhamento completo de cada item do "Quick Reference" do `SKILL.md`. A ordem dos blocos está lá.
 
-## 1. Perguntas iniciais
+## 1. Deduzir o caminho da pasta
 
-Fazer as quatro perguntas numa única chamada (AskUserQuestion) antes de qualquer verificação de arquivo:
+**Antes de qualquer pergunta ou leitura de arquivo**, deduzir o caminho da pasta aberta no VSCode. Nunca pedir o caminho ao usuário. Usar esse caminho como raiz de todas as verificações.
+
+## 2. Perguntas iniciais
+
+Fazer as três perguntas numa única chamada (AskUserQuestion):
 
 - **É 4NET ou 4WEB?** — define a estrutura de pastas esperada.
 - **É Rev ou 1.0?** — define se haverá pasta de revisão dentro de `01-BACKBONE/`.
 - **A comunicação é Sync ou E3?** — define se a pasta `E3/` com `.prj` e `.dll` é obrigatória.
-- **A pasta da empresa já existe?** — se não existir, reportar como `- [ ]` imediatamente antes de continuar.
 
-## 2. Confirmar existência da pasta da empresa
-
-Se a pasta da empresa **não existir**: reportar como `PASTA-01` e encerrar — não há o que verificar dentro dela.
-
-Se existir: seguir para os próximos itens.
-
-## 3. Verificar estrutura de pastas de nível superior
+## 2. Verificar estrutura de pastas de nível superior
 
 Conferir se as pastas obrigatórias de nível superior existem e estão com os nomes corretos.
 

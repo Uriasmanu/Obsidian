@@ -26,7 +26,7 @@ Uma task de deploy não está concluída até que a estrutura de pastas e arquiv
 
 ## Escopo
 
-A skill roda em cima da **pasta aberta no VSCode**. Não pedir caminho ao usuário — ler diretamente da pasta aberta. O relatório de validação é salvo na **pasta de maior hierarquia** dessa estrutura (o nível mais alto disponível na pasta aberta).
+A skill roda em cima da **pasta aberta no VSCode**. **PROIBIDO pedir o caminho da pasta ao usuário** — deduzir automaticamente da pasta aberta antes de fazer qualquer outra pergunta. O relatório de validação é salvo na **pasta de maior hierarquia** dessa estrutura (o nível mais alto disponível na pasta aberta).
 
 ## Antes de Começar
 
@@ -35,7 +35,6 @@ Fazer **todas as perguntas numa única chamada** (AskUserQuestion):
 1. **É 4NET ou 4WEB?**
 2. **É Rev ou 1.0?**
 3. **A comunicação é Sync ou E3?**
-4. **A pasta da empresa já existe?**
 
 ## Estrutura de Pastas
 
