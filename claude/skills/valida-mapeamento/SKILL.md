@@ -44,7 +44,7 @@ python valida.py <pasta_protocolo> [--anterior <pasta_protocolo_versao_anterior>
 - A saída vem agrupada por arquivo: `[ERRO]` vira `- [ ]`, `[OK]` vira `- [x]`. `[ATENCAO]`/`[SUGESTAO]` viram `- [ ]` marcados como ponto de atenção/sugestão, e `[INFO]` não vira item.
 - Cada achado termina com `{chave: <item>/<tipo de arquivo>/<slug>}`. A chave não muda entre rodadas (não depende de nome de arquivo, número nem valor) — copiar para a linha `Chave:` do item rastreável no relatório.
 - Na revalidação, rodar com `--completo` para listar todos os trechos sem corte (necessário para detectar correção parcial).
-- O script não substitui o julgamento. Continua manual: aplicar as exceções E1–E8, confirmar subtipo/categoria na v1 (item 13), ler a doc anterior na revalidação e copiar o trecho literal (Ctrl+F) de cada item com grep direcionado. Nunca ler os `.sql`/`.json` inteiros.
+- O script não substitui o julgamento. Continua manual: aplicar as exceções E1–E10, confirmar subtipo/categoria na v1 (item 13), ler a doc anterior na revalidação e copiar o trecho literal (Ctrl+F) de cada item com grep direcionado. Nunca ler os `.sql`/`.json` inteiros.
 
 ## Quick Reference — Passo a Passo
 
@@ -61,7 +61,8 @@ A ordem importa: primeiro fecha a consistência interna desta versão (csv ↔ s
 | | 4 | Descrições únicas dentro do arquivo |
 | | 5 | `E3Lib` do script == `E3Lib` do JSON de mapeamento |
 | | 5b | `Imagem` == `<E3Lib>.svg`, e idêntico entre script e JSON |
-| | 6 | IDs do `fl.sql` também em `GruposPadrao.sql`/`VersaoRecurso.sql`, e formato/conteúdo de `TagsVersaoMapa`/`TagsVersaoFirmware` |
+| | 6 | IDs do `fl.sql` também em `GruposPadrao.sql`/`VersaoRecurso.sql` |
+| | 6b | Formato/conteúdo de `TagsVersaoMapa`/`TagsVersaoFirmware` no `VersaoRecurso.sql` |
 | | 7 | Identificar o csv/Excel de origem pelo nome e cruzar |
 | | 7b | Nome do csv: `<nome>_<protocolo>_v<N>_<hash12>.csv`, batendo com pasta/protocolo |
 | | 7c | Csv limpo (sem UUID vazio, sem linha sem classificação, sem `Privado`) e nada disso mapeado |
