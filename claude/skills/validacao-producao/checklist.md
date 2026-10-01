@@ -20,11 +20,12 @@ Conferir se as pastas obrigatórias de nível superior existem e estão com os n
 
 **4NET:**
 - `client/` — obrigatória
+- `system/` — obrigatória
 - `DB/` — obrigatória
-  - `00-INITIAL-SCRIPTS/` — obrigatória
-  - `01-BACKBONE/` — obrigatória
-  - `02-GROUPS/` — obrigatória
-  - `03-JSON/` — obrigatória
+  - `00 - INITIAL-SCRIPTS/` — obrigatória
+  - `01 - BACKBONE/` — obrigatória
+  - `02 - GROUPS/` — obrigatória
+  - `03 - JSON/` — obrigatória
 
 Qualquer pasta fora deste padrão (nome diferente, pasta extra inesperada) → reportar como `- [ ]`.
 

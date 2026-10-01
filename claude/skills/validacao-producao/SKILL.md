@@ -46,12 +46,13 @@ A skill roda em cima da **pasta aberta no VSCode**. **PROIBIDO pedir o caminho d
 ```
 client/
 └── 00-create-database-client.sql
+system/
 DB/
-├── 00-INITIAL-SCRIPTS/
-├── 01-BACKBONE/
+├── 00 - INITIAL-SCRIPTS/
+├── 01 - BACKBONE/
 │   └── *-perfil-root.sql  ← obrigatório
-├── 02-GROUPS/
-└── 03-JSON/
+├── 02 - GROUPS/
+└── 03 - JSON/
 ```
 
 ### 4NET — Rev (ex: Rev 1.3)
@@ -59,13 +60,14 @@ DB/
 ```
 client/
 └── 00-create-database-client.sql
+system/
 DB/
 ├── 00-INITIAL-SCRIPTS/
-├── 01-BACKBONE/
+├── 01 - BACKBONE/
 │   ├── *-perfil-root.sql  ← obrigatório
 │   └── Rev 1.3/           ← pasta com o nome da rev
-├── 02-GROUPS/
-└── 03-JSON/
+├── 02 - GROUPS/
+└── 03 - JSON/
 ```
 
 ### Comunicação E3
