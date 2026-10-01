@@ -1,6 +1,6 @@
 ---
 name: validacao-producao
-description: Use when o usuário está iniciando ou concluindo uma implantação em produção, ou quando uma task de deploy está prestes a ser fechada no Azure DevOps sem evidência confirmada de que as pastas e arquivos obrigatórios foram verificados no ambiente de produção.
+description: Use when the user is starting or completing a production deployment, when a deploy task is about to be closed in Azure DevOps without confirmed evidence that required folders and files were verified in production, or when the user asks to validar, revalidar or conferir a estrutura de producao (4NET / 4WEB).
 ---
 
 # Validação de Produção
