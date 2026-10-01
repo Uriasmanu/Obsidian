@@ -48,7 +48,7 @@ Independente da estrutura estar correta ou não, percorrer todas as subpastas e 
 **Se for Rev com troca de comunicação (ex: 1.0 era E3, Rev vira Sync):**
 
 - `DB/01-BACKBONE/Rev X.X - sync/` — pasta com sufixo ` - sync`. Se ausente ou sem sufixo, reportar como `PASTA-02`.
-- Dentro dessa pasta, verificar as quatro subpastas obrigatórias: `00-INITIAL-SCRIPTS/`, `01-BACKBONE/`, `02-GROUPS/`, `03-JSONs/`. Ausência de qualquer uma → reportar como `PASTA-0N` (próximo ID livre).
+- Dentro dessa pasta, verificar as quatro subpastas obrigatórias: `00-INITIAL-SCRIPTS/`, `01-BACKBONE/`, `02-GROUPS/`, `03-JSONs/` (também aceito como `03 - JSONs/`). Ausência de qualquer uma → reportar como `PASTA-0N` (próximo ID livre).
 
 **Conteúdo das demais subpastas:**
 

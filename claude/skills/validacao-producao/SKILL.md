@@ -87,7 +87,7 @@ DB/
 │       ├── 00-INITIAL-SCRIPTS/
 │       ├── 01-BACKBONE/
 │       ├── 02-GROUPS/
-│       └── 03-JSONs/
+│       └── 03-JSONs/ ou 03 - JSONs/
 ├── 02 - GROUPS/
 └── 03 - JSON/
 ```
