@@ -8,13 +8,14 @@ Detalhamento completo de cada item do "Quick Reference" do `SKILL.md`. A ordem d
 
 ## 2. Perguntas iniciais
 
-Fazer as três perguntas numa única chamada (AskUserQuestion):
+Fazer as perguntas numa única chamada (AskUserQuestion):
 
 - **É 4NET ou 4WEB?** — define a estrutura de pastas esperada.
 - **É Rev ou 1.0?** — define se haverá pasta de revisão dentro de `01-BACKBONE/`.
 - **A comunicação é Sync ou E3?** — define se a pasta `E3/` com `.prj` e `.dll` é obrigatória.
+- **Se Rev: a Rev troca a comunicação?** (ex: 1.0 era E3, Rev vira Sync) — define se a pasta da Rev tem estrutura DB própria com sufixo ` - sync`.
 
-## 2. Verificar estrutura de pastas de nível superior
+## 3. Verificar estrutura de pastas de nível superior
 
 Conferir se as pastas obrigatórias de nível superior existem e estão com os nomes corretos.
 
@@ -40,9 +41,14 @@ Independente da estrutura estar correta ou não, percorrer todas as subpastas e 
 - `client/00-create-database-client.sql` — se ausente, reportar como `ARQ-01`.
 - `DB/01-BACKBONE/*-perfil-root.sql` — pelo menos um arquivo com esse sufixo. Se ausente, reportar como `ARQ-02`.
 
-**Se for Rev:**
+**Se for Rev (comunicação igual à 1.0):**
 
 - `DB/01-BACKBONE/Rev X.X/` — pasta com o nome exato da revisão informada. Se ausente, reportar como `PASTA-02`.
+
+**Se for Rev com troca de comunicação (ex: 1.0 era E3, Rev vira Sync):**
+
+- `DB/01-BACKBONE/Rev X.X - sync/` — pasta com sufixo ` - sync`. Se ausente ou sem sufixo, reportar como `PASTA-02`.
+- Dentro dessa pasta, verificar as quatro subpastas obrigatórias: `00-INITIAL-SCRIPTS/`, `01-BACKBONE/`, `02-GROUPS/`, `03-JSONs/`. Ausência de qualquer uma → reportar como `PASTA-0N` (próximo ID livre).
 
 **Conteúdo das demais subpastas:**
 

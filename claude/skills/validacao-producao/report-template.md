@@ -52,9 +52,9 @@ Arquivos analisados:
 - Versão: 1.0 | Rev X.X
 - Comunicação: Sync | E3
 
-| Rodada | Data | 🔴 Abertos | 🟡 Parciais | ✅ Resolvidos | Novos |
-|---|---|---|---|---|---|
-| R1 | AAAA-MM-DD | 2 | 0 | 0 | 2 |
+| Rodada | Data | 🔴 Abertos | 🟡 Parciais | 🔁 Reabertos | ✅ Resolvidos | ⚪ Não corrigir | Novos |
+|---|---|---|---|---|---|---|---|
+| R1 | AAAA-MM-DD | 2 | 0 | 0 | 0 | 0 | 2 |
 
 ---
 

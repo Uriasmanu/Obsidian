@@ -36,6 +36,7 @@ A skill roda em cima da **pasta aberta no VSCode**. **PROIBIDO pedir o caminho d
 1. **É 4NET ou 4WEB?**
 2. **É Rev ou 1.0?**
 3. **A comunicação é Sync ou E3?**
+4. **Se Rev: a Rev troca a comunicação?** (ex: 1.0 era E3 e a Rev vira Sync) — só perguntar se for Rev.
 
 ## Estrutura de Pastas
 
@@ -66,6 +67,27 @@ DB/
 ├── 01 - BACKBONE/
 │   ├── *-perfil-root.sql  ← obrigatório
 │   └── Rev 1.3/           ← pasta com o nome da rev
+├── 02 - GROUPS/
+└── 03 - JSON/
+```
+
+### 4NET — Rev com troca de comunicação (ex: 1.0 era E3, Rev vira Sync)
+
+A pasta da Rev leva o sufixo ` - sync` no nome e tem **estrutura DB própria** dentro dela — não é só uma subpasta vazia.
+
+```
+client/
+└── 00-create-database-client.sql
+system/
+DB/
+├── 00-INITIAL-SCRIPTS/
+├── 01 - BACKBONE/
+│   ├── *-perfil-root.sql  ← obrigatório
+│   └── Rev 1.2 - sync/    ← nome com sufixo " - sync"
+│       ├── 00-INITIAL-SCRIPTS/
+│       ├── 01-BACKBONE/
+│       ├── 02-GROUPS/
+│       └── 03-JSONs/
 ├── 02 - GROUPS/
 └── 03 - JSON/
 ```
