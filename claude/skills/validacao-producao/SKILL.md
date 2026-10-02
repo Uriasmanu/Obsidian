@@ -42,65 +42,93 @@ A skill roda em cima da **pasta aberta no VSCode**. **PROIBIDO pedir o caminho d
 
 > **Padrão esperado**: as estruturas abaixo são os padrões obrigatórios. Qualquer pasta ou arquivo encontrado **fora deste padrão** deve ser reportado como item `- [ ]`. Independente disso, a skill **percorre todas as subpastas** para verificar se os arquivos obrigatórios estão presentes em algum lugar dentro delas — a ausência de um arquivo obrigatório é sempre reportada, mesmo que a estrutura de pastas pareça correta.
 
+A pasta-raiz do projeto segue o padrão `ecm-[CLIENTE]-[INSTALACAO]/` e fica dentro de `net/[CLIENTE]/` (4NET) ou `web/[CLIENTE]/` (4WEB).
+
 ### 4NET — Versão 1.0
 
 ```
-client/
-└── 00-create-database-client.sql
-system/
-DB/
-├── 00 - INITIAL-SCRIPTS/
-├── 01 - BACKBONE/
-│   └── *-perfil-root.sql  ← obrigatório
-├── 02 - GROUPS/
-└── 03 - JSON/
+ecm-[CLIENTE]-[INSTALACAO]/
+├── client/
+│   └── DB/
+│       └── 00-create-database-client.sql
+├── DB/
+│   ├── 00-INITIAL-SCRIPTS/
+│   │   ├── 000-ecm-clean-data.sql
+│   │   └── 001-ecm-add-[MODULO]-fl.sql
+│   ├── 01 - BACKBONE/
+│   │   └── *-perfil-root.sql  ← obrigatório
+│   ├── 02 - GROUPS/
+│   │   └── 001-[MODULO]-GruposPadrao.sql
+│   └── 03-JSONs/
+│       ├── [MODULO]-sigma-sync-import
+│       ├── [MODULO]-sigma-sync-algorithmFieldMaps-import
+│       └── ecm_[CLIENTE]_[INSTALACAO]_sync
+└── E3/  ← só se comunicação E3; ausente quando Sync
+    ├── ecm-[CLIENTE]-[INSTALACAO].prj
+    └── [PROTOCOLO].dll
 ```
 
 ### 4NET — Rev (ex: Rev 1.3)
 
 ```
-client/
-└── 00-create-database-client.sql
-system/
-DB/
-├── 00-INITIAL-SCRIPTS/
-├── 01 - BACKBONE/
-│   ├── *-perfil-root.sql  ← obrigatório
-│   └── Rev 1.3/           ← pasta com o nome da rev
-├── 02 - GROUPS/
-└── 03 - JSON/
+ecm-[CLIENTE]-[INSTALACAO]/
+├── client/
+│   └── DB/
+│       └── 00-create-database-client.sql
+├── DB/
+│   ├── 00-INITIAL-SCRIPTS/
+│   ├── 01 - BACKBONE/
+│   │   ├── *-perfil-root.sql  ← obrigatório
+│   │   └── Rev 1.3/           ← pasta com o nome da rev
+│   ├── 02 - GROUPS/
+│   └── 03-JSONs/
+└── E3/  ← só se comunicação E3; ausente quando Sync
+    ├── ecm-[CLIENTE]-[INSTALACAO].prj
+    └── [PROTOCOLO].dll
 ```
 
 ### 4NET — Rev com troca de comunicação (ex: 1.0 era E3, Rev vira Sync)
 
-A pasta da Rev leva o sufixo ` - sync` no nome e tem **estrutura DB própria** dentro dela — não é só uma subpasta vazia.
+A pasta da Rev leva o sufixo ` - sync` no nome e tem **estrutura DB própria** dentro dela — não é só uma subpasta vazia. A pasta `E3/` não existe nesse caso.
 
 ```
-client/
-└── 00-create-database-client.sql
-system/
-DB/
-├── 00-INITIAL-SCRIPTS/
-├── 01 - BACKBONE/
-│   ├── *-perfil-root.sql  ← obrigatório
-│   └── Rev 1.2 - sync/    ← nome com sufixo " - sync"
-│       ├── 00-INITIAL-SCRIPTS/
-│       ├── 01-BACKBONE/
-│       ├── 02-GROUPS/
-│       └── 03-JSONs/ ou 03 - JSONs/
-├── 02 - GROUPS/
-└── 03 - JSON/
+ecm-[CLIENTE]-[INSTALACAO]/
+├── client/
+│   └── DB/
+│       └── 00-create-database-client.sql
+├── DB/
+│   ├── 00-INITIAL-SCRIPTS/
+│   ├── 01 - BACKBONE/
+│   │   ├── *-perfil-root.sql  ← obrigatório
+│   │   └── Rev 1.2 - sync/    ← nome com sufixo " - sync"
+│   │       ├── 00-INITIAL-SCRIPTS/
+│   │       ├── 01-BACKBONE/
+│   │       ├── 02-GROUPS/
+│   │       └── 03-JSONs/ ou 03 - JSONs/
+│   ├── 02 - GROUPS/
+│   └── 03-JSONs/
+└── (sem E3/ — comunicação já é Sync)
 ```
 
-### Comunicação E3
+### 4WEB
 
-Independente de 4NET ou 4WEB, quando a comunicação for E3:
+Não tem pasta `client/` nem `00-INITIAL-SCRIPTS/`. Scripts ficam diretamente na `DB/`, sem subpastas. Banco de dados é criado manualmente — ausência de `client/` não é erro.
 
 ```
-E3/
-├── *.prj
-└── *.dll
+ecm-[CLIENTE]-[INSTALACAO]/
+├── DB/
+│   ├── 001_ecm_[CLIENTE]_[INSTALACAO].sql
+│   ├── 002_ecm_[CLIENTE]_[INSTALACAO]_[MODULO-ENGENHARIA].sql
+│   ├── 002_ecm_[CLIENTE]_[INSTALACAO]_[ATIVO]_[MODULO-ENGENHARIA]_config.sql
+│   └── 003_ecm_[CLIENTE]_[INSTALACAO]_temperatura_ambiente.sql
+└── E3/  ← só se comunicação E3; ausente quando Sync
+    ├── ecm-[CLIENTE]-[INSTALACAO].prj
+    └── [PROTOCOLO].dll
 ```
+
+### Comunicação E3 vs Sync
+
+Quando a comunicação for **E3**, a pasta `E3/` com `.prj` e `.dll` é obrigatória. Quando for **Sync** (SigmaSync), a pasta `E3/` **não existe** — ausência não é erro.
 
 ## Quick Reference — Passo a Passo
 

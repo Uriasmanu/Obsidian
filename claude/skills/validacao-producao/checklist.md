@@ -21,25 +21,39 @@ Conferir se as pastas obrigatórias de nível superior existem e estão com os n
 
 **4NET:**
 - `client/` — obrigatória
-- `system/` — obrigatória
 - `DB/` — obrigatória
-  - `00 - INITIAL-SCRIPTS/` — obrigatória
+  - `00-INITIAL-SCRIPTS/` — obrigatória
   - `01 - BACKBONE/` — obrigatória
   - `02 - GROUPS/` — obrigatória
-  - `03 - JSON/` — obrigatória
+  - `03-JSONs/` — obrigatória (também aceito `03 - JSONs/`)
+- `E3/` — obrigatória **só se comunicação E3**; ausente quando Sync
+
+**4WEB:**
+- `DB/` — obrigatória (scripts ficam diretamente nela, sem subpastas como em 4NET)
+- `E3/` — obrigatória **só se comunicação E3**; ausente quando Sync
+- `client/` — **não existe** em 4WEB; ausência não é erro
 
 Qualquer pasta fora deste padrão (nome diferente, pasta extra inesperada) → reportar como `- [ ]`.
-
-> **4WEB:** _a detalhar._
 
 ## 4. Percorrer subpastas e verificar arquivos obrigatórios
 
 Independente da estrutura estar correta ou não, percorrer todas as subpastas e verificar:
 
-**Sempre obrigatório em 4NET:**
+**4NET — sempre obrigatório:**
 
-- `client/00-create-database-client.sql` — se ausente, reportar como `ARQ-01`.
+- `client/DB/00-create-database-client.sql` — se ausente, reportar como `ARQ-01`.
 - `DB/01-BACKBONE/*-perfil-root.sql` — pelo menos um arquivo com esse sufixo. Se ausente, reportar como `ARQ-02`.
+- `DB/00-INITIAL-SCRIPTS/000-ecm-clean-data.sql` — se ausente, reportar como `ARQ-03`.
+- `DB/00-INITIAL-SCRIPTS/001-ecm-add-[MODULO]-fl.sql` — pelo menos um por módulo. Se ausente, reportar como `ARQ-04`.
+- `DB/02-GROUPS/001-[MODULO]-GruposPadrao.sql` — pelo menos um por módulo. Se ausente, reportar como `ARQ-05`.
+- `DB/03-JSONs/` — verificar presença de `[MODULO]-sigma-sync-import`, `[MODULO]-sigma-sync-algorithmFieldMaps-import` e `ecm_[CLIENTE]_[INSTALACAO]_sync`. Ausência de qualquer um → reportar como `ARQ-06`.
+
+**4WEB — sem `client/` e sem `00-INITIAL-SCRIPTS/`:**
+
+- `client/` e `00-create-database-client.sql` não existem — **não reportar como erro**.
+- `DB/00-INITIAL-SCRIPTS/` não existe — **não reportar como erro**.
+- `DB/001_ecm_[CLIENTE]_[INSTALACAO].sql` — obrigatório. Se ausente, reportar como `ARQ-01`.
+- `DB/*-perfil-root.sql` ou equivalente — obrigatório. Se ausente, reportar como `ARQ-02`.
 
 **Se for Rev (comunicação igual à 1.0):**
 
@@ -50,17 +64,13 @@ Independente da estrutura estar correta ou não, percorrer todas as subpastas e 
 - `DB/01-BACKBONE/Rev X.X - sync/` — pasta com sufixo ` - sync`. Se ausente ou sem sufixo, reportar como `PASTA-02`.
 - Dentro dessa pasta, verificar as quatro subpastas obrigatórias: `00-INITIAL-SCRIPTS/`, `01-BACKBONE/`, `02-GROUPS/`, `03-JSONs/` (também aceito como `03 - JSONs/`). Ausência de qualquer uma → reportar como `PASTA-0N` (próximo ID livre).
 
-**Conteúdo das demais subpastas:**
-
-> `00-INITIAL-SCRIPTS/`, `02-GROUPS/`, `03-JSON/` — _conteúdo obrigatório a detalhar._
-
 ## 5. Comunicação E3
 
-Se a comunicação for E3, verificar independente do tipo (4NET ou 4WEB):
+Só executar se a resposta à pergunta 3 for E3. Quando Sync, `E3/` não existe — pular este item.
 
-- `E3/` existe na raiz da pasta da empresa → se ausente, reportar como `PASTA-03`.
-- `E3/*.prj` — pelo menos um arquivo `.prj`. Se ausente, reportar como `ARQ-03`.
-- `E3/*.dll` — pelo menos um arquivo `.dll`. Se ausente, reportar como `ARQ-04`.
+- `E3/` existe na raiz da pasta do projeto → se ausente, reportar como `PASTA-03`.
+- `E3/*.prj` — pelo menos um arquivo `.prj`. Se ausente, reportar como `ARQ-07`.
+- `E3/*.dll` — pelo menos um arquivo `.dll`. Se ausente, reportar como `ARQ-08`.
 
 ## 6. Reportar o que está fora do padrão
 
